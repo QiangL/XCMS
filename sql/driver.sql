@@ -1,0 +1,20 @@
+CREATE TABLE `driver` (
+  `driver_id` int(11) NOT NULL AUTO_INCREMENT,
+  `driver_number` int(11) DEFAULT NULL,
+  `driver_name` varchar(5) NOT NULL,
+  `driver_gender` varchar(2) NOT NULL,
+  `driver_age` int(11) NOT NULL,
+  `driver_company_id` int(11) NOT NULL,
+  `driver_image` varchar(100) NOT NULL,
+  `driver_bind_car_id` int(11) NOT NULL,
+  `driver_order_quantity` int(11) DEFAULT NULL,
+  `driver_charging_time` int(11) DEFAULT NULL,
+  `driver_transaction_amount` decimal(6,2) DEFAULT NULL,
+  `driver_bad_review` double DEFAULT NULL,
+  `driver_score` double DEFAULT NULL,
+  `driver_grade` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`driver_id`),
+  UNIQUE KEY `driver_id_UNIQUE` (`driver_id`),
+  UNIQUE KEY `driver_bing_car_id_UNIQUE` (`driver_bind_car_id`),
+  UNIQUE KEY `driver_number_UNIQUE` (`driver_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
