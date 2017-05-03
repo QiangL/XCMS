@@ -1,0 +1,18 @@
+.side{
+    top:60px;
+}
+.header{
+    position: fixed;
+    right:0;
+    top:0;
+    width: 100%;
+}
+.footer{
+    text-align: center;
+    background-color: grey; 
+}
+.content{
+    margin-left: 250px;
+    margin-top:100px;
+    margin-bottom: 100px;
+}
