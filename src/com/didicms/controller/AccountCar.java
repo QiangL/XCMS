@@ -1,7 +1,6 @@
 package com.didicms.controller;
 
 import com.didicms.dao.CarDao;
-import com.didicms.dao.impl.CarDaoImpl;
 import com.didicms.entry.Car;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/accountCar")
 public class AccountCar {
 	@Autowired
-	private CarDaoImpl carDao;
+	private CarDao carDao;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String view(){
 		return URL.AccountCar;
 	}
-	
 	@RequestMapping(value="/addCar",method=RequestMethod.POST)
 	public String addCar(HttpServletRequest request,Car car){
 		if(carDao.insert(car)){
@@ -43,6 +41,4 @@ public class AccountCar {
 		}
 		return URL.error;
 	}
-	
-
 }

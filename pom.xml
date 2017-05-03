@@ -72,16 +72,20 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.3.3.RELEASE</version>
 		</dependency>
-
-
+		
+		<!-- use lombok (later will) -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.16</version>
 			<scope>provided</scope>
 		</dependency>
-
-
-
+		<!-- use jstl -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		
 	</dependencies>
 </project>

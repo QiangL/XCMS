@@ -16,8 +16,6 @@ import com.didicms.service.DriverService;
 public class AccountDriver {
 	@Autowired
 	private DriverDao driverDao;
-	@Autowired
-	private DriverService driverSerice;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String view(){
