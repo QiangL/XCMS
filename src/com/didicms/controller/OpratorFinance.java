@@ -13,15 +13,15 @@ import com.didicms.entry.Finance;
 public class OpratorFinance {
 	@Autowired
 	private FinanceDao financeDao;
-	@RequestMapping(method=RequestMethod.GET)
-	public String view(){
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String view() {
 		return URL.OpratorFinance;
 	}
-	
-	
-	@RequestMapping(value="/finance",method=RequestMethod.POST)
-	public String remit(Finance finance){
-		if(financeDao.insert(finance)){
+
+	@RequestMapping(value = "/finance", method = RequestMethod.POST)
+	public String remit(Finance finance) {
+		if (financeDao.insert(finance)) {
 			return URL.OpratorFinance;
 		}
 		return URL.error;

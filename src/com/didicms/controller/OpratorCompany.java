@@ -13,14 +13,15 @@ import com.didicms.entry.Company;
 public class OpratorCompany {
 	@Autowired
 	private CompanyDao companyDao;
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String view(){
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String view() {
 		return URL.OpratorCompany;
 	}
-	@RequestMapping(value="/updateCompany",method=RequestMethod.POST)
-	public String updateCompany(Company company){
-		if(companyDao.update(company)){
+
+	@RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
+	public String updateCompany(Company company) {
+		if (companyDao.update(company)) {
 			return URL.OpratorCompany;
 		}
 		return URL.error;

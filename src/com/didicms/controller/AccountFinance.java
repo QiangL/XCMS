@@ -13,22 +13,23 @@ import com.didicms.entry.Finance;
 public class AccountFinance {
 	@Autowired
 	private FinanceDao financeDao;
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String view(){
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String view() {
 		return URL.AccountFinance;
 	}
-	
-	@RequestMapping(value="/updateFinance",method=RequestMethod.POST)
-	public String updateFinance(Finance finance){
-		if(financeDao.update(finance)){
+
+	@RequestMapping(value = "/updateFinance", method = RequestMethod.POST)
+	public String updateFinance(Finance finance) {
+		if (financeDao.update(finance)) {
 			return URL.AccountFinance;
 		}
 		return URL.error;
 	}
-	@RequestMapping(value="/confirmFinance",method=RequestMethod.POST)
-	public String confirmFinance(int financeId){
-		if(financeDao.confirm(financeId)){
+
+	@RequestMapping(value = "/confirmFinance", method = RequestMethod.POST)
+	public String confirmFinance(int financeId) {
+		if (financeDao.confirm(financeId)) {
 			return URL.AccountFinance;
 		}
 		return URL.error;

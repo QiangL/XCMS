@@ -12,7 +12,63 @@
     background-color: grey; 
 }
 .content{
+    margin:100px;
     margin-left: 250px;
-    margin-top:100px;
-    margin-bottom: 100px;
+}
+.search{
+    border: #009688 solid 1px;
+    border-right: none;
+    border-radius: 5px;
+    width:300px;
+    margin-left:100px;
+    overflow: hidden;
+}
+.search .search-input{
+    height:38px;
+    width:235px;
+    margin-right:-5px;
+    padding:5px;
+    border: 0px;
+}
+.search .search-btn{
+    height:40px;
+    border-radius: 0px;
+    border: none;
+}
+.upload{
+    position: relative; 
+    background: #e2e2e2;
+}
+.upload, .upload img{
+    width: 200px;
+    height: 200px; 
+    border-radius: 100%;
+}
+.upload .upbar{
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    margin: -18px 0 0 -56px;
+}
+.upload .layui-upload-button{
+    background-color: rgba(0,0,0,.2);
+    color: rgba(250,250,250,1);
+}
+
+.exam{
+    text-align: center;
+}
+
+.exam .layui-table img{
+    border-radius: 50%;
+    width:50px;
+    height:50px;
+}
+
+
+.add{
+    display: none;
+}
+.update{
+    display: none;
 }

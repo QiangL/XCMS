@@ -4,9 +4,10 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../resource/layui/css/layui.css" rel="stylesheet">
-    <link rel="stylesheet" href="../resource/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../resource/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../resource/style.css" />
+
     <title>汽车管理</title>
 </head>
 
@@ -19,7 +20,6 @@
                         <dd><a href="">审核</a></dd>
                         <dd><a href="">新增</a></dd>
                         <dd><a href="">查看</a></dd>
-                        <dd><a href="">修改</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;">司机管理</a>
@@ -27,14 +27,12 @@
                         <dd><a href="">审核</a></dd>
                         <dd><a href="">新增</a></dd>
                         <dd><a href="">查看</a></dd>
-                        <dd><a href="">修改</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="javascript:;">合作伙伴管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="">新增</a></dd>
                         <dd><a href="">查看</a></dd>
-                        <dd><a href="">修改</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="javascript:;">分账管理</a></li>
@@ -52,7 +50,7 @@
                     <a href="">新增司机信息</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="">修改司机信息</a>
+                    <a href="">查看司机信息</a>
                 </li>
                 <li class="layui-nav-item" style="float:right;"><a href="">用户</a>
                     <dl class="layui-nav-child">
@@ -66,34 +64,179 @@
 
 
         <div class="layui-layer-content content">
-            <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">
-                    <table class="layui-table">
-                        <colgroup>
-                            <col width="150" />
-                            <col width="100" />
-                            <col width="100" />
-                            <col width="100" />
-                            <col width="150" />
-                            <col width="200" />
-                            <col/>
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th>照片</th>
-                                <th>姓名</th>
-                                <th>性别</th>
-                                <th>年龄</th>
-                                <th>电话</th>
-                                <th>所属合作伙伴</th>
-                                <th>操作</th>
-                            </tr>
-                            <tr></tr>
-
-                        </thead>
-                    </table>
-                </div>
-
+            <div class="exam">
+                <table class="layui-table" lay-even lay-skin="line">
+                    <colgroup>
+                        <col width="100" />
+                        <col width="100" />
+                        <col width="60" />
+                        <col width="60" />
+                        <col width="150" />
+                        <col width="200" />
+                        <col/>
+                    </colgroup>
+                    <thead class="thead">
+                        <tr>
+                            <th>照片</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>年龄</th>
+                            <th>电话</th>
+                            <th>所属合作伙伴</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr>
+                            <td><img class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td>
+                            <td>test</td>
+                            <td>男</td>
+                            <td>25</td>
+                            <td>188888888</td>
+                            <td>this is a test</td>
+                            <td>
+                                <input type="button" value="test" class="layui-btn" />
+                                <input type="button" value="test" class="layui-btn" />
+                                <input type="button" value="test" class="layui-btn" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td>
+                            <td>test</td>
+                            <td>男</td>
+                            <td>25</td>
+                            <td>188888888</td>
+                            <td>this is a test</td>
+                            <td>
+                                <input type="button" value="test" class="layui-btn" />
+                                <input type="button" value="test" class="layui-btn" />
+                                <input type="button" value="test" class="layui-btn" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td>
+                            <td>test</td>
+                            <td>男</td>
+                            <td>25</td>
+                            <td>188888888</td>
+                            <td>this is a test</td>
+                            <td>
+                                <input type="button" value="test" class="layui-btn" />
+                                <input type="button" value="test" class="layui-btn" />
+                                <input type="button" value="test" class="layui-btn" />
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="layui-layer-page" id="page">asdfas </div>
+            </div>
+            <div class="add">
+                <form action="addDriver" method="POST" class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" for="add-id">司机ID</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="add-id" name="id" placeholder="输入司机ID" required="true" class="layui-input" value="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="add-number" class="layui-form-label">司机手机号</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="add-number" name="number" placeholder="输入司机手机号" required class="layui-input" value="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="add-name" class="layui-form-label">司机姓名</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="add-name" name="name" placeholder="输入司机姓名" required class="layui-input" value="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="add-gender" class="layui-form-label">司机性别</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="gender" value="male" title="男" checked/>
+                            <input type="radio" name="gender" value="female" title="女" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="add-age" class="layui-form-label">司机年龄</label>
+                        <div class="layui-input-block">
+                            <input type="number" id="add-age" name="age" max="70" min="18" value="25" placeholder="输入司机年龄" required class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="add-image" class="layui-form-label">司机头像</label>
+                        <div class="layui-input-block">
+                            <div class="upload">
+                                <img id="add-upload" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460">
+                                <div class="upbar">
+                                    <input name="add-image" class="layui-upload-file" id="image" type="file">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="update">
+                <form action="searchDriver" method="POST" class="layui-form">
+                    <div class="layui-form-item search">
+                        <input type="text" name="search" class="search-input" placeholder="键入需要查找的司机ID" required value="" />
+                        <button class="layui-btn search-btn" lay-submit>查询</button>
+                    </div>
+                </form>
+                <form action="updateDriver" method="POST" class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" for="update-id">司机ID</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="update-id" name="id" placeholder="输入司机ID" required="true" class="layui-input" value="12" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="update-number" class="layui-form-label">司机手机号</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="update-number" name="number" placeholder="输入司机手机号" required class="layui-input" value="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="update-name" class="layui-form-label">司机姓名</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="update-name" name="name" placeholder="输入司机姓名" required class="layui-input" value="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="gender" class="layui-form-label">司机性别</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="gender" value="male" title="男" checked/>
+                            <input type="radio" name="gender" value="female" title="女" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="update-age" class="layui-form-label">司机年龄</label>
+                        <div class="layui-input-block">
+                            <input type="number" id="update-age" name="age" max="70" min="18" value="25" placeholder="输入司机年龄" required class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="update-image" class="layui-form-label">司机头像</label>
+                        <div class="layui-input-block">
+                            <div class="upload">
+                                <img id="update-upload" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460">
+                                <div class="upbar">
+                                    <input name="update-image" class="layui-upload-file" id="image" type="file">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -108,7 +251,62 @@
     <script type="text/javascript" src="../resource/layui/layui.js"></script>
     <script tpye="text/javascript">
         layui.use('element', function () {
-            //var element = layui.element();
+            var element = layui.element();
+
+        });
+        layui.use('form', function () {
+            var form = layui.form(); //只有执行了这一步，部分表单元素才会修饰成功
+
+            //……
+        });
+        layui.use('upload', function () {
+            layui.upload({
+                url: '/test/upload.json'
+                //, elem: '#test' //指定原始元素，默认直接查找class="layui-upload-file"
+                , method: 'post' //上传接口的http类型
+                , success: function (res) {
+                    //LAY_demo_upload.src = res.url;
+                }
+            });
+        });
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            laypage({
+                cont: 'page'
+                , pages: Math.ceil(10) //得到总页数
+                , jump: function (obj) {
+                    var curr = obj.curr;
+                    console.log(curr);//page number
+                    var tr = $('<tr><td><img class="" src="" alt=""></td><td>test</td><td></td><td></td><td></td><td></td><td><input type="button" value="审查" class="layui-btn exam-btn" /><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn" /></td></tr>');
+                    $.get(
+                        "http://localhost:8080/DiDiCMS/opratorDriver/showDriver?pageNumber="+curr,
+                        function (driverList) {
+                            $(".thead").css("display", "none");
+                            for (var i in driverList) {
+                                var driver = driverList[i];
+                                var trTemp = tr.clone();
+                                var tChild = tr.children();
+                                tChild.get(0).innerHTML = '<img src=' + driver.image + '/>';
+                                tChild.get(1).innerText = driver.name;
+                                tChild.get(2).innerText = driver.gender;
+                                tChild.get(3).innerText = driver.age;
+                                tChild.get(4).innerText = driver.namber;
+                                tChild.get(5).innerText = driver.company;
+                                console.log(trTemp);
+                                $(".thead").append(trTemp);
+                            }
+                            $(".thead").css("display", "");
+                        },
+                        "json"
+                    )
+                }
+            });
+        });
+
+        $(document).ready(function () {
+
+           
         });
     </script>
 </body>

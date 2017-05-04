@@ -18,35 +18,39 @@ public class OpratorCar {
 	private CarDao carDao;
 	@Autowired
 	private CarService carServive;
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String view(){
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String view() {
 		return URL.OpratorCar;
 	}
-	
-	@RequestMapping(value="/addCar",method=RequestMethod.POST)
-	public String addCar(HttpServletRequest request,Car car){
-		if(carDao.insert(car)){
+
+	@RequestMapping(value = "/addCar", method = RequestMethod.POST)
+	public String addCar(HttpServletRequest request, Car car) {
+		if (carDao.insert(car)) {
 			return URL.OpratorCar;
 		}
 		return URL.error;
 	}
-	@RequestMapping(value="/updateCar",method=RequestMethod.POST)
-	public String updateCar(Car car){
-		if(carDao.update(car)){
+
+	@RequestMapping(value = "/updateCar", method = RequestMethod.POST)
+	public String updateCar(Car car) {
+		if (carDao.update(car)) {
 			return URL.OpratorCar;
 		}
 		return URL.error;
 	}
-	@RequestMapping(value="/deleteCar",method=RequestMethod.POST)
-	public String deleteCar(int carId){
-		if(carDao.delete(carId)){
+
+	@RequestMapping(value = "/deleteCar", method = RequestMethod.POST)
+	public String deleteCar(int carId) {
+		if (carDao.delete(carId)) {
 			return URL.OpratorCar;
 		}
 		return URL.error;
 	}
-	@RequestMapping String examCar(Car car){
-		if(carServive.exam(car)){
+
+	@RequestMapping
+	String examCar(Car car) {
+		if (carServive.exam(car)) {
 			return URL.OpratorCar;
 		}
 		return URL.error;

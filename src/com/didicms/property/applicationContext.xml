@@ -29,7 +29,8 @@
     
 
     <!-- 静态资源配置 -->
-    <mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources>
+    <mvc:resources location="/WEB-INF/resource/" mapping="/resource/**"></mvc:resources>
+    <mvc:resources location="/WEB-INF/staticPage/" mapping="/staticPage/**"></mvc:resources>
 
     <!-- 视图层配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

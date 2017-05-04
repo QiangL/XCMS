@@ -6,8 +6,9 @@ import org.springframework.stereotype.Component;
 
 import com.didicms.dao.CompanyDao;
 import com.didicms.entry.Company;
+
 @Component
-public class CompanyDaoImpl implements CompanyDao{
+public class CompanyDaoImpl implements CompanyDao {
 
 	@Override
 	public Company getById(int id) {

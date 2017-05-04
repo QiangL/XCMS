@@ -16,29 +16,31 @@ import com.didicms.service.DriverService;
 public class AccountDriver {
 	@Autowired
 	private DriverDao driverDao;
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String view(){
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String view() {
 		return URL.AccountDriver;
 	}
-	
-	@RequestMapping(value="/addDriver",method=RequestMethod.POST)
-	public String addDriver(HttpServletRequest request,Driver driver){
-		if(driverDao.insert(driver)){
+
+	@RequestMapping(value = "/addDriver", method = RequestMethod.POST)
+	public String addDriver(HttpServletRequest request, Driver driver) {
+		if (driverDao.insert(driver)) {
 			return URL.AccountDriver;
 		}
 		return URL.error;
 	}
-	@RequestMapping(value="/updatedriver",method=RequestMethod.POST)
-	public String updateDriver(Driver driver){
-		if(driverDao.update(driver)){
+
+	@RequestMapping(value = "/updatedriver", method = RequestMethod.POST)
+	public String updateDriver(Driver driver) {
+		if (driverDao.update(driver)) {
 			return URL.AccountDriver;
 		}
 		return URL.error;
 	}
-	@RequestMapping(value="/deletedriver",method=RequestMethod.POST)
-	public String deleteDriver(String driverId){
-		if(driverDao.delete(driverId)){
+
+	@RequestMapping(value = "/deletedriver", method = RequestMethod.POST)
+	public String deleteDriver(String driverId) {
+		if (driverDao.delete(driverId)) {
 			return URL.AccountDriver;
 		}
 		return URL.error;

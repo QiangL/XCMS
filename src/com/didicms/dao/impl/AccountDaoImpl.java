@@ -6,8 +6,9 @@ import org.springframework.stereotype.Component;
 
 import com.didicms.dao.AccountDao;
 import com.didicms.entry.Account;
+
 @Component
-public class AccountDaoImpl implements AccountDao{
+public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Account getById(String id) {
