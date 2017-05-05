@@ -7,6 +7,9 @@
     top:0;
     width: 100%;
 }
+.layui-nav .layui-nav-item  a{
+    padding:0 20px;
+}
 .footer{
     text-align: center;
     background-color: grey; 
@@ -14,6 +17,11 @@
 .content{
     margin:100px;
     margin-left: 250px;
+}
+.login{
+    width:40%;
+    margin:0 auto;
+    margin-top:100px;
 }
 .search{
     border: #009688 solid 1px;

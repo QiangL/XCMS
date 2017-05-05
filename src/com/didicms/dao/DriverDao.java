@@ -15,5 +15,5 @@ public interface DriverDao {
 
 	public boolean delete(String id);
 
-	public boolean exam(Driver driver);
+
 }

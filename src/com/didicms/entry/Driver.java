@@ -120,7 +120,21 @@ public class Driver {
 	public void setIsExam(Exam isExam) {
 		this.isExam = isExam;
 	}
+	public String getCompanyName() {
+		return companyName;
+	}
 
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 	private String id;
 	private String number;
 	private String name;
@@ -135,5 +149,8 @@ public class Driver {
 	private Double score;
 	private DriverGrade grade;
 	private Exam isExam;
+	private String companyName;
+	private String imagePath;
+	
 
 }

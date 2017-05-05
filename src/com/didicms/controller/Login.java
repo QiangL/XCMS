@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.Url;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,12 +36,12 @@ public class Login {
 		if (ACCOUNT.equalsIgnoreCase(request.getParameter("role"))) {
 			session.setAttribute("role", ACCOUNT);
 			// if(accountLogin(request,session)){
-			return "account";
+			return URL.AccountDriver;
 			// }
 		} else if (OPRATOR.equalsIgnoreCase(request.getParameter("role"))) {
 			session.setAttribute("role", OPRATOR);
 			// if(opratorLogin(request,session)){
-			return "oprator";
+			return URL.OpratorDriver;
 			// }
 		}
 		return URL.error;

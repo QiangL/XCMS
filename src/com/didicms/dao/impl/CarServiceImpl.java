@@ -1,53 +1,59 @@
-package com.didicms.service.impl;
+package com.didicms.dao.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.didicms.entry.Driver;
-import com.didicms.service.DriverService;
+import com.didicms.dao.CarService;
+import com.didicms.entry.Car;
 
 @Component
-public class DriverServiceImpl implements DriverService {
+public class CarServiceImpl implements CarService {
 
 	@Override
-	public Driver getById(String id) {
+	public Car getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Driver> getAllByCompanyId(int companyId) {
+	public List<Car> getByCompanyId(int companyId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean update(Driver driver) {
+	public boolean insert(Car car) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean insert(Driver driver) {
+	public boolean delete(int id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(String id) {
+	public boolean update(Car car) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean exam(Driver driver) {
+	public List<Car> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean exam(int id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public List<Driver> getAll() {
+	public List<Car> getAllNotExam() {
 		// TODO Auto-generated method stub
 		return null;
 	}

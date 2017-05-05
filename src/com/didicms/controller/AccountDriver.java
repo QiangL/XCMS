@@ -8,19 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.didicms.dao.DriverDao;
+import com.didicms.dao.DriverService;
 import com.didicms.entry.Driver;
-import com.didicms.service.DriverService;
 
 @Controller
-@RequestMapping("/accountDriver")
 public class AccountDriver {
 	@Autowired
 	private DriverDao driverDao;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String view() {
-		return URL.AccountDriver;
-	}
 
 	@RequestMapping(value = "/addDriver", method = RequestMethod.POST)
 	public String addDriver(HttpServletRequest request, Driver driver) {
