@@ -79,12 +79,18 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
+                        <label for="add-companyId" class="layui-form-label">所属公司ID</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="add-companyId" name="companyId" placeholder="输入所属公司ID" required class="layui-input" value="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
                         <label for="add-image" class="layui-form-label">司机头像</label>
                         <div class="layui-input-block">
                             <div class="upload">
-                                <img id="add-upload" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460">
+                                <img id="add-image" name="imagePath" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460">
                                 <div class="upbar">
-                                    <input name="add-image" class="layui-upload-file" id="image" type="file">
+                                    <input name="file" class="layui-upload-file"  type="file">
                                 </div>
                             </div>
                         </div>
@@ -137,12 +143,18 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
+                        <label for="update-companyId" class="layui-form-label">所属公司ID</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="update-companyId" name="companyId" placeholder="输入所属公司ID" required class="layui-input" value="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
                         <label for="update-image" class="layui-form-label">司机头像</label>
                         <div class="layui-input-block">
                             <div class="upload">
-                                <img id="update-upload" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460">
+                                <img id="update-image" name="imagePath" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460">
                                 <div class="upbar">
-                                    <input name="update-image" class="layui-upload-file" id="image" type="file">
+                                    <input name="file" class="layui-upload-file" type="file">
                                 </div>
                             </div>
                         </div>
@@ -199,55 +211,19 @@
                 , "json"
             ) */
         });
-        function switchToExam(){
-            $(".exam").removeClass("display-none")
-            $(".add").addClass("display-none")
-            $(".look").addClass("display-none")
-        }
-        function switchToAdd(){
-            $(".exam").addClass("display-none")
-            $(".add").removeClass("display-none")
-            $(".look").addClass("display-none")
-        }
-        function switchToLook(){
-            $(".exam").addClass("display-none")
-            $(".add").addClass("display-none")
-            $(".look").removeClass("display-none")
-        }
-        layui.use(['laypage', 'layer'], function () {
-            var laypage = layui.laypage
-                , layer = layui.layer;
-            laypage({
-                cont: 'exam-page'
-                , pages: Math.ceil(10) //得到总页数
-                , jump: function (obj) {
-                	var curr=obj.curr;
-                	$(".exam .tbody").empty();
-                    $.get(
-                            "showNotExamDriver?count="+curr
-                            ,addToTableExam
-                            , "json"
-                        )
-                    }
+        layui.use('upload', function () {
+            layui.upload({
+                url: '../upload'
+                //, elem: '#test' //指定原始元素，默认直接查找class="layui-upload-file"
+                , method: 'post' //上传接口的http类型
+                , success: function (res) {
+                    console.log(res.src);
+                    
+                    $("#add-image").attr("src",res.date.src);
+                }
             });
         });
-        layui.use(['laypage', 'layer'], function () {
-            var laypage = layui.laypage
-                , layer = layui.layer;
-            laypage({
-                cont: 'look-page'
-                , pages: Math.ceil(10) //得到总页数
-                , jump: function (obj) {
-                	var curr=obj.curr;
-                	$(".look .tbody").empty();
-                    $.get(
-                            "showDriver?count="+curr
-                            ,addToTableLook
-                            , "json"
-                        )
-                    }
-            });
-        });
+        
     </script>
     
  <%@include file="opratorTemplateFooter.jsp" %>

@@ -16,6 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
+<%=basePath %>
 	<div class="layui-layout layui-layout-admin">
 	    <div class="layui-header header">
 	        <ul class="layui-nav" lay-filter="">

@@ -77,3 +77,52 @@ function addToTable(driverList,thead,tr){
     }
 	thead.css("display", "");
 }
+function switchToExam(){
+    $(".exam").removeClass("display-none")
+    $(".add").addClass("display-none")
+    $(".look").addClass("display-none")
+}
+function switchToAdd(){
+    $(".exam").addClass("display-none")
+    $(".add").removeClass("display-none")
+    $(".look").addClass("display-none")
+}
+function switchToLook(){
+    $(".exam").addClass("display-none")
+    $(".add").addClass("display-none")
+    $(".look").removeClass("display-none")
+}
+layui.use(['laypage', 'layer'], function () {
+    var laypage = layui.laypage
+        , layer = layui.layer;
+    laypage({
+        cont: 'exam-page'
+        , pages: Math.ceil(10) //得到总页数
+        , jump: function (obj) {
+        	var curr=obj.curr;
+        	$(".exam .tbody").empty();
+            $.get(
+                    "showNotExamDriver?count="+curr
+                    ,addToTableExam
+                    , "json"
+                )
+            }
+    });
+});
+layui.use(['laypage', 'layer'], function () {
+    var laypage = layui.laypage
+        , layer = layui.layer;
+    laypage({
+        cont: 'look-page'
+        , pages: Math.ceil(10) //得到总页数
+        , jump: function (obj) {
+        	var curr=obj.curr;
+        	$(".look .tbody").empty();
+            $.get(
+                    "showDriver?count="+curr
+                    ,addToTableLook
+                    , "json"
+                )
+            }
+    });
+});
