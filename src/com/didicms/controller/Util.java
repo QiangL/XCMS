@@ -32,7 +32,7 @@ public class Util {
 			file.transferTo(newfile);
 			msg.code=1;
 			msg.msg="";
-			msg.date.put("src", "../img/"+newfile.getName());
+			msg.date.put("src", "img/"+newfile.getName());
 		} catch (IllegalStateException | IOException e) {
 			msg.code=-1;
 			msg.msg="";

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,11 @@ public class OpratorDriver {
 	private DriverService driverServive;
 
 	@RequestMapping(value="/opratorDriver",method = RequestMethod.GET)
-	public String view() {
+	public String view(HttpSession session) {
+		int notExamDriverPN=driverServive.getNotExamNubmer();
+		int driverPN=driverServive.getNumber();
+		session.setAttribute(SessionKey.OpratorNotExamDriverPageNum, notExamDriverPN);
+		session.setAttribute(SessionKey.OpratorDriverPageNum, driverPN);
 		return URL.OpratorDriver;
 	}
 

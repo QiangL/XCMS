@@ -54,7 +54,7 @@ public class DriverServiceImpl implements DriverService {
 		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,company_id,company_name from driver , "
 				+ "company  where driver_company_id=company_id limit ?, 8";
 		List<Driver> list=jdbc.query(sql
-				,new Object[]{10*(count-1)}
+				,new Object[]{8*(count-1)}
 				,new int[]{Types.INTEGER}
 				
 				, new RowMapper<Driver>() {
@@ -103,7 +103,7 @@ public class DriverServiceImpl implements DriverService {
 		*/
 		
 		List<Driver> list=jdbc.query(sql
-				,new Object[]{10*(count-1)}
+				,new Object[]{8*(count-1)}
 				,new int[]{Types.INTEGER}
 				
 				, new RowMapper<Driver>() {
@@ -128,6 +128,16 @@ public class DriverServiceImpl implements DriverService {
 	public boolean exam(String id) {
 		String sql="update driver  set driver_exam=1 where driver_id=?";
 		return jdbc.update(sql, new Object[]{id}, new int[]{Types.NVARCHAR})==1?true:false;
+	}
+	@Override
+	public int getNotExamNubmer(){
+		String sql="select count(*) from driver  where driver_exam=0";
+		return jdbc.queryForObject(sql, Integer.class);
+	}
+	@Override
+	public int getNumber(){
+		String sql="select count(*) from driver ";
+		return jdbc.queryForObject(sql, Integer.class);
 	}
 
 }
