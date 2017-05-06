@@ -24,7 +24,7 @@ public class OpratorDriver {
 	@Autowired
 	private DriverService driverServive;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/opratorDriver",method = RequestMethod.GET)
 	public String view() {
 		return URL.OpratorDriver;
 	}

@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@include file="opratorTemplateHeader.jsp" %>
+        <div class="layui-side layui-bg-black">
+            <ul class="layui-nav layui-nav-tree layui-nav-side side" lay-filter="">
+                <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;">司机管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:switchToExam()">审核</a></dd>
+                        <dd><a href="javascript:switchToAdd()">新增</a></dd>
+                        <dd><a href="javascript:switchToLook()">查看</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
 
 
         <div class="layui-layer-content content">
@@ -16,7 +27,7 @@
                         <col width="250" />
                         <col/>
                     </colgroup>
-                    <thead class="thead">
+                    <thead>
                         <tr>
                             <th>id</th>
                             <th>照片</th>
@@ -29,10 +40,12 @@
                         </tr>
                         
                     </thead>
+                    <tbody class="tbody">
+                    </tbody>
                 </table>
                 <div class="layui-layer-page" id="exam-page"></div>
             </div>
-            <div class="add">
+            <div class="add display-none">
                 <form action="../opratorDriver/addDriver" method="POST" class="layui-form">
                     <div class="layui-form-item">
                         <label class="layui-form-label" for="add-id">司机ID</label>
@@ -84,7 +97,7 @@
                     </div>
                 </form>
             </div>
-            <div class="update">
+            <div class="update display-none">
                 <form action="searchDriver" method="POST" class="layui-form">
                     <div class="layui-form-item search">
                         <input type="text" name="search" class="search-input" placeholder="键入需要查找的司机ID" required value="" />
@@ -142,7 +155,7 @@
                     </div>
                 </form>
             </div>
-			<div class="exam">
+			<div class="look display-none">
                 <table class="layui-table" lay-even lay-skin="line">
                     <colgroup>
                         <col width="65"/>
@@ -154,7 +167,7 @@
                         <col width="250" />
                         <col/>
                     </colgroup>
-                    <thead class="thead">
+                    <thead>
                         <tr>
                             <th>id</th>
                             <th>照片</th>
@@ -167,57 +180,73 @@
                         </tr>
                         
                     </thead>
+                    <tbody class="tbody">
+                    </tbody>
                 </table>
                 <div class="layui-layer-page" id="look-page"></div>
             </div>
         </div>
-
-
+        
+ <%@include file="templateContent.jsp" %>
+<script type="text/javascript" src="../resource/opratorDriver.js"></script>
     <script type="text/javascript">
     var examTr=$('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="company"></td><td><input type="button" value="审核" class="layui-btn exam-btn" /></td></tr>');
     var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn" /></td></tr>');
+        $(document).ready(function () {
+            /* $.get(
+                "showNotExamDriver?count=1"
+                ,addToTableExam
+                , "json"
+            ) */
+        });
+        function switchToExam(){
+            $(".exam").removeClass("display-none")
+            $(".add").addClass("display-none")
+            $(".look").addClass("display-none")
+        }
+        function switchToAdd(){
+            $(".exam").addClass("display-none")
+            $(".add").removeClass("display-none")
+            $(".look").addClass("display-none")
+        }
+        function switchToLook(){
+            $(".exam").addClass("display-none")
+            $(".add").addClass("display-none")
+            $(".look").removeClass("display-none")
+        }
         layui.use(['laypage', 'layer'], function () {
             var laypage = layui.laypage
                 , layer = layui.layer;
             laypage({
-                cont: 'page'
+                cont: 'exam-page'
                 , pages: Math.ceil(10) //得到总页数
                 , jump: function (obj) {
-                    var curr = obj.curr;
-                    console.log(curr);//page number
-                    var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn" /></td></tr>');
+                	var curr=obj.curr;
+                	$(".exam .tbody").empty();
                     $.get(
-                        "http://localhost:8080/DiDiCMS/opratorDriver/showDriver?pageNumber="+curr,
-                        function (driverList) {
-                            $(".thead").css("display", "none");
-                            for (var i in driverList) {
-                                var driver = driverList[i];
-                                var trTemp = tr.clone();
-                                var tChild = trTemp.children();
-                                tChild.get(0).innerText=driver.id;
-                                tChild.get(1).innerHTML = '<img src=' + driver.image + '/>';
-                                tChild.get(2).innerText = driver.name;
-                                tChild.get(3).innerText = driver.gender;
-                                tChild.get(4).innerText = driver.age;
-                                tChild.get(5).innerText = driver.number;
-                                tChild.get(6).innerText = driver.company;
-                                console.log(trTemp);
-                                $(".thead").append(trTemp);
-                            }
-                            $(".thead").css("display", "");
-                        },
-                        "json"
-                    )
-                }
+                            "showNotExamDriver?count="+curr
+                            ,addToTableExam
+                            , "json"
+                        )
+                    }
             });
         });
-
-        $(document).ready(function () {
-            $.get(
-                "oprator/showNotExamDriver?count=1"
-                ,addToTableExam
-                , "json"
-            )
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            laypage({
+                cont: 'look-page'
+                , pages: Math.ceil(10) //得到总页数
+                , jump: function (obj) {
+                	var curr=obj.curr;
+                	$(".look .tbody").empty();
+                    $.get(
+                            "showDriver?count="+curr
+                            ,addToTableLook
+                            , "json"
+                        )
+                    }
+            });
         });
     </script>
     

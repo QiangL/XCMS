@@ -10,27 +10,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="resource/layui/css/layui.css" rel="stylesheet" />
-    <link rel="stylesheet" href="resource/style.css" />
-	<script type="text/javascript" src="resource/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="resource/layui/layui.js"></script>
-    <script type="text/javascript" src="resource/js.js"></script>
+    <link rel="stylesheet" href="../resource/layui/css/layui.css" />
+    <link rel="stylesheet" href="../resource/style.css" />
     <title>欢迎使用</title>
 </head>
 
 <body>
     <div class="layui-layout layui-layout-admin">
-        <div class="layui-side layui-bg-black">
-            <ul class="layui-nav layui-nav-tree layui-nav-side side" lay-filter="">
-                <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;">司机管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">审核</a></dd>
-                        <dd><a href="">新增</a></dd>
-                        <dd><a href="">查看</a></dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
         <div class="layui-header header">
             <ul class="layui-nav" lay-filter="">
                 <li class="layui-nav-item">滴滴合作伙伴运营管理信息系统</li>

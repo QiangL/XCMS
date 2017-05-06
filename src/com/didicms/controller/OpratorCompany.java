@@ -9,12 +9,12 @@ import com.didicms.dao.CompanyDao;
 import com.didicms.entry.Company;
 
 @Controller
-@RequestMapping("/opratorCompany")
+@RequestMapping("/oprator")
 public class OpratorCompany {
 	@Autowired
 	private CompanyDao companyDao;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/opratorCompany",method = RequestMethod.GET)
 	public String view() {
 		return URL.OpratorCompany;
 	}

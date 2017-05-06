@@ -36,12 +36,12 @@ public class Login {
 		if (ACCOUNT.equalsIgnoreCase(request.getParameter("role"))) {
 			session.setAttribute("role", ACCOUNT);
 			// if(accountLogin(request,session)){
-			return URL.AccountDriver;
+			return "redirect:account/"+URL.AccountDriver;
 			// }
 		} else if (OPRATOR.equalsIgnoreCase(request.getParameter("role"))) {
 			session.setAttribute("role", OPRATOR);
 			// if(opratorLogin(request,session)){
-			return URL.OpratorDriver;
+			return "redirect:oprator/"+URL.OpratorDriver;
 			// }
 		}
 		return URL.error;
