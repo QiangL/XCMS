@@ -40,11 +40,11 @@ public class ExcelUtil {
 		}
 	}
 
-	private static String excelFileURL = "i:/dbtemp.xlsx";
+	private static String excelFileURL = "i:/db0506temp.xlsx";
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, SQLException {
 		Workbook workbook = new XSSFWorkbook(new FileInputStream(excelFileURL));
-		executeDriver(workbook);
+		executeCar(workbook);
 	}
 
 	private static void executeCompany(Workbook workbook) throws SQLException {
@@ -101,13 +101,13 @@ public class ExcelUtil {
 		Inner inner = new Inner();
 		inner.preExecute(sql, workbook);
 		Row rows = sheet.getRow(1);
-		System.out.println(Integer.parseInt(rows.getCell(0).getStringCellValue()));
+		//System.out.println(Integer.parseInt(rows.getCell(0).getStringCellValue()));
 		try {
 			inner.preExecute(sql, workbook);
 			for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 				Row row = sheet.getRow(i);
-				int cell0 = Integer.parseInt(row.getCell(0).getStringCellValue());
-				inner.pstmt.setInt(1, cell0);
+				//int cell0 = Integer.parseInt(row.getCell(0).getStringCellValue());
+				inner.pstmt.setString(1, row.getCell(0).getStringCellValue());
 				inner.pstmt.setString(2, row.getCell(1).getStringCellValue());
 				inner.pstmt.setString(3, row.getCell(2).getStringCellValue());
 				inner.pstmt.setString(4, "2.5L");

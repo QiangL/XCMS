@@ -32,7 +32,7 @@ public class AccountCar {
 	}
 
 	@RequestMapping(value = "/deleteCar", method = RequestMethod.POST)
-	public String deleteCar(int carId) {
+	public String deleteCar(String carId) {
 		if (carDao.delete(carId)) {
 			return URL.AccountCar;
 		}

@@ -25,20 +25,48 @@ public class OpratorDriver {
 	@Autowired
 	private DriverService driverServive;
 
-	@RequestMapping(value="/opratorDriver",method = RequestMethod.GET)
+	@RequestMapping(value="/driver",method = RequestMethod.GET)
 	public String view(HttpSession session) {
-		int notExamDriverPN=driverServive.getNotExamNubmer();
-		int driverPN=driverServive.getNumber();
-		session.setAttribute(SessionKey.OpratorNotExamDriverPageNum, notExamDriverPN);
+		int notExamDriverAddPN=driverServive.getNotExamAddNubmer();
+		int notExamDriverDelPN=driverServive.getNotExamDelNubmer();
+		int driverPN=driverServive.getAllDriverNumber();
+		session.setAttribute(SessionKey.OpratorNotExamAddDriverPageNum, notExamDriverAddPN);
+		session.setAttribute(SessionKey.OpratorNotExamDelDriverPageNum, notExamDriverDelPN);
 		session.setAttribute(SessionKey.OpratorDriverPageNum, driverPN);
 		return URL.OpratorDriver;
 	}
+	
+	@RequestMapping(value = "/addDriver", method = RequestMethod.POST)
+	public String addDriver(HttpServletRequest request, Driver driver) {
+		if(driver.getGender().equals("male")){
+			driver.setGender("男");
+		}else{
+			driver.setGender("女");
+		}
+		if (driverServive.insertReal(driver)) {
+			return "redirect:/oprator/driver";
+		}
+		return URL.error;
+	}
 
-	@RequestMapping(value = "/examDriver", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/updateDriver", method = RequestMethod.POST)
+	public String updateDriver(Driver driver) {
+		if(driver.getGender().equals("male")){
+			driver.setGender("男");
+		}else{
+			driver.setGender("女");
+		}
+		if (driverServive.update(driver)) {
+			return "redirect:/oprator/driver";
+		}
+		return URL.error;
+	}
+
+	@RequestMapping(value = "/examAddDriver", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	String examDriver(String driverId) {
+	String examAddDriver(String driverId) {
 		Msg msg=new Msg();
-		if(driverServive.exam(driverId)){
+		if(driverServive.examAdd(driverId)){
 			msg.code=1;
 			msg.msg="";
 		}else{
@@ -47,10 +75,41 @@ public class OpratorDriver {
 		}
 		return JSON.toJSONString(msg);
 	}
-	@RequestMapping(value = "/showNotExamDriver", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/examDelDriver", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	String showNotExamDriver(int count) {
-		return JSON.toJSONString(driverServive.getAllNotExam(count));
+	String examDelDriver(String driverId) {
+		Msg msg=new Msg();
+		if(driverServive.examDel(driverId)){
+			msg.code=1;
+			msg.msg="";
+		}else{
+			msg.code=-1;
+			msg.msg="";
+		}
+		return JSON.toJSONString(msg);
+	}
+	@RequestMapping(value = "/deleteDriver", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	String deleteDriver(String driverId) {
+		Msg msg=new Msg();
+		if(driverServive.deleteReal(driverId)){
+			msg.code=1;
+			msg.msg="";
+		}else{
+			msg.code=-1;
+			msg.msg="";
+		}
+		return JSON.toJSONString(msg);
+	}
+	@RequestMapping(value = "/showNotExamAddDriver", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	String showNotExamAddDriver(int count) {
+		return JSON.toJSONString(driverServive.getAllNotExamAdd(count));
+	}
+	@RequestMapping(value = "/showNotExamDelDriver", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	String showNotExamDelDriver(int count) {
+		return JSON.toJSONString(driverServive.getAllNotExamDel(count));
 	}
 
 	@RequestMapping(value = "/showDriver", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -60,24 +119,20 @@ public class OpratorDriver {
 		return JSON.toJSONString(list);
 	}
 	
-	@RequestMapping(value = "/showDriver2", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	/* get PageNumber */
+	@RequestMapping(value = "/OpratorNotExamAddDriverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String test2() {
-		List<Driver> list=new LinkedList<>();
-		Driver d = new Driver();
-		d.setId("this'a test");
-		d.setName("空联顺");
-		d.setAge(25);
-		d.setGrade(DriverGrade.A);
-		d.setBadReview(2.2);
-		d.setBindCarId(1001);
-		d.setGender("男");
-		d.setIsExam(Exam.Examed);
-		d.setNumber("12121212");
-		list.add(d);
-		d=new Driver();
-		list.add(d);
-		return JSON.toJSONString(list);
+	public String OpratorNotExamAddDriverPageNum(){
+		return JSON.toJSONString(driverServive.getNotExamAddNubmer());
 	}
-
+	@RequestMapping(value = "/OpratorNotExamDelDriverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String OpratorNotExamDelDriverPageNum(){
+		return JSON.toJSONString(driverServive.getNotExamDelNubmer());
+	}
+	@RequestMapping(value = "/OpratorDriverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String OpratorDriverPageNum(){
+		return JSON.toJSONString(driverServive.getAllDriverNumber());
+	}
 }

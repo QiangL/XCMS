@@ -57,11 +57,11 @@ public class Driver {
 		this.companyId = companyId;
 	}
 
-	public Integer getBindCarId() {
+	public String getBindCarId() {
 		return bindCarId;
 	}
 
-	public void setBindCarId(Integer bindCarId) {
+	public void setBindCarId(String bindCarId) {
 		this.bindCarId = bindCarId;
 	}
 
@@ -141,7 +141,7 @@ public class Driver {
 	private String gender;
 	private int age;
 	private int companyId;
-	private Integer bindCarId;
+	private String bindCarId;
 	private Integer orderQuantity;
 	private Double chargingTime;
 	private BigDecimal transactionAmount;

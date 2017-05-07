@@ -24,7 +24,7 @@ public class Util {
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
 	public String uploadImg(@RequestParam("file") CommonsMultipartFile file,HttpServletRequest request) {
-		String realPath = request.getServletContext().getRealPath("/img");
+		String realPath = request.getServletContext().getRealPath("/WEB-INF/img");
 		String suffix=file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
 		Msg msg=new Msg();
 		File newfile=new File(realPath+"/"+new Date().getTime()+suffix);

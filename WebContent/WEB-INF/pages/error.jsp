@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<base href="<%=basePath %>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="resource/layui/css/layui.css" rel="stylesheet">
     <link rel="stylesheet" href="resource/style.css" />
@@ -18,13 +19,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <div class="layui-header header">
 	        <ul class="layui-nav" lay-filter="">
 	            <li class="layui-nav-item"><a href="">滴滴合作伙伴管理信息系统</a></li>
-				<li class="layui-nav-item layui-this"><a href="">登陆</a></li>
+				<li class="layui-nav-item layui-this"><a href="">出错了</a></li>
 	        </ul>
 	    </div>
     </div>
     <div class="layui-layer-content login">
         <fieldset class="layui-elem-field">
-            <legend>登陆</legend>
+            <legend>出错了</legend>
             <div class="layui-field-box">
             不好意思，刚刚的操作出现了错误，请稍后重新操作
             </div>

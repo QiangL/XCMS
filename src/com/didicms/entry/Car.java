@@ -7,11 +7,11 @@ public class Car {
 	public Car() {
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -62,13 +62,32 @@ public class Car {
 	public void setIsExam(Exam isExam) {
 		this.isExam = isExam;
 	}
+	public int getCompanyId() {
+		return companyId;
+	}
 
-	private int id;
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	private String id;
 	private String number;
 	private String model;
 	private String displacement;
 	private String color;
 	private String image;
 	private Exam isExam;
+	private int companyId;
+	
+
+	private String companyName;
 
 }

@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="opratorTemplateHeader.jsp"%>
+<%@include file="TemplateHeader.jsp"%>
 <div class="layui-side layui-bg-black">
 	<ul class="layui-nav layui-nav-tree layui-nav-side side" lay-filter="">
 		<li class="layui-nav-item layui-nav-itemed"><a
 			href="javascript:;">司机管理</a>
 			<dl class="layui-nav-child">
 				<dd>
-					<a href="javascript:switchToExam()">审核</a>
+					<a href="javascript:switchToExamAdd()">审核增加</a>
+				</dd>
+				<dd>
+					<a href="javascript:switchToExamDel()">审核删除</a>
 				</dd>
 				<dd>
 					<a href="javascript:switchToAdd()">新增</a>
 				</dd>
-				<dd>
+				<dd class="layui-this">
 					<a href="javascript:switchToLook()">查看</a>
 				</dd>
 			</dl></li>
@@ -22,16 +25,17 @@
 
 
 <div class="layui-layer-content content">
-	<div class="exam">
+	<div class="examAdd display-none">
 		<table class="layui-table" lay-even lay-skin="line">
 			<colgroup>
 				<col width="65" />
 				<col width="100" />
-				<col width="100" />
+				<col width="60" />
 				<col width="60" />
 				<col width="60" />
 				<col width="150" />
-				<col width="250" />
+				<col width="60" />
+				<col width="200" />
 				<col />
 			</colgroup>
 			<thead>
@@ -42,6 +46,7 @@
 					<th>性别</th>
 					<th>年龄</th>
 					<th>电话</th>
+					<th>绑定汽车ID</th>
 					<th>所属合作伙伴</th>
 					<th>操作</th>
 				</tr>
@@ -50,10 +55,42 @@
 			<tbody class="tbody">
 			</tbody>
 		</table>
-		<div class="layui-layer-page" id="exam-page"></div>
+		<div class="layui-layer-page" id="examAdd-page"></div>
 	</div>
-	<div class="add display-none">
-		<form action="../opratorDriver/addDriver" method="POST"
+	<div class="examDel display-none">
+		<table class="layui-table" lay-even lay-skin="line">
+			<colgroup>
+				<col width="65" />
+				<col width="100" />
+				<col width="60" />
+				<col width="60" />
+				<col width="60" />
+				<col width="150" />
+				<col width="60" />
+				<col width="200" />
+				<col />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>照片</th>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>年龄</th>
+					<th>电话</th>
+					<th>绑定汽车ID</th>
+					<th>所属合作伙伴</th>
+					<th>操作</th>
+				</tr>
+
+			</thead>
+			<tbody class="tbody">
+			</tbody>
+		</table>
+		<div class="layui-layer-page" id="examDel-page"></div>
+	</div>
+	<div class="add  display-none">
+		<form action="oprator/addDriver" method="POST"
 			class="layui-form">
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">司机ID</label>
@@ -91,12 +128,20 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
+				<label for="add-bind-carId" class="layui-form-label">绑定车辆ID</label>
+				<div class="layui-input-block">
+					<input type="text" id="add-bind-carId" name="bindCarId"
+						placeholder="输入绑定车辆ID" required class="layui-input" value="">
+				</div>
+			</div>
+			<div class="layui-form-item">
 				<label for="add-companyId" class="layui-form-label">所属公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-companyId" name="companyId"
 						placeholder="输入所属公司ID" required class="layui-input" value="">
 				</div>
 			</div>
+			
 			<div class="layui-form-item">
 				<label for="add-image" class="layui-form-label">司机头像</label>
 				<div class="layui-input-block">
@@ -121,7 +166,7 @@
 		</form>
 	</div>
 
-	<div class="look display-none">
+	<div class="look">
 		<form action="searchDriver" method="POST" class="layui-form">
 			<div class="layui-form-item search">
 				<input type="text" name="search" class="search-input"
@@ -134,11 +179,12 @@
 			<colgroup>
 				<col width="65" />
 				<col width="100" />
-				<col width="100" />
+				<col width="60" />
 				<col width="60" />
 				<col width="60" />
 				<col width="150" />
-				<col width="250" />
+				<col width="60" />
+				<col width="200" />
 				<col />
 			</colgroup>
 			<thead>
@@ -149,6 +195,7 @@
 					<th>性别</th>
 					<th>年龄</th>
 					<th>电话</th>
+					<th>绑定汽车ID</th>
 					<th>所属合作伙伴</th>
 					<th>操作</th>
 				</tr>
@@ -160,7 +207,7 @@
 		<div class="layui-layer-page" id="look-page"></div>
 	</div>
 	<div class="update display-none">
-		<form action="updateDriver" method="POST" class="layui-form">
+		<form action="oprator/updateDriver" method="POST" class="layui-form">
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="update-id">司机ID</label>
 				<div class="layui-input-block">
@@ -197,6 +244,13 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
+				<label for="update-bind-carId" class="layui-form-label">绑定车辆ID</label>
+				<div class="layui-input-block">
+					<input type="text" id="update-bind-carId" name="bindCarId"
+						placeholder="输入绑定车辆ID" required class="layui-input" value="">
+				</div>
+			</div>
+			<div class="layui-form-item">
 				<label for="update-companyId" class="layui-form-label">所属公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-companyId" name="companyId"
@@ -229,20 +283,16 @@
 </div>
 
 <%@include file="templateContent.jsp"%>
-<input id="OpratorNotExamPageNum" type="hidden" value="${OpratorNotExamPageNum/8 }"/>
+<%-- 
+<input id="OpratorNotExamAddDriverPageNum" type="hidden" value="${OpratorNotExamAddDriverPageNum/8 }"/>
+<input id="OpratorNotExamDelDriverPageNum" type="hidden" value="${OpratorNotExamDelDriverPageNum/8 }"/>
 <input id="OpratorDriverPageNum" type="hidden"  value="${OpratorDriverPageNum/8 }"/>
-
+ --%>
 <script type="text/javascript" src="resource/opratorDriver.js"></script>
 <script type="text/javascript">
-	var examTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="company"></td><td><input type="button" value="审核" class="layui-btn exam-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
-	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
-	$(document).ready(function() {
-		/* $.get(
-		    "showNotExamDriver?count=1"
-		    ,addToTableExam
-		    , "json"
-		) */
-	});
+	var examAddTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="审核增加" class="layui-btn exam-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
+	var examDelTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="审核删除" class="layui-btn exam-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
+	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 </script>
 
-<%@include file="opratorTemplateFooter.jsp"%>
+<%@include file="TemplateFooter.jsp"%>

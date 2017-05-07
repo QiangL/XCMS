@@ -18,8 +18,8 @@ import com.didicms.util.PwdEncoding;
 
 @Controller
 public class Login {
-	private static final String ACCOUNT = "ACCOUNT";
-	private static final String OPRATOR = "OPRATOR";
+	private static final String ACCOUNT = "account";
+	private static final String OPRATOR = "oprator";
 
 	@Autowired
 	private OpratorDao opratorDao;
@@ -36,12 +36,12 @@ public class Login {
 		if (ACCOUNT.equalsIgnoreCase(request.getParameter("role"))) {
 			session.setAttribute("role", ACCOUNT);
 			// if(accountLogin(request,session)){
-			return "redirect:account/"+URL.AccountDriver;
+			return "redirect:account/"+URL.Driver;
 			// }
 		} else if (OPRATOR.equalsIgnoreCase(request.getParameter("role"))) {
 			session.setAttribute("role", OPRATOR);
 			// if(opratorLogin(request,session)){
-			return "redirect:oprator/"+URL.OpratorDriver;
+			return "redirect:oprator/"+URL.Driver;
 			// }
 		}
 		return URL.error;
@@ -61,6 +61,7 @@ public class Login {
 		Account account = accountDao.getById(request.getParameter("id"));
 		if (account.getPassword().equals(PwdEncoding.encoding(request.getParameter("password")))) {
 			session.setAttribute("user", account.getId());
+			session.setAttribute("companyId", account.getCompanyId());
 			return true;
 		}
 		return false;

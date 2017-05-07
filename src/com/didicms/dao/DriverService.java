@@ -8,9 +8,14 @@ import com.didicms.entry.Driver;
 
 @Service
 public interface DriverService extends DriverDao {
+	public boolean insertReal(Driver driver);
 	public List<Driver> getAll(int count);
-	public boolean exam(String id);
-	public List<Driver> getAllNotExam(int count);
-	public int getNotExamNubmer();
-	public int getNumber();
+	public boolean examAdd(String id);
+	public boolean examDel(String id);
+	public List<Driver> getAllNotExamAdd(int count);
+	public List<Driver> getAllNotExamDel(int count);
+	public int getNotExamAddNubmer();
+	public int getNotExamDelNubmer();
+	public int getAllDriverNumber();
+	public boolean deleteReal(String id);
 }

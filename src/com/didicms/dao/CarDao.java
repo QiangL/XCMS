@@ -5,13 +5,13 @@ import java.util.List;
 import com.didicms.entry.Car;
 
 public interface CarDao {
-	public Car getById(int id);
+	public Car getById(String id);
 
-	public List<Car> getByCompanyId(int companyId);
+	public List<Car> getByCompanyId(int companyId,int count);
 
 	public boolean insert(Car car);
 
-	public boolean delete(int id);
+	public boolean delete(String id);
 
 	public boolean update(Car car);
 
