@@ -3,8 +3,11 @@ layui.use([ 'layer', 'element', 'form', 'laypage', ], function() {
 			upload = layui.upload, laypage = layui.laypage;
 	
 });
-function flushPage(page) {
-    showPage('account/financePageNumber', 'account/showFinance?count=', 'list-page', page, addToTableList, flushPage);
+function flushListPage(page) {
+    showPage('account/financePageNumber', 'account/showFinance?count=', 'list-page', page, addToTableList, flushListPage);
+}
+function flushHistoryPage(page) {
+    showPage('account/historyFinancePageNumber', 'account/showHistoryFinance?count=', 'history-page', page, addToTableHistory, flushHistoryPage);
 }
 function addToTableList(financeList) {
     var tbody = $(".list tbody");
@@ -26,6 +29,23 @@ function addToTableList(financeList) {
     $(".list tbody .motify-btn").click(motifyClick);
     tbody.css("display", "");
 }
+function addToTableHistory(financeList) {
+    var tbody = $(".history tbody");
+    tbody.css("display", "none");
+    tbody.empty();
+    for (var i in financeList) {
+        var finance = financeList[i];
+        var trTemp = historyTr.clone();
+        var tChild = trTemp.children();
+        tChild.get(0).innerText = finance.id;
+        tChild.get(1).innerText = finance.companyName;
+        tChild.get(2).innerText = finance.date;
+        tChild.get(3).innerText = finance.amount;
+        tChild.get(4).innerText = finance.companyPublicAccount;
+        tbody.append(trTemp);
+    }
+    tbody.css("display", "");
+}
 function addToTableDetail(orderList) {
     var tbody = $(".detail tbody");
     tbody.css("display", "none");
@@ -45,6 +65,8 @@ function addToTableDetail(orderList) {
     }
     tbody.css("display", "");
 }
+
+
 function motifyClick(e) {
     var $tr = $(e.target.parentElement.parentElement);
     var companyId = $tr.children().find("input[name=companyId]").val();
@@ -117,3 +139,16 @@ function showPage(pageNumberURL, listURL, pageDiv, page, func, callbackFunc) {
         });
     }, 'json')
 }
+function switchToList() {
+	$(".history").addClass("display-none");
+	$(".detail").addClass("display-none");
+	$(".list").removeClass("display-none");
+	flushListPage(1);
+}
+function switchToHistory() {
+	$(".history").removeClass("display-none");
+	$(".detail").addClass("display-none");
+	$(".list").addClass("display-none");
+	flushHistoryPage(1);
+}
+

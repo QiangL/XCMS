@@ -15,4 +15,6 @@ public class URL {
 	public static final String OpratorAccount="opratorAccount";
 	public static final String UserSetting="userSetting";
 	
+	public static final String LogErr="logErr";
+	
 }

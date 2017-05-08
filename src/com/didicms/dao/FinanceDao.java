@@ -12,7 +12,13 @@ public interface FinanceDao {
 	public List<Finance> getAll(int count);
 	public Finance getById(int id);
 	public int getFinancePage();
-	public int getFinancePageByCcompanyId(int companyId);
+	public int getFinancePageByCompanyId(int companyId);
+	
+	public int getHistoryFinancePage();
+	public int getHistoryFinancePageByCompanyId(int companyId);
+	
+	public List<Finance> getHistoryAll(int count);
+	public List<Finance> getHistoryAllByCompanyId(int companyId,int count);
 
 	
 

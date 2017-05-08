@@ -1,5 +1,7 @@
 package com.didicms.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +42,29 @@ public class AccountFinance {
 	@ResponseBody
 	public String showFinance(int count,HttpSession session) {
 		Integer companyId=(Integer) session.getAttribute("companyId");
-		return JSON.toJSONString(financeDao.getAllByCompanyId(companyId, count));
+		List<Finance> list=financeDao.getAllByCompanyId(companyId, count);
+		return JSON.toJSONString(list);
 	}
 	@RequestMapping(value = "/financePageNumber", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String financePageNumber(HttpSession session) {
 		Integer companyId=(Integer) session.getAttribute("companyId");
-		return JSON.toJSONString(financeDao.getFinancePageByCcompanyId(companyId));
+		int i=financeDao.getFinancePageByCompanyId(companyId);
+		return JSON.toJSONString(i);
 	}
+	
+	@RequestMapping(value = "/showHistoryFinance", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String showHistoryFinance(int count,HttpSession session) {
+		Integer companyId=(Integer) session.getAttribute("companyId");
+		return JSON.toJSONString(financeDao.getHistoryAllByCompanyId(companyId, count));
+	}
+	@RequestMapping(value = "/historyFinancePageNumber", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String historyFinancePageNumber(HttpSession session) {
+		Integer companyId=(Integer) session.getAttribute("companyId");
+		return JSON.toJSONString(financeDao.getHistoryFinancePageByCompanyId(companyId));
+	}
+	
 
 }

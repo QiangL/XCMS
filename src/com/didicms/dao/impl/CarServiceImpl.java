@@ -24,32 +24,6 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List<Car> getByCompanyId(int companyId,int count) {
-		String sql="select car_id,car_number,car_model,car_displacement,car_color,"
-				+ "car_company_id,car_image,company_name from car,company where "
-				+ "car_company_id=company_id and company_id= ? and car_exam=-1 limit  ?,8";
-		List<Car> list=jdbc.query(sql, new Object[]{companyId,(count-1)*8}
-								,new int[]{Types.INTEGER,Types.INTEGER},new RowMapper<Car>(){
-
-			@Override
-			public Car mapRow(ResultSet rs, int index) throws SQLException {
-				Car car=new Car();
-				car.setId(rs.getString("car_id"));;
-				car.setNumber(rs.getString("car_number"));
-				car.setModel(rs.getString("car_model"));
-				car.setDisplacement(rs.getString("car_displacement"));
-				car.setImage(rs.getString("car_image"));
-				car.setColor(rs.getString("car_color"));
-				car.setCompanyId(rs.getInt("car_company_id"));
-				car.setCompanyName(rs.getString("company_name"));
-				return car;
-			}
-			
-		});
-		return list;
-	}
-
-	@Override
 	public boolean insert(Car car) {
 		String sql="insert into car (car_id,car_number,car_model,car_displacement,car_color,car_company_id,car_image,car_exam)"
 				+"values (?,?,?,?,?,?,?,0)";
@@ -171,6 +145,31 @@ public class CarServiceImpl implements CarService {
 		});
 		return list;
 	}
+	@Override
+	public List<Car> getByCompanyId(int companyId,int count) {
+		String sql="select car_id,car_number,car_model,car_displacement,car_color,"
+				+ "car_company_id,car_image,company_name from car,company where "
+				+ "car_company_id=company_id and company_id= ? and car_exam=1 limit  ?,8";
+		List<Car> list=jdbc.query(sql, new Object[]{companyId,(count-1)*8}
+								,new int[]{Types.INTEGER,Types.INTEGER},new RowMapper<Car>(){
+
+			@Override
+			public Car mapRow(ResultSet rs, int index) throws SQLException {
+				Car car=new Car();
+				car.setId(rs.getString("car_id"));;
+				car.setNumber(rs.getString("car_number"));
+				car.setModel(rs.getString("car_model"));
+				car.setDisplacement(rs.getString("car_displacement"));
+				car.setImage(rs.getString("car_image"));
+				car.setColor(rs.getString("car_color"));
+				car.setCompanyId(rs.getInt("car_company_id"));
+				car.setCompanyName(rs.getString("company_name"));
+				return car;
+			}
+			
+		});
+		return list;
+	}
 
 	@Override
 	public boolean examAdd(String id) {
@@ -236,7 +235,7 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public int getNumber(int companyId) {
-		String sql="select count(*) from company where company_id="+companyId;
+		String sql="select count(*) from car where car_exam=1 and car_company_id="+companyId;
 		return jdbc.queryForObject(sql, Integer.class);
 	}
 

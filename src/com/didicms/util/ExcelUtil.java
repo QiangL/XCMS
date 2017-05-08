@@ -41,11 +41,11 @@ public class ExcelUtil {
 		}
 	}
 
-	private static String excelFileURL = "i:/db0506temp.xlsx";
+	private static String excelFileURL = "i:/dbtemp.xlsx";
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, SQLException {
 		Workbook workbook = new XSSFWorkbook(new FileInputStream(excelFileURL));
-		executeOrder(workbook);
+		executeAccount(workbook);
 	}
 	private static void executeOrder(Workbook workbook) throws SQLException {
 		String sql = "INSERT INTO `didicms`.`order`(`order_driver_id`,`order_date`,`order_quantity`,`order_transaction_amount`,`order_charging_time`,`order_bad_review`,`order_driver_score`,`order_driver_grade`,`order_reward`)VALUES(?,?,?,?,?,?,?,?,?)";

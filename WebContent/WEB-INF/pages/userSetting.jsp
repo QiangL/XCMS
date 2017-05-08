@@ -11,6 +11,7 @@
 
 <head>
 <meta charset="UTF-8">
+<base href="<%=basePath%>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="resource/layui/css/layui.css" rel="stylesheet">
 <link rel="stylesheet" href="resource/style.css" />
@@ -40,21 +41,21 @@
 						</div>
 					</div>
 					<div class="layui-form-item">
-							<label class="layui-form-label" for="password">密码</label>
-							<div class="layui-input-block">
-								<input type="password" id="password" name="password"
-									placeholder="输入密码" required="true" class="layui-input"
-									value="${oprator.getPassword() }">
-							</div>
+						<label class="layui-form-label" for="password">密码</label>
+						<div class="layui-input-block">
+							<input type="password" id="password" name="password"
+								placeholder="输入密码" required="true" class="layui-input"
+								value="${oprator.getPassword() }">
 						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label" for="password2">确认密码</label>
-							<div class="layui-input-block">
-								<input type="password" id="password2" name="password2"
-									placeholder="确认密码" required="true" class="layui-input"
-									value="${oprator.getPassword() }">
-							</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label" for="password2">确认密码</label>
+						<div class="layui-input-block">
+							<input type="password" id="password2" name="password2"
+								placeholder="确认密码" required="true" class="layui-input"
+								value="${oprator.getPassword() }">
 						</div>
+					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-input-block">

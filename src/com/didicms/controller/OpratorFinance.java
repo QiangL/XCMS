@@ -37,6 +37,14 @@ public class OpratorFinance {
 		return JSON.toJSONString(msg);
 	}
 	
+	
+	@RequestMapping(value = "/showOrder", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String showOrder(int companyId){
+		return JSON.toJSONString(orderDao.getAll(companyId));
+	}
+	
+	
 	@RequestMapping(value = "/showFinance", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String showFinance(int count){
@@ -47,10 +55,17 @@ public class OpratorFinance {
 	public String financePageNumber(){
 		return JSON.toJSONString(financeDao.getFinancePage());
 	}
-	@RequestMapping(value = "/showOrder", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	
+	
+	@RequestMapping(value = "/showHistoryFinance", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String showOrder(int companyId){
-		return JSON.toJSONString(orderDao.getAll(companyId));
+	public String showHistoryFinance(int count){
+		return JSON.toJSONString(financeDao.getHistoryAll(count));
+	}
+	@RequestMapping(value = "/historyFinancePageNumber", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String historyFinancePageNumber(){
+		return JSON.toJSONString(financeDao.getHistoryFinancePage());
 	}
 	
 

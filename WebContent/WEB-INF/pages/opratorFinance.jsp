@@ -8,7 +8,10 @@
 		<a href="javascript:;">分账管理</a>
 			<dl class="layui-nav-child">
 				<dd class="layui-this">
-					<a href="javascript:;">公司列表</a>
+					<a href="javascript:switchToList();">账单列表</a>
+				</dd>
+				<dd class="">
+					<a href="javascript:switchToHistory();">历史账单</a>
 				</dd>
 			</dl>
 		</li>
@@ -50,6 +53,29 @@
 		</table>
 		<div class="layui-layer-page" id="list-page"></div>
 	</div>
+	<div class="history display-none">
+		<table class="layui-table" lay-even lay-skin="line">
+			<colgroup>
+				<col width="100" />
+				<col width="200" />
+				<col width="100" />
+				<col width="150" />
+				<col width="200" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>公司名</th>
+					<th>年月</th>
+					<th>应付金额</th>
+					<th>公司对公账户</th>
+				</tr>
+			</thead>
+			<tbody class="tbody">
+			</tbody>
+		</table>
+		<div class="layui-layer-page" id="history-page"></div>
+	</div>
 	<div class="detail display-none">
 		<table class="layui-table" lay-even lay-skin="line">
 			<colgroup>
@@ -84,8 +110,9 @@
 <script type="text/javascript" src="resource/opratorFinance.js"></script>
 <script type="text/javascript">
 	var listTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td><input type="button" value="确认支付" class="layui-btn remit-btn" /><input type="button" value="详情" class="layui-btn detail-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
+	var historyTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td></tr>');
 	var detailTr=$('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
-	flushPage(1);
+	flushListPage(1);
 </script>
 
 <%@include file="TemplateFooter.jsp"%>

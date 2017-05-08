@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <head>
     <meta charset="UTF-8">
+    <base href="<%=basePath %>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="resource/layui/css/layui.css" rel="stylesheet">
     <link rel="stylesheet" href="resource/style.css" />

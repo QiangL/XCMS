@@ -7,8 +7,7 @@ import java.util.Base64;
 public class PwdEncoding {
 
 	public static void main(String[] args) throws NoSuchAlgorithmException {
-		System.out.println(encoding(
-				"liqiang asf asd df asd,l,,;,..''\"''[p]]'/;.;.;.;./*/*/[].//. .,,fw*/-+-+34242$%^&*()(*(*%$$$%$^&&"));
+		System.out.println(encoding("didichuxing"));
 	}
 
 	public static String encoding(String pwd) {

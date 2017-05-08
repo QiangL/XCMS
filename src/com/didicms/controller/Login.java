@@ -42,21 +42,20 @@ public class Login {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		if (ACCOUNT.equalsIgnoreCase(request.getParameter("role"))) {
-			session.setAttribute("role", ACCOUNT);
-			// if(accountLogin(request,session)){
-			return "redirect:account/driver";
-			// }
+			if(accountLogin(request,session)){
+				return "redirect:account/driver";
+			}
 		} else if (OPRATOR.equalsIgnoreCase(request.getParameter("role"))) {
-			session.setAttribute("role", OPRATOR);
-			// if(opratorLogin(request,session)){
-			return "redirect:oprator/driver";
-			// }
+			if(opratorLogin(request,session)){
+				return "redirect:oprator/driver";
+			}
 		}
-		return URL.error;
+		return URL.LogErr;
 	}
 
 	private boolean opratorLogin(HttpServletRequest request, HttpSession session) {
 		Oprator oprator = opratorDao.getById(request.getParameter("id"));
+		if(oprator==null) return false;
 		if (oprator.getPassword().equals(PwdEncoding.encoding(request.getParameter("password")))) {
 			session.setAttribute("role", OPRATOR);
 			session.setAttribute("user", oprator.getId());
@@ -69,8 +68,9 @@ public class Login {
 
 	private boolean accountLogin(HttpServletRequest request, HttpSession session) {
 		Account account = accountDao.getById(request.getParameter("id"));
+		if(account==null) return false;
 		if (account.getPassword().equals(PwdEncoding.encoding(request.getParameter("password")))) {
-			
+			session.setAttribute("role", ACCOUNT);
 			session.setAttribute("user", account.getId());
 			session.setAttribute("companyId", account.getCompanyId());
 			session.setAttribute("account", account);
