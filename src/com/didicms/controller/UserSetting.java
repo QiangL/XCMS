@@ -15,7 +15,7 @@ import com.didicms.entry.Oprator;
 import com.didicms.util.PwdEncoding;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/oprator/user")
 public class UserSetting {
 	@Autowired
 	private OpratorDao opratorDao;
@@ -30,9 +30,7 @@ public class UserSetting {
 	@RequestMapping(method=RequestMethod.POST)
 	public String update(HttpSession session,HttpServletRequest request){
 		String role=(String) session.getAttribute("role");
-		if("account".equalsIgnoreCase(role) && accountUpdate(request, session)){
-			return "redirect:account/driver";
-		}else if("oprator".equalsIgnoreCase(role) && opratorUpdate(request, session)){
+		if("oprator".equalsIgnoreCase(role) && opratorUpdate(request, session)){
 			return "redirect:oprator/driver";
 		}
 		return URL.error;

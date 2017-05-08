@@ -19,8 +19,8 @@
 
 
 <div class="layui-layer-content content">
-	<div class="add">
-		<form action="addDriver" method="POST"
+	<div class="add  display-none">
+		<form action="account/addDriver" method="POST"
 			class="layui-form">
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">司机ID</label>
@@ -58,12 +58,20 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
+				<label for="add-bind-carId" class="layui-form-label">绑定车辆ID</label>
+				<div class="layui-input-block">
+					<input type="text" id="add-bind-carId" name="bindCarId"
+						placeholder="输入绑定车辆ID" required class="layui-input" value="">
+				</div>
+			</div>
+			<div class="layui-form-item">
 				<label for="add-companyId" class="layui-form-label">所属公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-companyId" name="companyId"
 						placeholder="输入所属公司ID" required class="layui-input" value="">
 				</div>
 			</div>
+			
 			<div class="layui-form-item">
 				<label for="add-image" class="layui-form-label">司机头像</label>
 				<div class="layui-input-block">
@@ -101,11 +109,12 @@
 			<colgroup>
 				<col width="65" />
 				<col width="100" />
+				<col width="80" />
+				<col width="60" />
+				<col width="60" />
 				<col width="100" />
 				<col width="60" />
-				<col width="60" />
-				<col width="150" />
-				<col width="250" />
+				<col width="200" />
 				<col />
 			</colgroup>
 			<thead>
@@ -116,6 +125,7 @@
 					<th>性别</th>
 					<th>年龄</th>
 					<th>电话</th>
+					<th>绑定汽车ID</th>
 					<th>所属合作伙伴</th>
 					<th>操作</th>
 				</tr>
@@ -127,7 +137,7 @@
 		<div class="layui-layer-page" id="look-page"></div>
 	</div>
 	<div class="update display-none">
-		<form action="updateDriver" method="POST" class="layui-form">
+		<form action="account/updateDriver" method="POST" class="layui-form">
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="update-id">司机ID</label>
 				<div class="layui-input-block">
@@ -164,6 +174,13 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
+				<label for="update-bind-carId" class="layui-form-label">绑定车辆ID</label>
+				<div class="layui-input-block">
+					<input type="text" id="update-bind-carId" name="bindCarId"
+						placeholder="输入绑定车辆ID" required class="layui-input" value="">
+				</div>
+			</div>
+			<div class="layui-form-item">
 				<label for="update-companyId" class="layui-form-label">所属公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-companyId" name="companyId"
@@ -196,18 +213,9 @@
 </div>
 
 <%@include file="templateContent.jsp"%>
-<input id="AccountDriverPageNum" type="hidden"  value="${AccountDriverPageNum/8 }"/>
-
-<script type="text/javascript" src="resource/driver.js"></script>
+<script type="text/javascript" src="resource/accountDriver.js"></script>
 <script type="text/javascript">
-	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
-	$(document).ready(function() {
-		/* $.get(
-		    "showNotExamDriver?count=1"
-		    ,addToTableExam
-		    , "json"
-		) */
-	});
+	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 </script>
 
 <%@include file="TemplateFooter.jsp"%>

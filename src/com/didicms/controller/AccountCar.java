@@ -17,9 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/account")
 public class AccountCar {
 	@Autowired
 	private CarDao carDao;
+	
+	@RequestMapping(value="/car",method=RequestMethod.GET)
+	public String view(){
+		return URL.AccountCar;
+	}
+	
 
 	@RequestMapping(value = "/addCar", method = RequestMethod.POST)
 	public String addCar(HttpServletRequest request, Car car) {

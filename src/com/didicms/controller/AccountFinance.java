@@ -19,17 +19,17 @@ public class AccountFinance {
 	@Autowired
 	private FinanceDao financeDao;
 
-	@RequestMapping(value="finance",method = RequestMethod.GET)
+	@RequestMapping(value="/finance",method = RequestMethod.GET)
 	public String view() {
 		return URL.AccountFinance;
 	}
 
 
-	@RequestMapping(value = "/remitFinance", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/confirmFinance", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String confirmFinance(int financeId) {
 		Msg msg=new Msg();
-		if(financeDao.remit(financeId)){
+		if(financeDao.confirm(financeId)){
 			msg.code=1;
 		}else{
 			msg.code=-1;

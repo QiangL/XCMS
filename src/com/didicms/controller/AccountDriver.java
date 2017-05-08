@@ -22,7 +22,7 @@ public class AccountDriver {
 	@Autowired
 	private DriverDao driverDao;
 	
-	@RequestMapping(value="driver",method=RequestMethod.GET)
+	@RequestMapping(value="/driver",method=RequestMethod.GET)
 	public String viewDriver(HttpSession session){
 		return URL.AccountDriver;
 	}
@@ -34,7 +34,7 @@ public class AccountDriver {
 		return URL.error;
 	}
 
-	@RequestMapping(value = "/updatedriver", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateDriver", method = RequestMethod.POST)
 	public String updateDriver(Driver driver) {
 		if (driverDao.update(driver)) {
 			return URL.AccountDriver;
@@ -42,7 +42,7 @@ public class AccountDriver {
 		return URL.error;
 	}
 
-	@RequestMapping(value = "/deletedriver", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteDriver", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteDriver(String driverId) {
 		Msg msg=new Msg();

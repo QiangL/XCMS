@@ -21,7 +21,7 @@
 		<form action="searchDriver" method="POST" class="layui-form">
 			<div class="layui-form-item search">
 				<input type="text" name="search" class="search-input"
-					placeholder="键入需要查找的司机ID" required value="" />
+					placeholder="键入需要查找的公司ID" required value="" />
 				<button class="layui-btn search-btn" lay-submit>查询</button>
 			</div>
 		</form>
@@ -81,10 +81,9 @@
 </div>
 
 <%@include file="templateContent.jsp"%>
-<script type="text/javascript" src="resource/js.js"></script>
 <script type="text/javascript" src="resource/opratorFinance.js"></script>
 <script type="text/javascript">
-	var listTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td><input type="button" value="确认支付" class="layui-btn confirm-btn" /><input type="button" value="详情" class="layui-btn detail-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
+	var listTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td><input type="button" value="确认支付" class="layui-btn remit-btn" /><input type="button" value="详情" class="layui-btn detail-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 	var detailTr=$('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
 	flushPage(1);
 </script>

@@ -4,7 +4,7 @@ layui.use([ 'layer', 'element', 'form', 'laypage', ], function() {
 	
 });
 function flushPage(page) {
-    showPage('oprator/financePageNumber', 'oprator/showFinance?count=', 'list-page', page, addToTableList, flushPage);
+    showPage('account/financePageNumber', 'account/showFinance?count=', 'list-page', page, addToTableList, flushPage);
 }
 function addToTableList(financeList) {
     var tbody = $(".list tbody");
@@ -22,8 +22,8 @@ function addToTableList(financeList) {
         tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
-    $(".list tbody .remit-btn").click(remitClick);
-    $(".list tbody .detail-btn").click(detailClick);
+    $(".list tbody .confirm-btn").click(confirmClick);
+    $(".list tbody .motify-btn").click(motifyClick);
     tbody.css("display", "");
 }
 function addToTableDetail(orderList) {
@@ -45,10 +45,10 @@ function addToTableDetail(orderList) {
     }
     tbody.css("display", "");
 }
-function detailClick(e) {
+function motifyClick(e) {
     var $tr = $(e.target.parentElement.parentElement);
     var companyId = $tr.children().find("input[name=companyId]").val();
-    $.get('oprator/showOrder?companyId='+companyId
+    $.get('account/showOrder?companyId='+companyId
         , function (date) {
             addToTableDetail(date);
             layui.use('layer', function () {
@@ -63,12 +63,12 @@ function detailClick(e) {
         });
 }
 
-function remitClick(e) {
+function confirmClick(e) {
     var $tr = $(e.target.parentElement.parentElement);
     var financeId = $tr.children().get(0).innerText;
     console.log(financeId);
     $(e.target).addClass('layui-btn-disabled');
-    $.post("oprator/remitFinance", {
+    $.post("account/confirmFinance", {
         financeId: financeId
     }, function (date) {
         layui.use('layer', function () {

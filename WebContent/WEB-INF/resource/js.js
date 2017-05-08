@@ -1,3 +1,8 @@
+layui.use([ 'layer', 'element', 'form', 'laypage', ], function() {
+	var layer = layui.layer, element = layui.element, form = layui.form,
+			upload = layui.upload, laypage = layui.laypage;
+	
+});
 function showPage(pageNumberURL,listURL,pageDiv,page,func,callbackFunc) {
 	var pageNumber;
 	$.get(pageNumberURL, function(date) {

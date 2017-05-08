@@ -25,11 +25,11 @@ public class OpratorFinance {
 		return URL.OpratorFinance;
 	}
 
-	@RequestMapping(value = "/confrimFinance", method = RequestMethod.POST)
+	@RequestMapping(value = "/remitFinance", method = RequestMethod.POST)
 	@ResponseBody
-	public String remit(int financeId) {
+	public String remitFinance(int financeId) {
 		Msg msg=new Msg();
-		if(financeDao.confirm(financeId)){
+		if(financeDao.remit(financeId)){
 			msg.code=1;
 		}else{
 			msg.code=-1;

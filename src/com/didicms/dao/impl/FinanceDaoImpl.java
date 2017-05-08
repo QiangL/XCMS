@@ -69,7 +69,7 @@ public class FinanceDaoImpl implements FinanceDao {
 		String sql="select finance_id, company_name,finance_date,finance_amount,company_public_account "
 				+ "from finance,company where company.company_id=finance.finance_company_id and finance_status=? limit ?,8";
 		List<Finance> list=jdbc.query(sql, 
-				new Object[]{FinanceStatus.WaitConfirm,(count-1)*8},new int[]{Types.NVARCHAR,Types.INTEGER}
+				new Object[]{FinanceStatus.WaitRemittance,(count-1)*8},new int[]{Types.NVARCHAR,Types.INTEGER}
 				, new RowMapper<Finance>() {
 
 				@Override
@@ -80,7 +80,7 @@ public class FinanceDaoImpl implements FinanceDao {
 					f.setDate(rs.getDate("finance_date"));
 					f.setAmount(rs.getBigDecimal("finance_amount"));
 					f.setCompanyPublicAccount(rs.getString("company_public_account"));
-					f.setStatus(FinanceStatus.WaitConfirm);
+					f.setStatus(FinanceStatus.WaitRemittance);
 					return f;
 				}
 			});
