@@ -22,8 +22,6 @@ public class AccountDriver {
 	
 	@RequestMapping(value="driver",method=RequestMethod.GET)
 	public String viewDriver(HttpSession session){
-		int dpn=driverDao.getNumber(Integer.valueOf(session.getAttribute("companyId").toString()));
-		session.setAttribute("AccountDriverPageNum", dpn);
 		return URL.AccountDriver;
 	}
 	@RequestMapping(value = "/addDriver", method = RequestMethod.POST)
@@ -48,10 +46,8 @@ public class AccountDriver {
 		Msg msg=new Msg();
 		if (driverDao.delete(driverId)) {
 			msg.code=1;
-			msg.msg="";
 		}else{
 			msg.code=-1;
-			msg.msg="";
 		}
 		return JSON.toJSONString(msg);
 	}

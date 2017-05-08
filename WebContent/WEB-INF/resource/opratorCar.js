@@ -31,7 +31,7 @@ layui.use([ 'layer', 'element', 'form', 'upload', 'laypage', ], function() {
 });
 function showNotExamAddCar(page){
 	var pageNumber;
-	$.get("oprator/OpratorNotExamAddCarPageNum",function(date){pageNumber=date;});
+	$.get("oprator/notExamAddCarPageNum",function(date){pageNumber=date;});
 	$.get("oprator/showNotExamAddCar?count="+page,function(date){
 		addToTableExamAdd(date);
 		layui.use([ 'layer', 'laypage', ], function() {
@@ -52,7 +52,7 @@ function showNotExamAddCar(page){
 
 function showNotExamDelCar(page) {
     var pageNumber;
-    $.get("oprator/OpratorNotExamDelCarPageNum", function (date) {
+    $.get("oprator/notExamDelCarPageNum", function (date) {
         pageNumber = date;
     })
     $.get("oprator/showNotExamDelCar?count=" + page, function (date) {
@@ -75,7 +75,7 @@ function showNotExamDelCar(page) {
 }
 function showCarPage(page) {
 	var pageNumber;
-	$.get("oprator/OpratorCarPageNum", function(date) {
+	$.get("oprator/carPageNum", function(date) {
 		pageNumber = date;
 	})
 	$.get("oprator/showCar?count="+page, function(date) {

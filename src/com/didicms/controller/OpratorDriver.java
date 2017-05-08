@@ -27,12 +27,12 @@ public class OpratorDriver {
 
 	@RequestMapping(value="/driver",method = RequestMethod.GET)
 	public String view(HttpSession session) {
-		int notExamDriverAddPN=driverServive.getNotExamAddNubmer();
+		/*int notExamDriverAddPN=driverServive.getNotExamAddNubmer();
 		int notExamDriverDelPN=driverServive.getNotExamDelNubmer();
 		int driverPN=driverServive.getAllDriverNumber();
 		session.setAttribute(SessionKey.OpratorNotExamAddDriverPageNum, notExamDriverAddPN);
 		session.setAttribute(SessionKey.OpratorNotExamDelDriverPageNum, notExamDriverDelPN);
-		session.setAttribute(SessionKey.OpratorDriverPageNum, driverPN);
+		session.setAttribute(SessionKey.OpratorDriverPageNum, driverPN);*/
 		return URL.OpratorDriver;
 	}
 	
@@ -114,17 +114,17 @@ public class OpratorDriver {
 	}
 	
 	/* get PageNumber */
-	@RequestMapping(value = "/OpratorNotExamAddDriverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/notExamAddDriverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String OpratorNotExamAddDriverPageNum(){
 		return JSON.toJSONString(driverServive.getNotExamAddNubmer());
 	}
-	@RequestMapping(value = "/OpratorNotExamDelDriverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/notExamDelDriverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String OpratorNotExamDelDriverPageNum(){
 		return JSON.toJSONString(driverServive.getNotExamDelNubmer());
 	}
-	@RequestMapping(value = "/OpratorDriverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/driverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String OpratorDriverPageNum(){
 		return JSON.toJSONString(driverServive.getAllDriverNumber());

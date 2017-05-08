@@ -173,7 +173,7 @@ function addToTable(driverList, thead, tr) {
 }
 function showDriverPage(page) {
 	var pageNumber;
-	$.get("oprator/OpratorDriverPageNum",
+	$.get("oprator/driverPageNum",
 			function(date){
 		pageNumber=date;
 	});
@@ -198,7 +198,7 @@ function showDriverPage(page) {
 }
 function showNotExamDelDriverPage(page){
 	var pageNumber;
-	$.get("oprator/OpratorNotExamDelDriverPageNum",
+	$.get("oprator/notExamDelDriverPageNum",
 			function(date){
 		pageNumber=date;
 	});
@@ -223,7 +223,7 @@ function showNotExamDelDriverPage(page){
 }
 function showNotExamAddDriverPage(page){
 	var pageNumber;
-	$.get("oprator/OpratorNotExamAddDriverPageNum",
+	$.get("oprator/notExamAddDriverPageNum",
 			function(date){
 		pageNumber=date;
 	});

@@ -4,7 +4,7 @@ layui.use([ 'layer', 'element', 'form', 'laypage', ], function() {
 	
 });
 function flushPage(page){
-	showPage('oprator/OpratorAccountPageNum','oprator/showAccount?count=','list-page',page,addToTable,flushPage);
+	showPage('oprator/accountPageNum','oprator/showAccount?count=','list-page',page,addToTable,flushPage);
 }
 function addToTable(accountList){
 	var tbody=$(".look tbody");

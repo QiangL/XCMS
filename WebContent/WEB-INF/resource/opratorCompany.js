@@ -3,7 +3,7 @@ layui.use([ 'layer', 'element', 'form', 'laypage', ], function() {
 			upload = layui.upload, laypage = layui.laypage;
 });
 function flushPage(page){
-	showPage('oprator/OpratorCompanyPageNum','oprator/showCompany?count=','look-page',page,addToTable,flushPage);
+	showPage('oprator/companyPageNum','oprator/showCompany?count=','look-page',page,addToTable,flushPage);
 }
 function addToTable(companyList){
 	var tbody=$(".look tbody");

@@ -25,12 +25,12 @@ public class OpratorCar {
 
 	@RequestMapping(value="/car",method = RequestMethod.GET)
 	public String view(HttpSession session) {
-		int notExamDriverAddPN=carServive.getNotExamAddNubmer();
+		/*int notExamDriverAddPN=carServive.getNotExamAddNubmer();
 		int notExamDriverDelPN=carServive.getNotExamDelNubmer();
 		int driverPN=carServive.getAllCarNumber();
 		session.setAttribute(SessionKey.OpratorNotExamAddCarPageNum, notExamDriverAddPN);
 		session.setAttribute(SessionKey.OpratorNotExamDelCarPageNum, notExamDriverDelPN);
-		session.setAttribute(SessionKey.OpratorCarPageNum, driverPN);
+		session.setAttribute(SessionKey.OpratorCarPageNum, driverPN);*/
 		return URL.OpratorCar;
 	}
 	
@@ -102,17 +102,17 @@ public class OpratorCar {
 		return JSON.toJSONString(list);
 	}
 	/* get PageNumber */
-	@RequestMapping(value = "/OpratorNotExamAddCarPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/notExamAddCarPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String OpratorNotExamAddCarPageNum(){
 		return JSON.toJSONString(carServive.getNotExamAddNubmer());
 	}
-	@RequestMapping(value = "/OpratorNotExamDelCarPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/notExamDelCarPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String OpratorNotExamDelCarPageNum(){
 		return JSON.toJSONString(carServive.getNotExamDelNubmer());
 	}
-	@RequestMapping(value = "/OpratorCarPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/carPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String OpratorCarPageNum(){
 		return JSON.toJSONString(carServive.getAllCarNumber());

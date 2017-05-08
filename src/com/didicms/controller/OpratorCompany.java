@@ -58,7 +58,7 @@ public class OpratorCompany {
 		List<Company> list = companyDao.getAll(count);
 		return JSON.toJSONString(list);
 	}
-	@RequestMapping(value = "/OpratorCompanyPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/companyPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String OpratorCompanyPageNum(){
 		return JSON.toJSONString(companyDao.getAllNumber());

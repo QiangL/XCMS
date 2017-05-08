@@ -58,7 +58,7 @@ public class OpratorAccount {
 		List<Account> list = accountDao.getAll(count);
 		return JSON.toJSONString(list);
 	}
-	@RequestMapping(value = "/OpratorAccountPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/accountPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String OpratorCompanyPageNum(){
 		return JSON.toJSONString(accountDao.getNumber());
