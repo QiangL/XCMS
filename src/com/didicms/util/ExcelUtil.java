@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -44,9 +45,34 @@ public class ExcelUtil {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, SQLException {
 		Workbook workbook = new XSSFWorkbook(new FileInputStream(excelFileURL));
-		executeCar(workbook);
+		executeOrder(workbook);
 	}
+	private static void executeOrder(Workbook workbook) throws SQLException {
+		String sql = "INSERT INTO `didicms`.`order`(`order_driver_id`,`order_date`,`order_quantity`,`order_transaction_amount`,`order_charging_time`,`order_bad_review`,`order_driver_score`,`order_driver_grade`,`order_reward`)VALUES(?,?,?,?,?,?,?,?,?)";
+		Sheet sheet = workbook.getSheet("order");
+		Inner inner = new Inner();
 
+		try {
+			inner.preExecute(sql, workbook);
+			for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+				Row row = sheet.getRow(i);
+				//inner.pstmt.setInt(1, (int) row.getCell(0).getNumericCellValue());
+				inner.pstmt.setString(1, row.getCell(1).getStringCellValue());
+				inner.pstmt.setDate(2, new java.sql.Date(new Date().getTime()));
+				inner.pstmt.setInt(3, (int) row.getCell(3).getNumericCellValue());
+				inner.pstmt.setDouble(4, row.getCell(4).getNumericCellValue());
+				inner.pstmt.setDouble(5, row.getCell(5).getNumericCellValue());
+				inner.pstmt.setDouble(6, row.getCell(6).getNumericCellValue());
+				inner.pstmt.setDouble(7, row.getCell(7).getNumericCellValue());
+				inner.pstmt.setString(8, row.getCell(8).getStringCellValue());
+				inner.pstmt.setDouble(9, row.getCell(9).getNumericCellValue());
+				inner.pstmt.addBatch();
+			}
+		} finally {
+			inner.postExecute();
+		}
+
+	}
 	private static void executeCompany(Workbook workbook) throws SQLException {
 		String sql = "insert into company (company_id,company_name,company_owner,company_tel,company_email,company_public_account)"
 				+ "values(?,?,?,?,?,?)";
@@ -145,6 +171,7 @@ public class ExcelUtil {
 		}
 
 	}
+	
 
 	private static void executeDriver(Workbook workbook) throws SQLException {
 		String sql = "insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_image,driver_company_id,driver_bind_car_id,"

@@ -1,16 +1,24 @@
-
-layui.use('layer', function () {
-    var layer = layui.layer;
-
-});
-
-layui.use('element', function () {
-    var element = layui.element();
-});
-layui.use('form', function () {
-    var form = layui.form(); //只有执行了这一步，部分表单元素才会修饰成功
-
-    //……
-});
+function showPage(pageNumberURL,listURL,pageDiv,page,func,callbackFunc) {
+	var pageNumber;
+	$.get(pageNumberURL, function(date) {
+		pageNumber = date;
+	})
+	$.get(listURL+page, function(date) {
+		func(date);
+		layui.use([ 'layer', 'laypage', ], function() {
+			layui.laypage({
+				cont : pageDiv,
+				curr: page,
+				pages : Math.ceil(pageNumber/8) // 得到总页数
+				,
+				jump : function(obj, first) {
+					if(!first){
+						callbackFunc(obj.curr);
+					}
+				}
+			});
+		});
+	}, 'json')
+}
 
 

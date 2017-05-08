@@ -27,9 +27,17 @@ public class Account {
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
+	public String getCompanyName() {
+		return companyName;
+	}
 
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
 	private String id;
 	private String password;
 	private int companyId;
+	private String companyName;
+	
 
 }

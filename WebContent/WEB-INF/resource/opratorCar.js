@@ -50,28 +50,28 @@ function showNotExamAddCar(page){
 	},'json');
 }
 
-function showNotExamDelCar(page){
-	var pageNumber;
-	$.get("oprator/OpratorNotExamDelCarPageNum", function(date) {
-		pageNumber = date;
-	})
-	$.get("oprator/showNotExamDelCar?count="+page,function(date){
-		addToTableExamDel(date);
-		layui.use([ 'layer', 'laypage', ], function() {
-			layui.laypage({
-				cont : 'examDel-page',
-				curr: page,
-				pages : Math.ceil(pageNumber/8) // 得到总页数
-				,
-				jump : function(obj, first) {
-					if(!first){
-						showNotExamDelCar(obj.curr);
-					}
-				}
-			});
-	},'json');
-
-});
+function showNotExamDelCar(page) {
+    var pageNumber;
+    $.get("oprator/OpratorNotExamDelCarPageNum", function (date) {
+        pageNumber = date;
+    })
+    $.get("oprator/showNotExamDelCar?count=" + page, function (date) {
+        addToTableExamDel(date);
+        layui.use(['layer', 'laypage',], function () {
+            layui.laypage({
+                cont: 'examDel-page',
+                curr: page,
+                pages: Math.ceil(pageNumber / 8) // 得到总页数
+                ,
+                jump: function (obj, first) {
+                    if (!first) {
+                        showNotExamDelCar(obj.curr);
+                    }
+                }
+            });
+        })
+    }
+    , 'json');
 }
 function showCarPage(page) {
 	var pageNumber;

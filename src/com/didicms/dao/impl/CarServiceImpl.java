@@ -20,7 +20,6 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public Car getById(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

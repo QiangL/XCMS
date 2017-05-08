@@ -57,10 +57,8 @@ public class OpratorCar {
 		Msg msg=new Msg();
 		if(carServive.examAdd(carId)){
 			msg.code=1;
-			msg.msg="";
 		}else{
 			msg.code=-1;
-			msg.msg="";
 		}
 		return JSON.toJSONString(msg);
 	}
@@ -70,10 +68,8 @@ public class OpratorCar {
 		Msg msg=new Msg();
 		if(carServive.examDel(carId)){
 			msg.code=1;
-			msg.msg="";
 		}else{
 			msg.code=-1;
-			msg.msg="";
 		}
 		return JSON.toJSONString(msg);
 	}
@@ -83,10 +79,8 @@ public class OpratorCar {
 		Msg msg=new Msg();
 		if(carServive.deleteReal(carId)){
 			msg.code=1;
-			msg.msg="";
 		}else{
 			msg.code=-1;
-			msg.msg="";
 		}
 		return JSON.toJSONString(msg);
 	}

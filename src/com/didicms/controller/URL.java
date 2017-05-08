@@ -12,6 +12,6 @@ public class URL {
 	public static final String Oprator = "oprator";
 	public static final String Account = "accountCar";
 	
-	public static final String Driver="driver";
-	public static final String Car="car";
+	public static final String OpratorAccount="opratorAccount";
+	
 }

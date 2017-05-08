@@ -57,6 +57,29 @@ public class Finance {
 	public void setOpratorId(String opratorId) {
 		this.opratorId = opratorId;
 	}
+	public int getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getCompanyPublicAccount() {
+		return companyPublicAccount;
+	}
+
+	public void setCompanyPublicAccount(String companyPublicAccount) {
+		this.companyPublicAccount = companyPublicAccount;
+	}
 
 	private int id;
 	private int companyId;
@@ -64,4 +87,6 @@ public class Finance {
 	private FinanceStatus status;
 	private Date date;
 	private String opratorId;
+	private String companyName;
+	private String companyPublicAccount;
 }

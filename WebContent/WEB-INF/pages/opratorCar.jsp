@@ -197,7 +197,7 @@
 				<label class="layui-form-label" for="update-id">车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-id" name="id" placeholder="车辆ID"
-						required="true" class="layui-input" value="">
+						required="true" class="layui-input" value="" disabled>
 				</div>
 			</div>
 			<div class="layui-form-item">

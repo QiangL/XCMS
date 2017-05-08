@@ -68,10 +68,8 @@ public class OpratorDriver {
 		Msg msg=new Msg();
 		if(driverServive.examAdd(driverId)){
 			msg.code=1;
-			msg.msg="";
 		}else{
 			msg.code=-1;
-			msg.msg="";
 		}
 		return JSON.toJSONString(msg);
 	}
@@ -81,10 +79,8 @@ public class OpratorDriver {
 		Msg msg=new Msg();
 		if(driverServive.examDel(driverId)){
 			msg.code=1;
-			msg.msg="";
 		}else{
 			msg.code=-1;
-			msg.msg="";
 		}
 		return JSON.toJSONString(msg);
 	}
@@ -94,10 +90,8 @@ public class OpratorDriver {
 		Msg msg=new Msg();
 		if(driverServive.deleteReal(driverId)){
 			msg.code=1;
-			msg.msg="";
 		}else{
 			msg.code=-1;
-			msg.msg="";
 		}
 		return JSON.toJSONString(msg);
 	}

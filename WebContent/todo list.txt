@@ -1,5 +1,5 @@
 session各种
-分页不能动态的问题
+分页不能动态的问题==ok
 update 不刷新解决==改成了异步
 
 图片不能required

@@ -30,7 +30,7 @@
 			<colgroup>
 				<col width="65" />
 				<col width="100" />
-				<col width="60" />
+				<col width="100" />
 				<col width="60" />
 				<col width="60" />
 				<col width="150" />
@@ -62,10 +62,10 @@
 			<colgroup>
 				<col width="65" />
 				<col width="100" />
+				<col width="80" />
 				<col width="60" />
 				<col width="60" />
-				<col width="60" />
-				<col width="150" />
+				<col width="100" />
 				<col width="60" />
 				<col width="200" />
 				<col />
@@ -179,10 +179,10 @@
 			<colgroup>
 				<col width="65" />
 				<col width="100" />
+				<col width="80" />
 				<col width="60" />
 				<col width="60" />
-				<col width="60" />
-				<col width="150" />
+				<col width="100" />
 				<col width="60" />
 				<col width="200" />
 				<col />

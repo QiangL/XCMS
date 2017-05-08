@@ -19,17 +19,10 @@ public class AccountFinance {
 		return URL.AccountFinance;
 	}
 
-	@RequestMapping(value = "/updateFinance", method = RequestMethod.POST)
-	public String updateFinance(Finance finance) {
-		if (financeDao.update(finance)) {
-			return URL.AccountFinance;
-		}
-		return URL.error;
-	}
 
-	@RequestMapping(value = "/confirmFinance", method = RequestMethod.POST)
+	@RequestMapping(value = "/remitFinance", method = RequestMethod.POST)
 	public String confirmFinance(int financeId) {
-		if (financeDao.confirm(financeId)) {
+		if (financeDao.remit(financeId)) {
 			return URL.AccountFinance;
 		}
 		return URL.error;
