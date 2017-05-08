@@ -13,5 +13,6 @@ public class URL {
 	public static final String Account = "accountCar";
 	
 	public static final String OpratorAccount="opratorAccount";
+	public static final String UserSetting="userSetting";
 	
 }

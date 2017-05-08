@@ -14,6 +14,7 @@ public interface CarDao {
 	public boolean delete(String id);
 
 	public boolean update(Car car);
+	public int getNumber(int companyId);
 
 
 

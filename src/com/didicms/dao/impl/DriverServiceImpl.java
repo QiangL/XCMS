@@ -266,6 +266,7 @@ public class DriverServiceImpl implements DriverService {
 	}
 	@Override
 	public int getNumber(int companyId){
+		//TODO not safe sql
 		String sql="select count(*) from driver where driver_company_id="+companyId;
 		return jdbc.queryForObject(sql, Integer.class);
 	}

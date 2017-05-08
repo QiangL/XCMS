@@ -100,5 +100,11 @@ public class FinanceDaoImpl implements FinanceDao {
 		return jdbc.queryForObject(sql, Integer.class);
 	}
 
+	@Override
+	public int getFinancePageByCcompanyId(int companyId) {
+		String sql="select count(*) from finance where finance_company_id="+companyId;
+		return jdbc.queryForObject(sql, Integer.class);
+	}
+
 	
 }

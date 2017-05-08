@@ -234,6 +234,12 @@ public class CarServiceImpl implements CarService {
 		return list;
 	}
 
+	@Override
+	public int getNumber(int companyId) {
+		String sql="select count(*) from company where company_id="+companyId;
+		return jdbc.queryForObject(sql, Integer.class);
+	}
+
 	
 
 }

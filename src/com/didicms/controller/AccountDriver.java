@@ -1,5 +1,7 @@
 package com.didicms.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -50,6 +52,20 @@ public class AccountDriver {
 			msg.code=-1;
 		}
 		return JSON.toJSONString(msg);
+	}
+	@RequestMapping(value = "/showDriver", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String showDriver(int count,HttpSession session) {
+		Integer companyId=(Integer) session.getAttribute("companyId");
+		List<Driver> list = driverDao.getAllByCompanyId(companyId,count);
+		return JSON.toJSONString(list);
+	}
+	
+	@RequestMapping(value = "/driverPageNum", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String OpratorDriverPageNum(HttpSession session){
+		Integer companyId=(Integer) session.getAttribute("companyId");
+		return JSON.toJSONString(driverDao.getNumber(companyId));
 	}
 
 }
