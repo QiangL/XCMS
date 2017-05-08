@@ -30,6 +30,14 @@ public class Login {
 	public String view() {
 		return "index";
 	}
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String loginout(HttpSession session) {
+		session.removeAttribute("user");
+		session.removeAttribute("role");
+		session.removeAttribute("oprator");
+		session.removeAttribute("account");
+		return "redirect:/login";
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
