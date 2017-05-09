@@ -25,7 +25,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">司机ID</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-id" name="id" placeholder="输入司机ID"
+					<input type="text" id="add-id" name="id" placeholder="输入司机ID，13位"
 						required="true" class="layui-input" value="">
 				</div>
 			</div>
@@ -33,13 +33,13 @@
 				<label for="add-number" class="layui-form-label">司机手机号</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-number" name="number"
-						placeholder="输入司机手机号" required class="layui-input" value="">
+						placeholder="输入司机手机号，11位" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="add-name" class="layui-form-label">司机姓名</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-name" name="name" placeholder="输入司机姓名"
+					<input type="text" id="add-name" name="name" placeholder="输入司机姓名，2到10个字"
 						required class="layui-input" value="">
 				</div>
 			</div>
@@ -61,7 +61,7 @@
 				<label for="add-bind-carId" class="layui-form-label">绑定车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-bind-carId" name="bindCarId"
-						placeholder="输入绑定车辆ID"  class="layui-input" value="">
+						placeholder="输入绑定车辆ID，12位"  class="layui-input" value="">
 				</div>
 			</div>
 			
@@ -82,7 +82,7 @@
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 				</div>
 			</div>
@@ -134,7 +134,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="update-id">司机ID</label>
 				<div class="layui-input-block">
-					<input type="text" id="update-id" name="id" placeholder="输入司机ID"
+					<input type="text" id="update-id" name="id" placeholder="输入司机ID，13位"
 						required="true" class="layui-input" value="12" readonly="readonly">
 				</div>
 			</div>
@@ -142,14 +142,14 @@
 				<label for="update-number" class="layui-form-label">司机手机号</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-number" name="number"
-						placeholder="输入司机手机号" required class="layui-input" value="">
+						placeholder="输入司机手机号，11位" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="update-name" class="layui-form-label">司机姓名</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-name" name="name"
-						placeholder="输入司机姓名" required class="layui-input" value="">
+						placeholder="输入司机姓名，2到10个字" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -170,7 +170,7 @@
 				<label for="update-bind-carId" class="layui-form-label">绑定车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-bind-carId" name="bindCarId"
-						placeholder="输入绑定车辆ID"  class="layui-input" value="">
+						placeholder="输入绑定车辆ID，12位"  class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -190,7 +190,7 @@
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="update">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 				</div>
 			</div>
@@ -200,6 +200,7 @@
 
 <%@include file="templateContent.jsp"%>
 <script type="text/javascript" src="resource/accountDriver.js"></script>
+<script type="text/javascript" src="resource/driver.js"></script>
 <script type="text/javascript">
 	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 </script>

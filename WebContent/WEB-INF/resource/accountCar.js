@@ -232,7 +232,7 @@ function addToTable(carList, thead, tr) {
 		var trTemp = tr.clone();
 		var tChild = trTemp.children();
 		tChild.get(0).innerText = car.id;
-		tChild.get(1).innerHTML = '<img src=' + car.image + '/>';
+		tChild.get(1).innerHTML = '<img src=' + car.imagePath + '/>';
 		tChild.get(2).innerText = car.number;
 		tChild.get(3).innerText = car.model;
 		tChild.get(4).innerText = car.color;

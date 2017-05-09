@@ -35,7 +35,7 @@ public class CarServiceImpl implements CarService {
 				c.setDisplacement(rs.getString("car-displacement"));
 				c.setColor(rs.getString("car_color"));
 				c.setCompanyId(rs.getInt("car_company_id"));
-				c.setImage(rs.getString("car_image"));
+				c.setImagePath(rs.getString("car_image"));
 				c.setIsExam(rs.getInt("car_exam")==1?Exam.Examed:Exam.NotExam);
 				c.setCompanyName(rs.getString("company_name"));
 				
@@ -57,7 +57,7 @@ public class CarServiceImpl implements CarService {
 				car.getDisplacement(),
 				car.getColor(),
 				car.getCompanyId(),
-				car.getImage()
+				car.getImagePath()
 		}, new int[]{
 				Types.NVARCHAR,
 				Types.NVARCHAR,
@@ -72,7 +72,7 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public boolean insertReal(Car car) {
 		String sql="insert into car (car_id,car_number,car_model,car_displacement,car_color,car_company_id,car_image,car_exam)"
-				+"values (?,?,?,?,?,?,?,1)";
+				+" values (?,?,?,?,?,?,?,1)";
 		return jdbc.update(sql, new Object[]{
 				car.getId(),
 				car.getNumber(),
@@ -80,7 +80,7 @@ public class CarServiceImpl implements CarService {
 				car.getDisplacement(),
 				car.getColor(),
 				car.getCompanyId(),
-				car.getImage()
+				car.getImagePath()
 		}, new int[]{
 				Types.NVARCHAR,
 				Types.NVARCHAR,
@@ -106,14 +106,14 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public boolean update(Car car) {
 		String sql="update car set car_number=?,car_model=?,car_displacement=?,car_color=?,car_company_id=?,car_image=?"
-				+"where car_id=?";
+				+" where car_id=?";
 		return jdbc.update(sql, new Object[]{
 				car.getNumber(),
 				car.getModel(),
 				car.getDisplacement(),
 				car.getColor(),
 				car.getCompanyId(),
-				car.getImage(),
+				car.getImagePath(),
 				car.getId()
 		}, new int[]{
 				Types.NVARCHAR,
@@ -158,7 +158,7 @@ public class CarServiceImpl implements CarService {
 				car.setNumber(rs.getString("car_number"));
 				car.setModel(rs.getString("car_model"));
 				car.setDisplacement(rs.getString("car_displacement"));
-				car.setImage(rs.getString("car_image"));
+				car.setImagePath(rs.getString("car_image"));
 				car.setColor(rs.getString("car_color"));
 				car.setCompanyId(rs.getInt("car_company_id"));
 				car.setCompanyName(rs.getString("company_name"));
@@ -183,7 +183,7 @@ public class CarServiceImpl implements CarService {
 				car.setNumber(rs.getString("car_number"));
 				car.setModel(rs.getString("car_model"));
 				car.setDisplacement(rs.getString("car_displacement"));
-				car.setImage(rs.getString("car_image"));
+				car.setImagePath(rs.getString("car_image"));
 				car.setColor(rs.getString("car_color"));
 				car.setCompanyId(rs.getInt("car_company_id"));
 				car.setCompanyName(rs.getString("company_name"));
@@ -221,7 +221,7 @@ public class CarServiceImpl implements CarService {
 				car.setNumber(rs.getString("car_number"));
 				car.setModel(rs.getString("car_model"));
 				car.setDisplacement(rs.getString("car_displacement"));
-				car.setImage(rs.getString("car_image"));
+				car.setImagePath(rs.getString("car_image"));
 				car.setColor(rs.getString("car_color"));
 				car.setCompanyId(rs.getInt("car_company_id"));
 				car.setCompanyName(rs.getString("company_name"));
@@ -245,7 +245,7 @@ public class CarServiceImpl implements CarService {
 				car.setNumber(rs.getString("car_number"));
 				car.setModel(rs.getString("car_model"));
 				car.setDisplacement(rs.getString("car_displacement"));
-				car.setImage(rs.getString("car_image"));
+				car.setImagePath(rs.getString("car_image"));
 				car.setColor(rs.getString("car_color"));
 				car.setCompanyId(rs.getInt("car_company_id"));
 				car.setCompanyName(rs.getString("company_name"));

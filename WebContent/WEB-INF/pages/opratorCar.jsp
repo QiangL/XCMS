@@ -90,7 +90,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">车辆ID</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-id" name="id" placeholder="车辆ID"
+					<input type="text" id="add-id" name="id" placeholder="车辆ID，12位"
 						required="true" class="layui-input" value="">
 				</div>
 			</div>
@@ -98,7 +98,7 @@
 				<label for="add-number" class="layui-form-label">车牌号</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-number" name="number"
-						placeholder="输入车牌号" required class="layui-input" value="">
+						placeholder="输入车牌号,7位" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -119,7 +119,7 @@
 				<label for="add-displacement" class="layui-form-label">排量</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-displacement" name="displacement"
-						 placeholder="输入排量" required class="layui-input">
+						 placeholder="输入排量" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -146,7 +146,7 @@
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button class="layui-btn car-form-btn" lay-submit lay-filter="add">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 				</div>
 			</div>
@@ -252,7 +252,7 @@
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="update">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 				</div>
 			</div>
@@ -267,6 +267,7 @@
 <input id="OpratorCarPageNum" type="hidden"  value="${OpratorCarPageNum/8 }"/>
  --%>
 <script type="text/javascript" src="resource/opratorCar.js"></script>
+<script type="text/javascript" src="resource/car.js"></script>
 <script type="text/javascript">
 	var examAddTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="同意增加" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
 	var examDelTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="同意删除" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');

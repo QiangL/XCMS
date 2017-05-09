@@ -38,7 +38,7 @@ public class OpratorCar {
 	@RequestMapping(value = "/addCar", method = RequestMethod.POST)
 	public String addDriver(HttpServletRequest request, Car car) {
 		if (carServive.insertReal(car)) {
-			return "redirect:oprator/car";
+			return "redirect:/oprator/car";
 		}
 		return URL.error;
 	}
@@ -46,7 +46,7 @@ public class OpratorCar {
 	@RequestMapping(value = "/updateCar", method = RequestMethod.POST)
 	public String updateDriver(Car car) {
 		if (carServive.update(car)) {
-			return "redirect:oprator/car";
+			return "redirect:/oprator/car";
 		}
 		return URL.error;
 	}

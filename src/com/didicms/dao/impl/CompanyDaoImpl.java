@@ -61,7 +61,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
 	@Override
 	public boolean update(Company company) {
-		String sql="update company set company_name=?, company_owner=?,company_tel=?,company_emial=?,"
+		String sql="update company set company_name=?, company_owner=?,company_tel=?,company_email=?,"
 				+ "company_public_account=? where company_id=?";
 		return jdbc.update(sql,
 				new Object[]{company.getName(),company.getOwner(),company.getTel(),company.getEmail(),company.getPublicAccount(),company.getId()},

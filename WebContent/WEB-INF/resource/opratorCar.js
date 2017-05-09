@@ -102,7 +102,8 @@ function examAddCar(e) {
 	console.log(carId);
 	$(e.target).addClass('layui-btn-disabled');
 	$.post("oprator/examAddCar", {
-		carId : carId
+		carId : carId,
+		flag:0
 	}, function(date) {
 		if (date.code == 1) {
 			layer.open({
@@ -128,7 +129,8 @@ function examDelCar(e) {
 	console.log(carId);
 	$(e.target).addClass('layui-btn-disabled');
 	$.post("oprator/examDelCar", {
-		carId : carId
+		carId : carId,
+		flag:0
 	}, function(date) {
 		if (date.code == 1) {
 			layer.open({
@@ -285,7 +287,7 @@ function addToTable(carList, thead, tr) {
 		var trTemp = tr.clone();
 		var tChild = trTemp.children();
 		tChild.get(0).innerText = car.id;
-		tChild.get(1).innerHTML = '<img src=' + car.image + '/>';
+		tChild.get(1).innerHTML = '<img src=' + car.imagePath + '>';
 		tChild.get(2).innerText = car.number;
 		tChild.get(3).innerText = car.model;
 		tChild.get(4).innerText = car.color;

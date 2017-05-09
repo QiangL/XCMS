@@ -32,7 +32,8 @@ function examAddDriver(e) {
 	console.log(driverId);
 	$(e.target).addClass('layui-btn-disabled');
 	$.post("oprator/examAddDriver", {
-		driverId: driverId
+		driverId: driverId,
+		flag:0
 	}, function (date) {
 		if (date.code == 1) {
 			layer.open({
@@ -58,7 +59,8 @@ function examDelDriver(e) {
 	console.log(driverId);
 	$(e.target).addClass('layui-btn-disabled');
 	$.post("oprator/examDelDriver", {
-		driverId: driverId
+		driverId: driverId,
+		flag:0
 	}, function (date) {
 		if (date.code == 1) {
 			layer.open({
@@ -218,7 +220,7 @@ function addToTable(driverList, thead, tr) {
 		var tChild = trTemp.children();
 		tChild.get(0).innerText = driver.id;
 		tChild.get(1).innerHTML = '<img src='
-			+ driver.imagePath + '/>';
+			+ driver.imagePath + '>';
 		tChild.get(2).innerText = driver.name;
 		tChild.get(3).innerText = driver.gender;
 		tChild.get(4).innerText = driver.age;

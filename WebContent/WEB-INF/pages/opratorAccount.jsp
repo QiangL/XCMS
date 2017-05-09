@@ -68,20 +68,20 @@
 				<label for="add-password" class="layui-form-label">账户密码</label>
 				<div class="layui-input-block">
 					<input type="password" id="add-password" name="password" placeholder="password"
-						required class="layui-input" value="">
+					placeholder="长度6~16"	required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="add-password2" class="layui-form-label">确认密码</label>
 				<div class="layui-input-block">
-					<input type="password" id="add-password2" placeholder="重复输入账户密码"
+					<input type="password" id="add-password2" name="password2" placeholder="重复输入账户密码，长度6~16"
 						required class="layui-input" value="">
 				</div>
 			</div>
 			
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 				</div>
 			</div>
@@ -107,21 +107,21 @@
 			<div class="layui-form-item">
 				<label for="update-password" class="layui-form-label">账户密码</label>
 				<div class="layui-input-block">
-					<input type="password" id="update-password" name="password" placeholder="password"
+					<input type="password" id="update-password" name="password" placeholder="长度6~16"
 						required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="update-password2" class="layui-form-label">确认密码</label>
 				<div class="layui-input-block">
-					<input type="password" id="update-password2" placeholder="重复输入账户密码"
+					<input type="password" id="update-password2" name="password2" placeholder="重复输入账户密码,长度6~16"
 						required class="layui-input" value="">
 				</div>
 			</div>
 			
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="update">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 				</div>
 			</div>
@@ -131,6 +131,7 @@
 
 <%@include file="templateContent.jsp"%>
 <script type="text/javascript" src="resource/opratorAccount.js"></script>
+<script type="text/javascript" src="resource/account.js"></script>
 <script type="text/javascript">
 	var tr = $('<tr><td name="id"></td><td name="companyName"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 	flushPage(1);

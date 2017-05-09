@@ -47,12 +47,12 @@ public class Car {
 		this.color = color;
 	}
 
-	public String getImage() {
-		return image;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	public Exam getIsExam() {
@@ -83,7 +83,7 @@ public class Car {
 	private String model;
 	private String displacement;
 	private String color;
-	private String image;
+	private String imagePath;
 	private Exam isExam;
 	private int companyId;
 	

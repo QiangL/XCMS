@@ -38,7 +38,7 @@ public class AccountDriver {
 			driver.setBindCarId(null);
 		}
 		if (driverDao.insert(driver)) {
-			return URL.AccountDriver;
+			return "redirect:/account/driver";
 		}
 		return URL.error;
 	}
@@ -55,7 +55,7 @@ public class AccountDriver {
 			driver.setBindCarId(null);
 		}
 		if (driverDao.update(driver)) {
-			return URL.AccountDriver;
+			return "redirect:/account/driver";
 		}
 		return URL.error;
 	}

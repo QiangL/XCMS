@@ -31,7 +31,7 @@ public class AccountCar {
 	@RequestMapping(value = "/addCar", method = RequestMethod.POST)
 	public String addCar(HttpServletRequest request, Car car) {
 		if (carDao.insert(car)) {
-			return URL.AccountCar;
+			return "redirect:/account/car";
 		}
 		return URL.error;
 	}
@@ -39,7 +39,7 @@ public class AccountCar {
 	@RequestMapping(value = "/updateCar", method = RequestMethod.POST)
 	public String updateCar(Car car) {
 		if (carDao.update(car)) {
-			return URL.AccountCar;
+			return "redirect:/account/car";
 		}
 		return URL.error;
 	}
