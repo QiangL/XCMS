@@ -41,11 +41,11 @@ public class ExcelUtil {
 		}
 	}
 
-	private static String excelFileURL = "i:/dbtemp.xlsx";
+	private static String excelFileURL = "i:/db0506temp.xlsx";
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, SQLException {
 		Workbook workbook = new XSSFWorkbook(new FileInputStream(excelFileURL));
-		executeAccount(workbook);
+		executeDriver(workbook);
 	}
 	private static void executeOrder(Workbook workbook) throws SQLException {
 		String sql = "INSERT INTO `didicms`.`order`(`order_driver_id`,`order_date`,`order_quantity`,`order_transaction_amount`,`order_charging_time`,`order_bad_review`,`order_driver_score`,`order_driver_grade`,`order_reward`)VALUES(?,?,?,?,?,?,?,?,?)";
@@ -174,6 +174,7 @@ public class ExcelUtil {
 	
 
 	private static void executeDriver(Workbook workbook) throws SQLException {
+		/*
 		String sql = "insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_image,driver_company_id,driver_bind_car_id,"
 				+ "driver_order_quantity,driver_transaction_amount,driver_charging_time,driver_bad_review,driver_score,driver_grade)"
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -201,9 +202,12 @@ public class ExcelUtil {
 			}
 		}
 		inner.postExecute();
-
-		sql = "insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_image,driver_company_id)"
-				+ "values(?,?,?,?,?,?,?)";
+		*/
+		
+		String sql = "insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_image,driver_company_id,driver_bind_car_id)"
+				+ "values(?,?,?,?,?,?,?,?)";
+		Sheet sheet = workbook.getSheet("driver");
+		Inner inner = new Inner();
 		inner = new Inner();
 		inner.preExecute(sql, workbook);
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
@@ -215,9 +219,11 @@ public class ExcelUtil {
 			inner.pstmt.setInt(5, (int) row.getCell(4).getNumericCellValue());
 			inner.pstmt.setString(6, "");
 			inner.pstmt.setInt(7, (int) row.getCell(6).getNumericCellValue());
-			if (row.getCell(7) == null) {
-				inner.pstmt.addBatch();
+			
+			if (row.getCell(7) != null) {
+				inner.pstmt.setString(8, row.getCell(7).getStringCellValue());
 			}
+			inner.pstmt.addBatch();
 		}
 		inner.postExecute();
 

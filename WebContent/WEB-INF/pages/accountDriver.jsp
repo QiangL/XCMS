@@ -114,7 +114,7 @@
 				<col width="60" />
 				<col width="100" />
 				<col width="60" />
-				<col width="200" />
+				<col width="150" />
 				<col />
 			</colgroup>
 			<thead>

@@ -211,12 +211,14 @@ function addToTable(driverList, thead, tr) {
 		var tChild = trTemp.children();
 		tChild.get(0).innerText = driver.id;
 		tChild.get(1).innerHTML = '<img src='
-			+ driver.image + '/>';
+			+ driver.imagePath + '/>';
 		tChild.get(2).innerText = driver.name;
 		tChild.get(3).innerText = driver.gender;
 		tChild.get(4).innerText = driver.age;
 		tChild.get(5).innerText = driver.number;
-		tChild.get(6).innerText = driver.bindCarId;
+		if(driver.bindCarId){
+			tChild.get(6).innerText = driver.bindCarId;
+		}
 		tChild.get(7).innerText = driver.companyName;
 		tChild.find("input[type=hidden][name=companyId]").val(driver.companyId);
 		thead.append(trTemp);

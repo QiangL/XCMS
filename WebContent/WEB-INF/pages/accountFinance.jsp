@@ -26,8 +26,8 @@
 				<col width="100" />
 				<col width="200" />
 				<col width="100" />
+				<col width="250" />
 				<col width="150" />
-				<col width="200" />
 				<col />
 			</colgroup>
 			<thead>
@@ -95,6 +95,8 @@
 			</tbody>
 		</table>
 		<div class="layui-layer-page" id="detail-page"></div>
+	</div>
+	<div class="motify display-none">
 		
 	</div>
 </div>
@@ -102,9 +104,10 @@
 <%@include file="templateContent.jsp"%>
 <script type="text/javascript" src="resource/accountFinance.js"></script>
 <script type="text/javascript">
-	var listTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td><input type="button" value="确认" class="layui-btn confirm-btn" /><input type="button" value="修改" class="layui-btn motify-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
+	var listTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td><input type="button" value="确认" class="layui-btn confirm-btn" /><input type="button" value="详情" class="layui-btn detail-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 	var historyTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td></tr>');
 	var detailTr=$('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
+	var motifyInput='&nbsp;&nbsp;&nbsp;<input type="button" value="修改" class="layui-btn motify-btn"/>';
 	flushListPage(1);
 </script>
 

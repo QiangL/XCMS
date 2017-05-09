@@ -46,6 +46,17 @@
 	<mvc:resources location="/WEB-INF/staticPage/" mapping="/staticPage/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/img/" mapping="/img/**"></mvc:resources>
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/oprator/**"/>
+			<bean class="com.didicms.interceptor.OpratorInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/account/**"/>
+			<bean class="com.didicms.interceptor.AccountInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<!-- 视图层配置 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

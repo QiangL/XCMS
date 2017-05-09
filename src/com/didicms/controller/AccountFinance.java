@@ -1,5 +1,6 @@
 package com.didicms.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.didicms.dao.FinanceDao;
+import com.didicms.dao.OrderDao;
 import com.didicms.entry.Finance;
 import com.didicms.entry.Msg;
 
@@ -20,12 +22,25 @@ import com.didicms.entry.Msg;
 public class AccountFinance {
 	@Autowired
 	private FinanceDao financeDao;
+	@Autowired
+	private OrderDao orderDao;
 
 	@RequestMapping(value="/finance",method = RequestMethod.GET)
 	public String view() {
 		return URL.AccountFinance;
 	}
-
+	
+	@RequestMapping(value = "/motifyAmount", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String motifyAmount(int financeId,BigDecimal amount) {
+		Msg msg=new Msg();
+		if(amount!=null &&financeDao.motifyAmount(financeId, amount)){
+			msg.code=1;
+		}else{
+			msg.code=-1;
+		}
+		return JSON.toJSONString(msg);
+	}
 
 	@RequestMapping(value = "/confirmFinance", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
@@ -38,6 +53,13 @@ public class AccountFinance {
 		}
 		return JSON.toJSONString(msg);
 	}
+	
+	@RequestMapping(value = "/showOrder", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String showOrder(int companyId){
+		return JSON.toJSONString(orderDao.getAll(companyId));
+	}
+	
 	@RequestMapping(value = "/showFinance", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String showFinance(int count,HttpSession session) {

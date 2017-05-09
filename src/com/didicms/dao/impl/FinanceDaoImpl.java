@@ -1,5 +1,6 @@
 package com.didicms.dao.impl;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class FinanceDaoImpl implements FinanceDao {
 
 	private List<Finance> getFinanceWithStatusAndCompany(int companyId, int count, FinanceStatus fs) {
 
-		String sql = "select finance_id, company_name,finance_date,finance_amount,company_public_account "
+		String sql = "select finance_id, finance_company_id,company_name,finance_date,finance_amount,company_public_account "
 				+ "from finance,company where company_id=finance_company_id "
 				+ "and finance_status=? and finance_company_id=? limit ?,8";
 
@@ -43,6 +44,7 @@ public class FinanceDaoImpl implements FinanceDao {
 					public Finance mapRow(ResultSet rs, int index) throws SQLException {
 						Finance f = new Finance();
 						f.setId(rs.getInt("finance_id"));
+						f.setCompanyId(rs.getInt("finance_company_id"));
 						f.setCompanyName(rs.getString("company_name"));
 						f.setDate(rs.getDate("finance_date"));
 						f.setAmount(rs.getBigDecimal("finance_amount"));
@@ -77,7 +79,7 @@ public class FinanceDaoImpl implements FinanceDao {
 	}
 
 	private List<Finance> getFinanceWithStatus(int count, FinanceStatus fs) {
-		String sql = "select finance_id, company_name,finance_date,finance_amount,company_public_account "
+		String sql = "select finance_id, finance_company_id,company_name,finance_date,finance_amount,company_public_account "
 				+ "from finance,company where company.company_id=finance.finance_company_id and finance_status=? limit ?,8";
 		List<Finance> list = jdbc.query(sql, new Object[] { fs.toString(), (count - 1) * 8 },
 				new int[] { Types.NVARCHAR, Types.INTEGER }, new RowMapper<Finance>() {
@@ -87,6 +89,7 @@ public class FinanceDaoImpl implements FinanceDao {
 						Finance f = new Finance();
 						f.setId(rs.getInt("finance_id"));
 						f.setCompanyName(rs.getString("company_name"));
+						f.setCompanyId(rs.getInt("finance_company_id"));
 						f.setDate(rs.getDate("finance_date"));
 						f.setAmount(rs.getBigDecimal("finance_amount"));
 						f.setCompanyPublicAccount(rs.getString("company_public_account"));
@@ -161,6 +164,11 @@ public class FinanceDaoImpl implements FinanceDao {
 		String sql = "select count(*) from finance where finance_company_id=" + companyId + " and finance_status='"
 				+ FinanceStatus.Remitted.toString() + "'";
 		return jdbc.queryForObject(sql, Integer.class);
+	}
+	@Override
+	public boolean motifyAmount(int financeId,BigDecimal amount){
+		String sql="update finance set finance_amount=? where finance_id=?";
+		return jdbc.update(sql,new Object[]{amount,financeId},new int[]{Types.DECIMAL,Types.INTEGER})==1?true:false;
 	}
 
 }

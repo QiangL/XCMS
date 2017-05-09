@@ -20,12 +20,14 @@ function addToTableList(financeList) {
         tChild.get(0).innerText = finance.id;
         tChild.get(1).innerText = finance.companyName;
         tChild.get(2).innerText = finance.date;
-        tChild.get(3).innerText = finance.amount;
+        
+        tChild.get(3).innerHTML = finance.amount + motifyInput;
         tChild.get(4).innerText = finance.companyPublicAccount;
         tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
     $(".list tbody .confirm-btn").click(confirmClick);
+    $(".list tbody .detail-btn").click(detailClick);
     $(".list tbody .motify-btn").click(motifyClick);
     tbody.css("display", "");
 }
@@ -42,6 +44,7 @@ function addToTableHistory(financeList) {
         tChild.get(2).innerText = finance.date;
         tChild.get(3).innerText = finance.amount;
         tChild.get(4).innerText = finance.companyPublicAccount;
+        tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
     tbody.css("display", "");
@@ -65,9 +68,43 @@ function addToTableDetail(orderList) {
     }
     tbody.css("display", "");
 }
-
-
 function motifyClick(e) {
+	var $tr = $(e.target.parentElement.parentElement);
+    var companyId = $tr.children().find("input[name=companyId]").val();
+    var money=$tr.find("td[name=money]").text();
+    var financeId=$tr.find("td[name=id]").text();
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        layer.prompt({title: '输入修改金额,无需其他非数字字符',value: money},function(value, index, elem){
+        	$.post("account/motifyAmount", {
+        		financeId: financeId,
+        		amount:value
+        	}, function (date) {
+        		if (date.code == 1) {
+        			layer.open({
+        				title: '提交成功',
+        				shadeClose: true,
+        				offset: '100px',
+        				content: '金额修改成功'
+        			});
+        			$tr.find("td[name=money]").html(value+motifyInput);
+        			$(".list tbody .motify-btn").click(motifyClick);
+        		} else {
+        			layer.open({
+        				title: '提交失败',
+        				shadeClose: true,
+        				offset: '100px',
+        				content: '不好意思，刚刚的操作失败了'
+        			});
+        		}
+        	}, 'json');
+    	    layer.close(index);
+    	});
+    });
+    
+}
+
+function detailClick(e) {
     var $tr = $(e.target.parentElement.parentElement);
     var companyId = $tr.children().find("input[name=companyId]").val();
     $.get('account/showOrder?companyId='+companyId

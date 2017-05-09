@@ -19,13 +19,14 @@ public class OrderDaoImpl implements OrderDao {
 	JdbcTemplate jdbc;
 
 	@Override
-	public List<Order> getAll(int count) {
+	public List<Order> getAll(int companyId) {
 		String sql="SELECT `t_order`.`order_id`,`t_order`.`order_driver_id`,`t_order`.`order_date`,"
 				+ "`t_order`.`order_quantity`,`t_order`.`order_transaction_amount`,`t_order`.`order_charging_time`,"
 				+ "`t_order`.`order_bad_review`,`t_order`.`order_driver_score`,`t_order`.`order_driver_grade`,"
-				+ "`t_order`.`order_reward`FROM `didicms`.`t_order`";
+				+ "`t_order`.`order_reward`FROM `didicms`.`t_order`"
+				+ " where order_driver_id in(select driver_id from driver where driver_company_id=?)";
 		
-		List<Order> list=jdbc.query(sql,new RowMapper<Order>() {
+		List<Order> list=jdbc.query(sql,new Object[]{companyId},new int[]{Types.INTEGER},new RowMapper<Order>() {
 
 			@Override
 			public Order mapRow(ResultSet rs, int index) throws SQLException {
