@@ -167,7 +167,7 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public List<Driver> getAllNotExamAdd(int count) {
-		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,company_id,company_name from driver , "
+		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,driver_image,company_id,company_name from driver , "
 				+ "company  where driver_company_id=company_id and driver_exam=0 limit ?, 8";
 		/*
 		 List<Driver> list = new LinkedList<>();
@@ -207,6 +207,7 @@ public class DriverServiceImpl implements DriverService {
 				driver.setGender(rs.getString("driver_gender"));
 				driver.setNumber(rs.getString("driver_number"));
 				driver.setCompanyId(rs.getInt("company_id"));
+				driver.setImagePath(rs.getString("driver_image"));
 				driver.setBindCarId(rs.getString("driver_bind_car_id"));
 				driver.setCompanyName(rs.getString("company_name"));
 				return driver;
@@ -216,7 +217,7 @@ public class DriverServiceImpl implements DriverService {
 	}
 	@Override
 	public List<Driver> getAllNotExamDel(int count) {
-		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,company_id,company_name from driver , "
+		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,driver_image,company_id,company_name from driver , "
 				+ "company  where driver_company_id=company_id and driver_exam=-1 limit ?, 8";
 		
 		List<Driver> list=jdbc.query(sql
@@ -234,6 +235,7 @@ public class DriverServiceImpl implements DriverService {
 				driver.setGender(rs.getString("driver_gender"));
 				driver.setNumber(rs.getString("driver_number"));
 				driver.setCompanyId(rs.getInt("company_id"));
+				driver.setImagePath(rs.getString("driver_image"));
 				driver.setBindCarId(rs.getString("driver_bind_car_id"));
 				driver.setCompanyName(rs.getString("company_name"));
 				return driver;

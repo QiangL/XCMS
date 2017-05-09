@@ -61,14 +61,7 @@
 				<label for="add-bind-carId" class="layui-form-label">绑定车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-bind-carId" name="bindCarId"
-						placeholder="输入绑定车辆ID" required class="layui-input" value="">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="add-companyId" class="layui-form-label">所属公司ID</label>
-				<div class="layui-input-block">
-					<input type="text" id="add-companyId" name="companyId"
-						placeholder="输入所属公司ID" required class="layui-input" value="">
+						placeholder="输入绑定车辆ID"  class="layui-input" value="">
 				</div>
 			</div>
 			
@@ -142,7 +135,7 @@
 				<label class="layui-form-label" for="update-id">司机ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-id" name="id" placeholder="输入司机ID"
-						required="true" class="layui-input" value="12" disabled>
+						required="true" class="layui-input" value="12" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -177,14 +170,7 @@
 				<label for="update-bind-carId" class="layui-form-label">绑定车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-bind-carId" name="bindCarId"
-						placeholder="输入绑定车辆ID" required class="layui-input" value="">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="update-companyId" class="layui-form-label">所属公司ID</label>
-				<div class="layui-input-block">
-					<input type="text" id="update-companyId" name="companyId"
-						placeholder="输入所属公司ID" required class="layui-input" value="">
+						placeholder="输入绑定车辆ID"  class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">

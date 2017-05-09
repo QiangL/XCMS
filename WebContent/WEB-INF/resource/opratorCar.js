@@ -148,6 +148,61 @@ function examDelCar(e) {
 		}
 	}, 'json');
 }
+function examAddDisagreeCar(e){
+	var $tr = $(e.target.parentElement.parentElement);
+	var carId = $tr.find("td[name=id]").text();
+	console.log(carId);
+	$(e.target).addClass('layui-btn-disabled');
+	$.post("oprator/examAddCar", {
+		carId : carId,
+		flag:-1
+	}, function(date) {
+		if (date.code == 1) {
+			layer.open({
+				title : '提交成功',
+				shadeClose : true,
+				offset : '100px',
+				content : '不同意增加'
+			});
+			$tr.hide("slow");
+		} else {
+			layer.open({
+				title : '提交失败',
+				shadeClose : true,
+				offset : '100px',
+				content : '不好意思，刚刚的操作失败了'
+			});
+		}
+	}, 'json');
+}
+function examDelDisagreeCar(e){
+	var $tr = $(e.target.parentElement.parentElement);
+	var carId = $tr.find("td[name=id]").text();
+	console.log(carId);
+	$(e.target).addClass('layui-btn-disabled');
+	$.post("oprator/examDelCar", {
+		carId : carId,
+		flag:-1
+	}, function(date) {
+		if (date.code == 1) {
+			layer.open({
+				title : '提交成功',
+				shadeClose : true,
+				offset : '100px',
+				content : '该车辆审核成功'
+			});
+			$tr.hide("slow");
+		} else {
+			layer.open({
+				title : '提交失败',
+				shadeClose : true,
+				offset : '100px',
+				content : '不好意思，刚刚的操作失败了'
+			});
+		}
+	}, 'json');
+}
+
 function deleteCar(e) {
 	var $tr = $(e.target.parentElement.parentElement);
 	var carId = $tr.find("td[name=id]").text();
@@ -205,12 +260,14 @@ function addToTableExamAdd(carList) {
 	thead.empty();
 	addToTable(carList, thead, examAddTr);
 	$(".examAdd .exam-btn").click(examAddCar);
+	$(".examAdd .disagree-btn").click(examAddDisagreeCar);
 }
 function addToTableExamDel(carList) {
 	var thead = $(".examDel .tbody");
 	thead.empty();
 	addToTable(carList, thead, examDelTr);
 	$(".examDel .exam-btn").click(examDelCar);
+	$(".examDel .disagree-btn").click(examDelDisagreeCar);
 }
 // 异步加载driver
 function addToTableLook(carList) {

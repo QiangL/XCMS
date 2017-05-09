@@ -34,7 +34,7 @@
 				<col width="150" />
 				<col width="60" />
 				<col width="60" />
-				<col width="200" />
+				<col width="100" />
 				<col />
 			</colgroup>
 			<thead>
@@ -64,7 +64,7 @@
 				<col width="150" />
 				<col width="60" />
 				<col width="60" />
-				<col width="200" />
+				<col width="100" />
 				<col />
 			</colgroup>
 			<thead>
@@ -170,7 +170,7 @@
 				<col width="150" />
 				<col width="60" />
 				<col width="60" />
-				<col width="200" />
+				<col width="100" />
 				<col />
 			</colgroup>
 			<thead>
@@ -197,7 +197,7 @@
 				<label class="layui-form-label" for="update-id">车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-id" name="id" placeholder="车辆ID"
-						required="true" class="layui-input" value="" disabled>
+						required="true" class="layui-input" value="" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -268,8 +268,8 @@
  --%>
 <script type="text/javascript" src="resource/opratorCar.js"></script>
 <script type="text/javascript">
-	var examAddTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="审核增加" class="layui-btn exam-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
-	var examDelTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="审核删除" class="layui-btn exam-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
+	var examAddTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="同意增加" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
+	var examDelTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="同意删除" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
 	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 </script>
 

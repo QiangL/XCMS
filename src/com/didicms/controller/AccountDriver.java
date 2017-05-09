@@ -27,13 +27,13 @@ public class AccountDriver {
 		return URL.AccountDriver;
 	}
 	@RequestMapping(value = "/addDriver", method = RequestMethod.POST)
-	public String addDriver(HttpServletRequest request, Driver driver) {
+	public String addDriver(HttpServletRequest request, Driver driver,HttpSession session) {
 		if(driver.getGender().equals("male")){
 			driver.setGender("男");
 		}else{
 			driver.setGender("女");
 		}
-		
+		driver.setCompanyId((Integer)session.getAttribute("companyId"));
 		if(driver.getBindCarId().equals("")){
 			driver.setBindCarId(null);
 		}
@@ -44,13 +44,13 @@ public class AccountDriver {
 	}
 
 	@RequestMapping(value = "/updateDriver", method = RequestMethod.POST)
-	public String updateDriver(Driver driver) {
+	public String updateDriver(Driver driver,HttpSession session) {
 		if(driver.getGender().equals("male")){
 			driver.setGender("男");
 		}else{
 			driver.setGender("女");
 		}
-		
+		driver.setCompanyId((Integer)session.getAttribute("companyId"));
 		if(driver.getBindCarId().equals("")){
 			driver.setBindCarId(null);
 		}

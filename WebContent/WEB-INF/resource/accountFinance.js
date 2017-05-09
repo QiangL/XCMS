@@ -180,12 +180,20 @@ function switchToList() {
 	$(".history").addClass("display-none");
 	$(".detail").addClass("display-none");
 	$(".list").removeClass("display-none");
+	$(".driverReward").addClass("display-none");
 	flushListPage(1);
 }
 function switchToHistory() {
 	$(".history").removeClass("display-none");
 	$(".detail").addClass("display-none");
 	$(".list").addClass("display-none");
+	$(".driverReward").addClass("display-none");
 	flushHistoryPage(1);
+}
+function switchToReward() {
+	$(".history").addClass("display-none");
+	$(".detail").addClass("display-none");
+	$(".list").addClass("display-none");
+	$(".driverReward").removeClass("display-none");
 }
 

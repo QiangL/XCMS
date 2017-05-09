@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.didicms.dao.CarService;
 import com.didicms.entry.Car;
+import com.didicms.entry.Exam;
 
 @Component
 public class CarServiceImpl implements CarService {
@@ -20,7 +21,29 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public Car getById(String id) {
-		return null;
+		String sql="select car_number,car_model,car_displacement,car_color,car_company_id,car_image,car_exam,"
+				+ "company_name from car,company where car_company_id=company_id and car_id=?";
+		
+		return jdbc.queryForObject(sql,new Object[]{id},new int[]{Types.INTEGER},new RowMapper<Car>() {
+
+			@Override
+			public Car mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Car c=new Car();
+				c.setId(id);
+				c.setNumber(rs.getString("car_number"));
+				c.setModel(rs.getString("car_model"));
+				c.setDisplacement(rs.getString("car-displacement"));
+				c.setColor(rs.getString("car_color"));
+				c.setCompanyId(rs.getInt("car_company_id"));
+				c.setImage(rs.getString("car_image"));
+				c.setIsExam(rs.getInt("car_exam")==1?Exam.Examed:Exam.NotExam);
+				c.setCompanyName(rs.getString("company_name"));
+				
+				return c;
+				
+			}
+		});
+		
 	}
 
 	@Override

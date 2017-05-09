@@ -21,8 +21,22 @@ public class CompanyDaoImpl implements CompanyDao {
 
 	@Override
 	public Company getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql="select company_name,company_owner,company_tel,company_email,company_public_account from company "
+				+ "where company_id=?";
+		return jdbc.queryForObject(sql, new Object[]{id},new int[]{Types.INTEGER},new RowMapper<Company>() {
+
+			@Override
+			public Company mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Company c=new Company();
+				c.setId(id);
+				c.setName(rs.getString("company_name"));
+				c.setOwner(rs.getString("company_owner"));
+				c.setTel(rs.getString("company_tel"));
+				c.setEmail(rs.getString("company_email"));
+				c.setPublicAccount(rs.getString("company_public_account"));
+				return c;
+			}
+		});
 	}
 
 	@Override
@@ -47,20 +61,26 @@ public class CompanyDaoImpl implements CompanyDao {
 
 	@Override
 	public boolean update(Company company) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql="update company set company_name=?, company_owner=?,company_tel=?,company_emial=?,"
+				+ "company_public_account=? where company_id=?";
+		return jdbc.update(sql,
+				new Object[]{company.getName(),company.getOwner(),company.getTel(),company.getEmail(),company.getPublicAccount(),company.getId()},
+				new int[]{Types.NVARCHAR,Types.NVARCHAR,Types.NVARCHAR,Types.NVARCHAR,Types.NVARCHAR,Types.INTEGER})==1?true:false;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql="delete from company where company_id=?";
+		return jdbc.update(sql,new Object[]{id},new int[]{Types.INTEGER})==1?true:false;
 	}
 
 	@Override
 	public boolean insert(Company company) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql="insert into company (company_id,company_name,company_owner,company_tel,company_email,company_public_account)"
+				+ "values(?,?,?,?,?,?)";
+		return jdbc.update(sql,new Object[]{company.getId(),company.getName(),company.getOwner(),company.getTel(),company.getEmail(),company.getPublicAccount()},
+				new int[]{Types.INTEGER,Types.NVARCHAR,Types.NVARCHAR,Types.NVARCHAR,Types.NVARCHAR,Types.NVARCHAR})==1?true:false;
+		
 	}
 
 	@Override

@@ -36,11 +36,11 @@ function updateClick(e){
 }
 function delClick(e){
 	var $tr = $(e.target.parentElement.parentElement);
-	var companyId=$tr.children().get(0).innerText;
-	console.log(companyId);
+	var accountId=$tr.children().get(0).innerText;
+	console.log(accountId);
 	$(e.target).addClass('layui-btn-disabled');
 	$.post("oprator/deleteAccount", {
-		companyId: companyId
+		accountId: accountId
 	}, function (date) {
 		layui.use('layer',function(){
 			var layer=layui.layer;

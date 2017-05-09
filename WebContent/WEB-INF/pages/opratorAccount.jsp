@@ -21,7 +21,7 @@
 
 <div class="layui-layer-content content">
 	<div class="look">
-		<form action="searchDriver" method="POST" class="layui-form">
+		<form action="searchAccount" method="POST" class="layui-form">
 			<div class="layui-form-item search">
 				<input type="text" name="search" class="search-input"
 					placeholder="键入需要查找的司机ID" required value="" />
@@ -67,7 +67,7 @@
 			<div class="layui-form-item">
 				<label for="add-password" class="layui-form-label">账户密码</label>
 				<div class="layui-input-block">
-					<input type="password" id="add-password" name="color" placeholder="password"
+					<input type="password" id="add-password" name="password" placeholder="password"
 						required class="layui-input" value="">
 				</div>
 			</div>
@@ -94,20 +94,20 @@
 				<label class="layui-form-label" for="update-id">账户ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-id" name="id" placeholder="账户ID"
-						required="true" class="layui-input" value="" disabled>
+						required="true" class="layui-input" value="" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="update-company-id" class="layui-form-label">公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-company-id" name="companyId"
-						placeholder="公司ID" required class="layui-input" value="" disabled>
+						placeholder="公司ID" required class="layui-input" value="" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="update-password" class="layui-form-label">账户密码</label>
 				<div class="layui-input-block">
-					<input type="password" id="update-password" name="color" placeholder="password"
+					<input type="password" id="update-password" name="password" placeholder="password"
 						required class="layui-input" value="">
 				</div>
 			</div>

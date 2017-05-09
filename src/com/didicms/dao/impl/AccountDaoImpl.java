@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.didicms.dao.AccountDao;
 import com.didicms.entry.Account;
+import com.didicms.util.PwdEncoding;
 
 @Component
 public class AccountDaoImpl implements AccountDao {
@@ -62,20 +63,24 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public boolean insert(Account account) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql="insert into account (account_id,account_password,account_company_id) values(?,?,?)";
+		return jdbc.update(sql,
+				new Object[]{account.getId(),account.getPassword(),account.getCompanyId()},
+				new int[]{Types.NVARCHAR,Types.NVARCHAR,Types.INTEGER})==1?true:false;
 	}
 
 	@Override
 	public boolean delete(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql="delete from account where account_id=?";
+		return jdbc.update(sql,	new Object[]{id},new int[]{Types.NVARCHAR})==1?true:false;
 	}
 
 	@Override
 	public boolean update(Account account) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql="update account set account_password=? where account_id=? and account_company_id=?";
+		return jdbc.update(sql,
+				new Object[]{account.getPassword(),account.getId(),account.getCompanyId()},
+				new int[]{Types.NVARCHAR,Types.NVARCHAR,Types.INTEGER})==1?true:false;
 	}
 
 	@Override

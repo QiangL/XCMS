@@ -53,23 +53,25 @@ public class OpratorCar {
 
 	@RequestMapping(value = "/examAddCar", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	String examAddDriver(String carId) {
+	String examAddDriver(String carId,int flag) {
 		Msg msg=new Msg();
-		if(carServive.examAdd(carId)){
+		msg.code=-1;
+		if(flag!=-1 && carServive.examAdd(carId)){
 			msg.code=1;
-		}else{
-			msg.code=-1;
+		}else if(carServive.deleteReal(carId)){
+			msg.code=1;
 		}
 		return JSON.toJSONString(msg);
 	}
 	@RequestMapping(value = "/examDelCar", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	String examDelDriver(String carId) {
+	String examDelDriver(String carId,int flag) {
 		Msg msg=new Msg();
-		if(carServive.examDel(carId)){
+		msg.code=-1;
+		if(flag!=-1 && carServive.examDel(carId)){
 			msg.code=1;
-		}else{
-			msg.code=-1;
+		}else if(carServive.examAdd(carId)){
+			msg.code=1;
 		}
 		return JSON.toJSONString(msg);
 	}

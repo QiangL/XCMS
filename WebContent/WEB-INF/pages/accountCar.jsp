@@ -59,13 +59,6 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label for="add-companyId" class="layui-form-label">所属公司ID</label>
-				<div class="layui-input-block">
-					<input type="text" id="add-companyId" name="companyId"
-						placeholder="输入所属公司ID" required class="layui-input" value="">
-				</div>
-			</div>
-			<div class="layui-form-item">
 				<label for="add-image" class="layui-form-label">车辆照片</label>
 				<div class="layui-input-block">
 					<div class="upload">
@@ -133,7 +126,7 @@
 				<label class="layui-form-label" for="update-id">车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-id" name="id" placeholder="车辆ID"
-						required="true" class="layui-input" value="" disabled>
+						required="true" class="layui-input" value="" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -162,13 +155,6 @@
 				<div class="layui-input-block">
 					<input type="text" id="update-displacement" name="displacement"
 						 placeholder="输入排量" required class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="update-companyId" class="layui-form-label">所属公司ID</label>
-				<div class="layui-input-block">
-					<input type="text" id="update-companyId" name="companyId"
-						placeholder="输入所属公司ID" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">

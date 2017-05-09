@@ -39,7 +39,7 @@ public class OpratorCompany {
 		}
 		return URL.error;
 	}
-	@RequestMapping(value = "/deleteCompany", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/deleteCompany", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteCompany(int companyId) {
 		Msg msg=new Msg();

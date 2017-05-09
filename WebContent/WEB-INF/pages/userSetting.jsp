@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="resource/layui/css/layui.css" rel="stylesheet">
 <link rel="stylesheet" href="resource/style.css" />
-<title>登陆</title>
+<title>修改密码</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
 						<label class="layui-form-label" for="id">用户名</label>
 						<div class="layui-input-block">
 							<input type="text" id="id" name="id" placeholder="输入用户名"
-								required="true" class="layui-input" value="${ user }" disabled>
+								required="true" class="layui-input" value="${ user }" readonly="readonly">
 						</div>
 					</div>
 					<div class="layui-form-item">

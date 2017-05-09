@@ -26,7 +26,6 @@ public class FinanceDaoImpl implements FinanceDao {
 
 	@Override
 	public boolean insert(Finance finance) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

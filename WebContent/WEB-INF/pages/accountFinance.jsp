@@ -13,6 +13,9 @@
 				<dd class="">
 					<a href="javascript:switchToHistory();">历史账单</a>
 				</dd>
+				<dd class="">
+					<a href="javascript:switchToReward();">司机奖励</a>
+				</dd>
 			</dl>
 		</li>
 	</ul>
@@ -96,8 +99,30 @@
 		</table>
 		<div class="layui-layer-page" id="detail-page"></div>
 	</div>
-	<div class="motify display-none">
-		
+	<div class="driverReward display-none">
+		<div class="layui-form-item">
+				<label for="driver-reward-a" class="layui-form-label">A档司机奖励比例</label>
+				<div class="layui-input-block">
+					<input type="number" id="driver-reward-a" placeholder="输入百分比 0~100" min=0 max=100 step=1 class="layui-input">%
+				</div>
+		</div>
+		<div class="layui-form-item">
+				<label for="driver-reward-b" class="layui-form-label">B档司机奖励比例</label>
+				<div class="layui-input-block">
+					<input type="number" id="driver-reward-b" placeholder="输入百分比 0~100" min=0 max=100 step=1  class="layui-input">%
+				</div>
+		</div>
+		<div class="layui-form-item">
+				<label for="driver-reward-c" class="layui-form-label">C档司机奖励比例</label>
+				<div class="layui-input-block">
+					<input type="number" id="driver-reward-c" placeholder="输入百分比  0~100" min=0 max=100 step=1  class="layui-input">%
+				</div>
+		</div>
+		<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="*">确认奖励</button>
+				</div>
+		</div>
 	</div>
 </div>
 
@@ -110,5 +135,17 @@
 	var motifyInput='&nbsp;&nbsp;&nbsp;<input type="button" value="修改" class="layui-btn motify-btn"/>';
 	flushListPage(1);
 </script>
+<<style>
+<!--
+
+-->
+.driverReward input{
+	width:200px;
+	display:inline;
+}
+.driverReward .layui-form-label{
+	width:200px;
+}
+</style>
 
 <%@include file="TemplateFooter.jsp"%>

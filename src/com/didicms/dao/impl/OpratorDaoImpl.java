@@ -19,8 +19,8 @@ public class OpratorDaoImpl implements OpratorDao {
 
 	@Override
 	public boolean update(Oprator oprator) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql="update oprator set oprator_password=? where oprator_id=?";
+		return jdbc.update(sql,new Object[]{oprator.getPassword(),oprator.getId()},new int[]{Types.NVARCHAR,Types.NVARCHAR})==1?true:false;
 	}
 
 	@Override

@@ -20,7 +20,7 @@
 
 <div class="layui-layer-content content">
 	<div class="add  display-none">
-		<form action="oprator/addDriver" method="POST"
+		<form action="oprator/addCompany" method="POST"
 			class="layui-form">
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">公司ID</label>
@@ -74,7 +74,7 @@
 	</div>
 
 	<div class="look">
-		<form action="searchDriver" method="POST" class="layui-form">
+		<form action="searchCompany" method="POST" class="layui-form">
 			<div class="layui-form-item search">
 				<input type="text" name="search" class="search-input"
 					placeholder="键入需要查找的公司ID" required value="" />
@@ -110,13 +110,13 @@
 		<div class="layui-layer-page" id="look-page"></div>
 	</div>
 	<div class="update  display-none">
-		<form action="oprator/updateDriver" method="POST"
+		<form action="oprator/updateCompany" method="POST"
 			class="layui-form">
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="update-id">公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-id" name="id" placeholder="输入公司ID"
-						required="true" class="layui-input" value="">
+						required="true" class="layui-input" value="" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">

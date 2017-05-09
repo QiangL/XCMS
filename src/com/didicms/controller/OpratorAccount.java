@@ -13,6 +13,7 @@ import com.didicms.dao.AccountDao;
 import com.didicms.entry.Account;
 import com.didicms.entry.Company;
 import com.didicms.entry.Msg;
+import com.didicms.util.PwdEncoding;
 
 @Controller
 @RequestMapping("/oprator")
@@ -27,6 +28,7 @@ public class OpratorAccount {
 
 	@RequestMapping(value = "/updateAccount", method = RequestMethod.POST)
 	public String updateCompany(Account account) {
+		account.setPassword(PwdEncoding.encoding(account.getPassword()));
 		if (accountDao.update(account)) {
 			return "redirect:/oprator/account";
 		}
@@ -34,12 +36,13 @@ public class OpratorAccount {
 	}
 	@RequestMapping(value = "/addAccount", method = RequestMethod.POST)
 	public String addCompany(Account account) {
+		account.setPassword(PwdEncoding.encoding(account.getPassword()));
 		if (accountDao.insert(account)) {
 			return "redirect:/oprator/account";
 		}
 		return URL.error;
 	}
-	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/deleteAccount", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteCompany(String accountId) {
 		Msg msg=new Msg();

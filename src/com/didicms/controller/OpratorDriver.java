@@ -73,24 +73,36 @@ public class OpratorDriver {
 
 	@RequestMapping(value = "/examAddDriver", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	String examAddDriver(String driverId) {
+	String examAddDriver(String driverId,int flag) {
 		Msg msg=new Msg();
-		if(driverServive.examAdd(driverId)){
-			msg.code=1;
+		msg.code=-1;
+		if(flag!=-1){
+			if(driverServive.examAdd(driverId)){
+				msg.code=1;
+			}
 		}else{
-			msg.code=-1;
+			if(driverServive.deleteReal(driverId)){
+				msg.code=1;
+			}
 		}
+		
 		return JSON.toJSONString(msg);
 	}
 	@RequestMapping(value = "/examDelDriver", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	String examDelDriver(String driverId) {
+	String examDelDriver(String driverId,int flag) {
 		Msg msg=new Msg();
-		if(driverServive.examDel(driverId)){
-			msg.code=1;
+		msg.code=-1;
+		if(flag!=-1){
+			if(driverServive.examDel(driverId)){
+				msg.code=1;
+			}
 		}else{
-			msg.code=-1;
+			if(driverServive.examAdd(driverId)){
+				msg.code=1;
+			}
 		}
+		
 		return JSON.toJSONString(msg);
 	}
 	@RequestMapping(value = "/deleteDriver", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")

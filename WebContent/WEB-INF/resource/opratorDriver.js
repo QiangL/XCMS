@@ -78,6 +78,63 @@ function examDelDriver(e) {
 		}
 	}, 'json');
 }
+function examAddDisagreeDriver(e){
+	var $tr = $(e.target.parentElement.parentElement);
+	var driverId = $tr.find("td[name=id]").text();
+	console.log(driverId);
+	$(e.target).addClass('layui-btn-disabled');
+	$.post("oprator/examAddDriver", {
+		driverId: driverId,
+		flag:-1
+	}, function (date) {
+		if (date.code == 1) {
+			layer.open({
+				title: '提交成功',
+				shadeClose: true,
+				offset: '100px',
+				content: '不同意增加'
+			});
+			$tr.hide("slow");
+		} else {
+			layer.open({
+				title: '提交失败',
+				shadeClose: true,
+				offset: '100px',
+				content: '不好意思，刚刚的操作失败了'
+			});
+		}
+	}, 'json');
+
+}
+function examDelDisagreeDriver(e){
+	var $tr = $(e.target.parentElement.parentElement);
+	var driverId = $tr.find("td[name=id]").text();
+	console.log(driverId);
+	$(e.target).addClass('layui-btn-disabled');
+	$.post("oprator/examDelDriver", {
+		driverId: driverId,
+		flag:-1
+	}, function (date) {
+		if (date.code == 1) {
+			layer.open({
+				title: '提交成功',
+				shadeClose: true,
+				offset: '100px',
+				content: '不同意删除'
+			});
+			$tr.hide("slow");
+		} else {
+			layer.open({
+				title: '提交失败',
+				shadeClose: true,
+				offset: '100px',
+				content: '不好意思，刚刚的操作失败了'
+			});
+		}
+	}, 'json');
+
+}
+
 function deleteDriver(e) {
 	var $tr = $(e.target.parentElement.parentElement);
 	var driverId = $tr.find("td[name=id]").text();
@@ -135,12 +192,14 @@ function addToTableExamAdd(driverList) {
 	thead.empty();
 	addToTable(driverList, thead, examAddTr);
 	$(".examAdd .exam-btn").click(examAddDriver);
+	$(".examAdd .disagree-btn").click(examAddDisagreeDriver);
 }
 function addToTableExamDel(driverList) {
 	var thead = $(".examDel .tbody");
 	thead.empty();
 	addToTable(driverList, thead, examDelTr);
 	$(".examDel .exam-btn").click(examDelDriver);
+	$(".examDel .disagree-btn").click(examDelDisagreeDriver);
 }
 // 异步加载driver
 function addToTableLook(driverList) {

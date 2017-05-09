@@ -30,12 +30,12 @@
 			<colgroup>
 				<col width="65" />
 				<col width="100" />
+				<col width="80" />
+				<col width="60" />
+				<col width="60" />
 				<col width="100" />
 				<col width="60" />
-				<col width="60" />
-				<col width="150" />
-				<col width="60" />
-				<col width="200" />
+				<col width="100" />
 				<col />
 			</colgroup>
 			<thead>
@@ -67,7 +67,7 @@
 				<col width="60" />
 				<col width="100" />
 				<col width="60" />
-				<col width="200" />
+				<col width="100" />
 				<col />
 			</colgroup>
 			<thead>
@@ -131,7 +131,7 @@
 				<label for="add-bind-carId" class="layui-form-label">绑定车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-bind-carId" name="bindCarId"
-						placeholder="输入绑定车辆ID" required class="layui-input" value="">
+						placeholder="输入绑定车辆ID" class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -178,13 +178,13 @@
 		<table class="layui-table" lay-even lay-skin="line">
 			<colgroup>
 				<col width="65" />
-				<col width="100" />
 				<col width="80" />
 				<col width="60" />
+				<col width="50" />
+				<col width="50" />
+				<col width="60" />
 				<col width="60" />
 				<col width="100" />
-				<col width="60" />
-				<col width="150" />
 				<col />
 			</colgroup>
 			<thead>
@@ -212,7 +212,7 @@
 				<label class="layui-form-label" for="update-id">司机ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-id" name="id" placeholder="输入司机ID"
-						required="true" class="layui-input" value="12" disabled>
+						required="true" class="layui-input" value="12" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -247,7 +247,7 @@
 				<label for="update-bind-carId" class="layui-form-label">绑定车辆ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-bind-carId" name="bindCarId"
-						placeholder="输入绑定车辆ID" required class="layui-input" value="">
+						placeholder="输入绑定车辆ID"  class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -290,8 +290,8 @@
  --%>
 <script type="text/javascript" src="resource/opratorDriver.js"></script>
 <script type="text/javascript">
-	var examAddTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="审核增加" class="layui-btn exam-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
-	var examDelTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="审核删除" class="layui-btn exam-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
+	var examAddTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="同意增加" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
+	var examDelTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="同意删除" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
 	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 </script>
 

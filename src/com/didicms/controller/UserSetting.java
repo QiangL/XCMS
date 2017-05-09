@@ -31,7 +31,7 @@ public class UserSetting {
 	public String update(HttpSession session,HttpServletRequest request){
 		String role=(String) session.getAttribute("role");
 		if("oprator".equalsIgnoreCase(role) && opratorUpdate(request, session)){
-			return "redirect:oprator/driver";
+			return "redirect:driver";
 		}
 		return URL.error;
 	}
@@ -39,8 +39,10 @@ public class UserSetting {
 		Oprator oprator = opratorDao.getById(request.getParameter("id"));
 		String userId=(String) session.getAttribute("user");
 		if(!oprator.getId().equals(userId)) return false;
-		String pwd=PwdEncoding.encoding(request.getParameter("password"));
-		oprator.setPassword(pwd);
+		if(oprator.getPassword().equals(request.getParameter("password"))){
+			String pwd=PwdEncoding.encoding(request.getParameter("password"));
+			oprator.setPassword(pwd);
+		}
 		if (opratorDao.update(oprator)) {
 			return true;
 		}
