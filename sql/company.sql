@@ -1,5 +1,5 @@
 CREATE TABLE `company` (
-  `company_id` int(7) NOT NULL,
+  `company_id` int(10) NOT NULL,
   `company_name` varchar(50) NOT NULL,
   `company_owner` varchar(50) NOT NULL,
   `company_tel` varchar(11) DEFAULT NULL,

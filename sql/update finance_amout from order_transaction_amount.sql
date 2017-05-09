@@ -1,0 +1,1 @@
+ update finance ,(select sum(order_transaction_amount) as test,company_id from t_order,company,driver where order_driver_id=driver_id and driver_company_id=company_id group by company_id) as t  set finance_amount=t.test where company_id=finance_company_id;

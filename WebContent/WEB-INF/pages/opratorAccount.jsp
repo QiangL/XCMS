@@ -61,7 +61,7 @@
 				<label for="add-company-id" class="layui-form-label">公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-company-id" name="companyId"
-						placeholder="公司ID" required class="layui-input" value="">
+						placeholder="公司ID" required class="layui-input" value="" >
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -101,7 +101,7 @@
 				<label for="update-company-id" class="layui-form-label">公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-company-id" name="companyId"
-						placeholder="公司ID" required class="layui-input" value="">
+						placeholder="公司ID" required class="layui-input" value="" disabled>
 				</div>
 			</div>
 			<div class="layui-form-item">

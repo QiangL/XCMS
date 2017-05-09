@@ -1,10 +1,10 @@
 CREATE TABLE `car` (
-  `car_id` int(9) NOT NULL,
+  `car_id` varchar(12) NOT NULL,
   `car_number` varchar(7) NOT NULL,
   `car_model` varchar(20) DEFAULT NULL,
   `car_displacement` varchar(10) DEFAULT NULL,
   `car_color` varchar(10) DEFAULT NULL,
-  `car_company_id` int(11) NOT NULL,
+  `car_company_id` int(10) NOT NULL,
   `car_image` varchar(100) NOT NULL,
   `car_exam` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`car_id`),

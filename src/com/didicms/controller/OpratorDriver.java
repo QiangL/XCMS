@@ -43,6 +43,10 @@ public class OpratorDriver {
 		}else{
 			driver.setGender("女");
 		}
+		
+		if(driver.getBindCarId().equals("")){
+			driver.setBindCarId(null);
+		}
 		if (driverServive.insertReal(driver)) {
 			return "redirect:/oprator/driver";
 		}
@@ -56,6 +60,11 @@ public class OpratorDriver {
 		}else{
 			driver.setGender("女");
 		}
+		
+		if(driver.getBindCarId().equals("")){
+			driver.setBindCarId(null);
+		}
+		
 		if (driverServive.update(driver)) {
 			return "redirect:/oprator/driver";
 		}

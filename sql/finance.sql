@@ -2,7 +2,7 @@ CREATE TABLE `finance` (
   `finance_id` int(11) NOT NULL AUTO_INCREMENT,
   `finance_company_id` int(11) NOT NULL,
   `finance_amount` decimal(10,2) NOT NULL,
-  `finance_status` varchar(6) NOT NULL,
+  `finance_status` varchar(14) NOT NULL,
   `finance_date` datetime NOT NULL,
   `finance_oprator_id` varchar(20) NOT NULL,
   PRIMARY KEY (`finance_id`),

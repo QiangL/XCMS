@@ -28,6 +28,15 @@ public class AccountDriver {
 	}
 	@RequestMapping(value = "/addDriver", method = RequestMethod.POST)
 	public String addDriver(HttpServletRequest request, Driver driver) {
+		if(driver.getGender().equals("male")){
+			driver.setGender("男");
+		}else{
+			driver.setGender("女");
+		}
+		
+		if(driver.getBindCarId().equals("")){
+			driver.setBindCarId(null);
+		}
 		if (driverDao.insert(driver)) {
 			return URL.AccountDriver;
 		}
@@ -36,6 +45,15 @@ public class AccountDriver {
 
 	@RequestMapping(value = "/updateDriver", method = RequestMethod.POST)
 	public String updateDriver(Driver driver) {
+		if(driver.getGender().equals("male")){
+			driver.setGender("男");
+		}else{
+			driver.setGender("女");
+		}
+		
+		if(driver.getBindCarId().equals("")){
+			driver.setBindCarId(null);
+		}
 		if (driverDao.update(driver)) {
 			return URL.AccountDriver;
 		}
