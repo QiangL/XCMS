@@ -289,7 +289,7 @@
 <input id="OpratorDriverPageNum" type="hidden"  value="${OpratorDriverPageNum/8 }"/>
  --%>
 <script type="text/javascript" src="resource/opratorDriver.js"></script>
-<script type="text/javascript" src="resource/driver.js"></script>
+<script type="text/javascript" src="resource/driverCheck.js"></script>
 <script type="text/javascript">
 	var examAddTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="同意增加" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
 	var examDelTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="同意删除" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');

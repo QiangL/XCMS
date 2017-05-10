@@ -267,7 +267,7 @@
 <input id="OpratorCarPageNum" type="hidden"  value="${OpratorCarPageNum/8 }"/>
  --%>
 <script type="text/javascript" src="resource/opratorCar.js"></script>
-<script type="text/javascript" src="resource/car.js"></script>
+<script type="text/javascript" src="resource/carCheck.js"></script>
 <script type="text/javascript">
 	var examAddTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="同意增加" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');
 	var examDelTr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="同意删除" class="layui-btn exam-btn" /><input type="button" value="不同意" class="layui-btn disagree-btn" /><input type="hidden" name="companyId" value=""></td></tr>');

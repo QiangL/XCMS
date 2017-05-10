@@ -39,7 +39,7 @@ public class UserSetting {
 		Oprator oprator = opratorDao.getById(request.getParameter("id"));
 		String userId=(String) session.getAttribute("user");
 		if(!oprator.getId().equals(userId)) return false;
-		if(oprator.getPassword().equals(request.getParameter("password"))){
+		if(!oprator.getPassword().equals(request.getParameter("password"))){
 			String pwd=PwdEncoding.encoding(request.getParameter("password"));
 			oprator.setPassword(pwd);
 		}

@@ -57,13 +57,14 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public boolean update(Driver driver) {
-		String sql="update  driver set driver_number=?,driver_name=?,driver_gender=?,driver_age=?,driver_company_id=?,driver_image=?"
+		String sql="update  driver set driver_number=?,driver_name=?,driver_gender=?,driver_age=?,driver_bind_car_id=?,driver_company_id=?,driver_image=?"
 				+ "where driver_id=?";
 		return jdbc.update(sql, new Object[]{
 				driver.getNumber(),
 				driver.getName(),
 				driver.getGender(),
 				driver.getAge(),
+				driver.getBindCarId(),
 				driver.getCompanyId(),
 				driver.getImagePath(),
 				driver.getId()
@@ -72,6 +73,7 @@ public class DriverServiceImpl implements DriverService {
 				Types.NVARCHAR,
 				Types.NVARCHAR,
 				Types.INTEGER,
+				Types.NVARCHAR,
 				Types.INTEGER,
 				Types.NVARCHAR,
 				Types.NVARCHAR
@@ -80,14 +82,15 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public boolean insert(Driver driver) {
-		String sql="insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_company_id,driver_image,driver_exam)"
-				+ "values(?,?,?,?,?,?,?,0)";
+		String sql="insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_bind_car_id=?,driver_company_id,driver_image,driver_exam)"
+				+ "values(?,?,?,?,?,?,?,?,0)";
 		return jdbc.update(sql, new Object[]{
 				driver.getId(),
 				driver.getNumber(),
 				driver.getName(),
 				driver.getGender(),
 				driver.getAge(),
+				driver.getBindCarId(),
 				driver.getCompanyId(),
 				driver.getImagePath()
 		}, new int[]{
@@ -96,6 +99,7 @@ public class DriverServiceImpl implements DriverService {
 				Types.NVARCHAR,
 				Types.NVARCHAR,
 				Types.INTEGER,
+				Types.NVARCHAR,
 				Types.INTEGER,
 				Types.NVARCHAR
 		})==1?true:false;
@@ -103,7 +107,7 @@ public class DriverServiceImpl implements DriverService {
 	}
 	@Override
 	public boolean insertReal(Driver driver) {
-		String sql="insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_company_id,driver_image,driver_exam)"
+		String sql="insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_bind_car_id=?,driver_company_id,driver_image,driver_exam)"
 				+ "values(?,?,?,?,?,?,?,1)";
 		return jdbc.update(sql, new Object[]{
 				driver.getId(),
@@ -111,6 +115,7 @@ public class DriverServiceImpl implements DriverService {
 				driver.getName(),
 				driver.getGender(),
 				driver.getAge(),
+				driver.getBindCarId(),
 				driver.getCompanyId(),
 				driver.getImagePath()
 		}, new int[]{
@@ -119,6 +124,7 @@ public class DriverServiceImpl implements DriverService {
 				Types.NVARCHAR,
 				Types.NVARCHAR,
 				Types.INTEGER,
+				Types.NVARCHAR,
 				Types.INTEGER,
 				Types.NVARCHAR
 		})==1?true:false;

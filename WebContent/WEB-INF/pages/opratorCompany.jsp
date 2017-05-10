@@ -166,7 +166,7 @@
 
 <%@include file="templateContent.jsp"%>
 <script type="text/javascript" src="resource/opratorCompany.js"></script>
-<script type="text/javascript" src="resource/company.js"></script>
+<script type="text/javascript" src="resource/companyCheck.js"></script>
 <script type="text/javascript">
 	var tr = $('<tr><td name="id"></td><td name="name"></td><td name="owner"></td><td name="tel"></td><td name="email"></td><td name="publicAccount"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 	flushPage(1);

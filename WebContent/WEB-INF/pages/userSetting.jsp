@@ -44,7 +44,7 @@
 						<label class="layui-form-label" for="password">密码</label>
 						<div class="layui-input-block">
 							<input type="password" id="password" name="password"
-								placeholder="输入密码" required="true" class="layui-input"
+								placeholder="输入密码,6~16位" required="true" class="layui-input"
 								value="${oprator.getPassword() }">
 						</div>
 					</div>
@@ -52,14 +52,14 @@
 						<label class="layui-form-label" for="password2">确认密码</label>
 						<div class="layui-input-block">
 							<input type="password" id="password2" name="password2"
-								placeholder="确认密码" required="true" class="layui-input"
+								placeholder="确认密码，6~16位" required="true" class="layui-input"
 								value="${oprator.getPassword() }">
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-input-block">
-							<button class="layui-btn" lay-submit lay-filter="*">修改</button>
+							<button class="layui-btn" lay-submit lay-filter="update">修改</button>
 						</div>
 					</div>
 				</form>
@@ -80,9 +80,27 @@
 		});
 		layui.use('form', function() {
 			var form = layui.form(); //只有执行了这一步，部分表单元素才会修饰成功
-
-			//……
+			form.on('submit(update)', checkAccount);
+			
 		});
+		function errAlert(msg) {
+		    layui.use('layer', function () {
+		        var layer = layui.layer;
+		        layer.msg(msg);
+		    });
+		}
+		function checkAccount(data){
+			var field=data.field;
+			if(field.password.length<6 ||field.password.length>16){
+				errAlert('密码长度不符');
+				return false;
+			}
+			if(field.password!=field.password2){
+				errAlert('两次密码输入不同');
+				return false;
+			}
+			return true;
+		}
 	</script>
 </body>
 

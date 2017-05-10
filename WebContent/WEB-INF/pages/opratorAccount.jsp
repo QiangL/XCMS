@@ -131,7 +131,7 @@
 
 <%@include file="templateContent.jsp"%>
 <script type="text/javascript" src="resource/opratorAccount.js"></script>
-<script type="text/javascript" src="resource/account.js"></script>
+<script type="text/javascript" src="resource/accountCheck.js"></script>
 <script type="text/javascript">
 	var tr = $('<tr><td name="id"></td><td name="companyName"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 	flushPage(1);

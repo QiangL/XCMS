@@ -200,7 +200,7 @@
 
 <%@include file="templateContent.jsp"%>
 <script type="text/javascript" src="resource/accountDriver.js"></script>
-<script type="text/javascript" src="resource/driver.js"></script>
+<script type="text/javascript" src="resource/driverCheck.js"></script>
 <script type="text/javascript">
 	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="name"></td><td name="gender"></td><td name="age"></td><td name="number"></td><td name="bindCarId"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 </script>

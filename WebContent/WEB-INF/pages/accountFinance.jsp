@@ -120,7 +120,7 @@
 		</div>
 		<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">确认奖励</button>
+					<button class="layui-btn" lay-submit lay-filter="reward">确认奖励</button>
 				</div>
 		</div>
 	</div>
@@ -134,11 +134,28 @@
 	var detailTr=$('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
 	var motifyInput='&nbsp;&nbsp;&nbsp;<input type="button" value="修改" class="layui-btn motify-btn"/>';
 	flushListPage(1);
+	layui.use('form', function () {
+		var form = layui.form();
+
+		//监听提交
+		form.on('submit(reward)', clickReward);
+	});
+	function clickReward(e){
+		localStorage.setItem('driver-reward-a',$('#driver-reward-a').val());
+		localStorage.setItem('driver-reward-b',$('#driver-reward-b').val());
+		localStorage.setItem('driver-reward-c',$('#driver-reward-c').val());
+		layui.use('layer', function () {
+			var layer = layui.layer;
+			layer.msg('已保存奖励比例');
+		});
+	}
+	$(document).ready(function(){
+		$('#driver-reward-a').val(localStorage.getItem('driver-reward-a'));
+		$('#driver-reward-b').val(localStorage.getItem('driver-reward-b'));
+		$('#driver-reward-c').val(localStorage.getItem('driver-reward-c'));
+	});
 </script>
 <<style>
-<!--
-
--->
 .driverReward input{
 	width:200px;
 	display:inline;

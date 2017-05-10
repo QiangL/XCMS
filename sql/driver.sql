@@ -10,7 +10,6 @@ CREATE TABLE `driver` (
   `driver_exam` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`driver_id`),
   UNIQUE KEY `driver_id_UNIQUE` (`driver_id`),
-  UNIQUE KEY `driver_number_UNIQUE` (`driver_number`),
   UNIQUE KEY `driver_bind_car_id` (`driver_bind_car_id`),
   KEY `company_id_idx` (`driver_company_id`),
   KEY `company_id_driver_idx` (`driver_company_id`)
