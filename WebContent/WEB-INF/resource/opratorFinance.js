@@ -19,14 +19,31 @@ function addToTableList(financeList) {
         var tChild = trTemp.children();
         tChild.get(0).innerText = finance.id;
         tChild.get(1).innerText = finance.companyName;
-        tChild.get(2).innerText = finance.date;
+        var date=new Date(finance.date).toLocaleDateString();
+        tChild.get(2).innerText = date.slice(0,date.lastIndexOf('-'));
         tChild.get(3).innerText = finance.amount;
         tChild.get(4).innerText = finance.companyPublicAccount;
+        //tChild.get(5).innerText=finance.status;
+        if(finance.status == 'WaitRemittance'){
+        	tChild.get(5).innerText='已确认待打款';
+        }else if(finance.status== 'WaitConfirm'){
+        	tChild.get(5).innerText='待确认';
+        }else if(finance.status == 'Motified'){
+        	tChild.get(5).innerText='金额已修改';
+        }else if(finance.status == 'RejectMotify'){
+        	tChild.get(5).innerText='金额修改请求被驳回';
+        }
+        if(finance.status != 'WaitRemittance'){
+        	tChild.find('.reject-btn').addClass('layui-btn-disabled');
+        	tChild.find('.remit-btn').addClass('layui-btn-disabled');
+        }
         tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
     $(".list tbody .remit-btn").click(remitClick);
+    $(".list tbody .reject-btn").click(rejectClick);
     $(".list tbody .detail-btn").click(detailClick);
+    
     tbody.css("display", "");
 }
 function addToTableHistory(financeList) {
@@ -39,12 +56,14 @@ function addToTableHistory(financeList) {
         var tChild = trTemp.children();
         tChild.get(0).innerText = finance.id;
         tChild.get(1).innerText = finance.companyName;
-        tChild.get(2).innerText = finance.date;
+        var date=new Date(finance.date).toLocaleDateString();
+        tChild.get(2).innerText = date.slice(0,date.lastIndexOf('-'));
         tChild.get(3).innerText = finance.amount;
         tChild.get(4).innerText = finance.companyPublicAccount;
         tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
+    $(".history tbody .detail-btn").click(detailClick);
     tbody.css("display", "");
 }
 function addToTableDetail(orderList) {
@@ -64,6 +83,7 @@ function addToTableDetail(orderList) {
         tChild.get(6).innerText = order.driverGrade;
         tbody.append(trTemp);
     }
+    $(".history tbody .detail-btn").click(detailClick);
     tbody.css("display", "");
 }
 function detailClick(e) {
@@ -83,12 +103,46 @@ function detailClick(e) {
             });
         });
 }
+function postClick(e,url,param){
+	$.post(url, {
+        financeId: param
+    }, function (date) {
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            if (date.code == 1) {
+                layer.open({
+                    title: '提交成功',
+                    shadeClose: true,
+                    offset: '100px',
+                    content: '分账信息已提交'
+                });
+                $tr.hide("slow");
+            } else {
+                layer.open({
+                    title: '提交失败',
+                    shadeClose: true,
+                    offset: '100px',
+                    content: '不好意思，刚刚的操作失败了'
+                });
+            }
+        });
 
+    }, 'json');
+}
+function rejectClick(e){
+	var $tr = $(e.target.parentElement.parentElement);
+    var financeId = $tr.children().get(0).innerText;
+    console.log(financeId);
+    $(e.target).addClass('layui-btn-disabled');
+    postClick(e,"oprator/rejectFinance",financeId);
+}
 function remitClick(e) {
     var $tr = $(e.target.parentElement.parentElement);
     var financeId = $tr.children().get(0).innerText;
     console.log(financeId);
     $(e.target).addClass('layui-btn-disabled');
+    postClick(e,"oprator/remitFinance",financeId);
+    /*
     $.post("oprator/remitFinance", {
         financeId: financeId
     }, function (date) {
@@ -113,6 +167,7 @@ function remitClick(e) {
         });
 
     }, 'json');
+    */
 
 }
 function showPage(pageNumberURL, listURL, pageDiv, page, func, callbackFunc) {

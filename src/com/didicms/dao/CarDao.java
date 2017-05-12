@@ -16,6 +16,7 @@ public interface CarDao {
 	public boolean update(Car car);
 	public int getNumber(int companyId);
 
+	public String getCarIdByCarNumber(String carNumber);
 
 
 }

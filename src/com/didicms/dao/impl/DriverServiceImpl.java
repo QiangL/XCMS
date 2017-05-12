@@ -29,8 +29,8 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public List<Driver> getAllByCompanyId(int companyId,int count) {
-		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,company_id,company_name, driver_image from driver , "
-				+ "company  where driver_company_id=company_id and company_id=?  and driver_exam=1 limit ?, 8";
+		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,car_number,company_id,company_name, driver_image,driver_exam "
+				+ "from (driver left join car on driver_bind_car_id=car_id ) inner join company  on driver_company_id=company_id where company_id=? limit ?, 8";
 		List<Driver> list=jdbc.query(sql
 				,new Object[]{companyId,8*(count-1)}
 				,new int[]{Types.INTEGER,Types.INTEGER}
@@ -49,6 +49,8 @@ public class DriverServiceImpl implements DriverService {
 				driver.setCompanyId(rs.getInt("company_id"));
 				driver.setImagePath(rs.getString("driver_image"));
 				driver.setCompanyName(rs.getString("company_name"));
+				driver.setIsExam(rs.getInt("driver_exam"));
+				driver.setCarNumber(rs.getString("car_number"));
 				return driver;
 			}
 		});
@@ -82,7 +84,7 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public boolean insert(Driver driver) {
-		String sql="insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_bind_car_id=?,driver_company_id,driver_image,driver_exam)"
+		String sql="insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_bind_car_id,driver_company_id,driver_image,driver_exam)"
 				+ "values(?,?,?,?,?,?,?,?,0)";
 		return jdbc.update(sql, new Object[]{
 				driver.getId(),
@@ -107,8 +109,8 @@ public class DriverServiceImpl implements DriverService {
 	}
 	@Override
 	public boolean insertReal(Driver driver) {
-		String sql="insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_bind_car_id=?,driver_company_id,driver_image,driver_exam)"
-				+ "values(?,?,?,?,?,?,?,1)";
+		String sql="insert into driver (driver_id,driver_number,driver_name,driver_gender,driver_age,driver_bind_car_id,driver_company_id,driver_image,driver_exam)"
+				+ "values(?,?,?,?,?,?,?,?,1)";
 		return jdbc.update(sql, new Object[]{
 				driver.getId(),
 				driver.getNumber(),
@@ -145,8 +147,8 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public List<Driver> getAll(int count) {
-		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,company_id,company_name,driver_image from driver , "
-				+ "company  where driver_company_id=company_id and driver_exam=1 limit ?, 8";
+		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,car_number,company_id,company_name,driver_image"
+				+ " from (driver left join car on driver_bind_car_id=car_id ) inner join company  on driver_company_id=company_id where driver_exam=1 limit ?, 8";
 		List<Driver> list=jdbc.query(sql
 				,new Object[]{8*(count-1)}
 				,new int[]{Types.INTEGER}
@@ -165,6 +167,7 @@ public class DriverServiceImpl implements DriverService {
 				driver.setCompanyId(rs.getInt("company_id"));
 				driver.setImagePath(rs.getString("driver_image"));
 				driver.setCompanyName(rs.getString("company_name"));
+				driver.setCarNumber(rs.getString("car_number"));
 				return driver;
 			}
 		});
@@ -173,8 +176,8 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public List<Driver> getAllNotExamAdd(int count) {
-		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,driver_image,company_id,company_name from driver , "
-				+ "company  where driver_company_id=company_id and driver_exam=0 limit ?, 8";
+		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,driver_image,car_number,company_id,company_name"
+				+ " from (driver left join car on driver_bind_car_id=car_id) inner join company  on driver_company_id=company_id where driver_exam=0 limit ?, 8";
 		/*
 		 List<Driver> list = new LinkedList<>();
 		try {
@@ -216,6 +219,7 @@ public class DriverServiceImpl implements DriverService {
 				driver.setImagePath(rs.getString("driver_image"));
 				driver.setBindCarId(rs.getString("driver_bind_car_id"));
 				driver.setCompanyName(rs.getString("company_name"));
+				driver.setCarNumber(rs.getString("car_number"));
 				return driver;
 			}
 		});
@@ -223,8 +227,8 @@ public class DriverServiceImpl implements DriverService {
 	}
 	@Override
 	public List<Driver> getAllNotExamDel(int count) {
-		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,driver_image,company_id,company_name from driver , "
-				+ "company  where driver_company_id=company_id and driver_exam=-1 limit ?, 8";
+		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,driver_image,car_number,company_id,company_name "
+				+ "from (driver left join car on driver_bind_car_id=car_id) inner join company  on driver_company_id=company_id where driver_exam=-1 limit ?, 8";
 		
 		List<Driver> list=jdbc.query(sql
 				,new Object[]{8*(count-1)}
@@ -244,6 +248,7 @@ public class DriverServiceImpl implements DriverService {
 				driver.setImagePath(rs.getString("driver_image"));
 				driver.setBindCarId(rs.getString("driver_bind_car_id"));
 				driver.setCompanyName(rs.getString("company_name"));
+				driver.setCarNumber(rs.getString("car_number"));
 				return driver;
 			}
 		});
@@ -277,7 +282,7 @@ public class DriverServiceImpl implements DriverService {
 	@Override
 	public int getNumber(int companyId){
 		//TODO not safe sql
-		String sql="select count(*) from driver where driver_exam=1 and driver_company_id="+companyId;
+		String sql="select count(*) from driver where  driver_company_id="+companyId;
 		return jdbc.queryForObject(sql, Integer.class);
 	}
 

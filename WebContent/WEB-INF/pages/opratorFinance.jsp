@@ -31,11 +31,12 @@
 
 		<table class="layui-table" lay-even lay-skin="line">
 			<colgroup>
-				<col width="100" />
-				<col width="200" />
-				<col width="100" />
+				<col width="50" />
 				<col width="150" />
-				<col width="200" />
+				<col width="80" />
+				<col width="100" />
+				<col width="50" />
+				<col width="120" />
 				<col />
 			</colgroup>
 			<thead>
@@ -45,6 +46,7 @@
 					<th>年月</th>
 					<th>本月应付金额</th>
 					<th>公司对公账户</th>
+					<th>状态</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -61,6 +63,7 @@
 				<col width="100" />
 				<col width="150" />
 				<col width="200" />
+				<col witdh="150" />
 			</colgroup>
 			<thead>
 				<tr>
@@ -69,6 +72,7 @@
 					<th>年月</th>
 					<th>应付金额</th>
 					<th>公司对公账户</th>
+					<th>操作</th>
 				</tr>
 			</thead>
 			<tbody class="tbody">
@@ -109,8 +113,8 @@
 <%@include file="templateContent.jsp"%>
 <script type="text/javascript" src="resource/opratorFinance.js"></script>
 <script type="text/javascript">
-	var listTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td><input type="button" value="确认支付" class="layui-btn remit-btn" /><input type="button" value="详情" class="layui-btn detail-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
-	var historyTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td></tr>');
+	var listTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td name="financeStatus"></td><td><input type="button" value="确认支付" class="layui-btn remit-btn" /><input type="button" value="驳回修改" class="layui-btn reject-btn" /><input type="button" value="详情" class="layui-btn detail-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
+	var historyTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td><input type="button" value="详情" class="layui-btn detail-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 	var detailTr=$('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
 	flushListPage(1);
 </script>

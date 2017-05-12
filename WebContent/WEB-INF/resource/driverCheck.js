@@ -22,18 +22,19 @@ function checkDriver(data) {
         errAlert('电话号长度或格式不符');
         return false;
     }
-    if (field.bindCarId != '' && field.bindCarId.length != 12) {
-        errAlert('车辆ID长度不符，要求12位');
+    if (field.carNumber != '' && field.carNumber.length != 7) {
+        errAlert('车牌号长度不符，要求7位');
         return false;
     }
     if (field.companyId != undefined && field.companyId == '') {
-        errAlert('公司ID不能为空');
+        errAlert('请选择公司');
         return false;
     }
     if (field.imagePath == '') {
         errAlert('请上传图片');
         return false;
     }
+    alert("验证通过，提交后跳转");
     return true;
 }
 function errAlert(msg) {

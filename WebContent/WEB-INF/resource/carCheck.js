@@ -22,7 +22,7 @@ function checkCar(data) {
     }
 
     if(field.companyId!=undefined && field.companyId==''){
-        errAlert('请填写公司ID');
+        errAlert('请选择公司');
         return false;
     }
     if(field.imagePath==''){
@@ -30,6 +30,8 @@ function checkCar(data) {
         return false;
     }
 
+    alert("验证通过，提交后跳转");
+    
     return true;
 }
 function errAlert(msg) {

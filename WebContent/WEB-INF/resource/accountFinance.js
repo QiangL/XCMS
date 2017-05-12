@@ -19,10 +19,28 @@ function addToTableList(financeList) {
         var tChild = trTemp.children();
         tChild.get(0).innerText = finance.id;
         tChild.get(1).innerText = finance.companyName;
-        tChild.get(2).innerText = finance.date;
+        var date=new Date(finance.date).toLocaleDateString();
+        tChild.get(2).innerText = date.slice(0,date.lastIndexOf('-'));
         
         tChild.get(3).innerHTML = finance.amount + motifyInput;
         tChild.get(4).innerText = finance.companyPublicAccount;
+        //tChild.get(5).innerText = finance.status;
+        if(finance.status == 'WaitRemittance'){
+        	tChild.get(5).innerText='已确认待打款';
+        }else if(finance.status== 'WaitConfirm'){
+        	tChild.get(5).innerText='待确认';
+        }else if(finance.status == 'Motified'){
+        	tChild.get(5).innerText='金额已修改';
+        }else if(finance.status == 'RejectMotify'){
+        	tChild.get(5).innerText='金额修改请求被驳回';
+        }
+        
+        
+        if(finance.status == 'WaitRemittance'){
+        	tChild.find(".confirm-btn").addClass('layui-btn-disabled');
+        	tChild.find(".motify-btn").addClass('layui-btn-disabled');
+        }
+        
         tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
@@ -41,12 +59,14 @@ function addToTableHistory(financeList) {
         var tChild = trTemp.children();
         tChild.get(0).innerText = finance.id;
         tChild.get(1).innerText = finance.companyName;
-        tChild.get(2).innerText = finance.date;
+        var date=new Date(finance.date).toLocaleDateString();
+        tChild.get(2).innerText = date.slice(0,date.lastIndexOf('-'));
         tChild.get(3).innerText = finance.amount;
         tChild.get(4).innerText = finance.companyPublicAccount;
         tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
+    $(".history tbody .detail-btn").click(detailClick);
     tbody.css("display", "");
 }
 function addToTableDetail(orderList) {

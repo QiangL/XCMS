@@ -8,6 +8,7 @@ public interface CompanyDao {
 	public Company getById(int id);
 
 	public List<Company> getAll(int count);
+	public List<Company> getAll();
 
 	public boolean update(Company company);
 

@@ -10,10 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.didicms.dao.CarService;
+import com.didicms.dao.CompanyDao;
 import com.didicms.dao.DriverService;
+import com.didicms.entry.Car;
 import com.didicms.entry.Driver;
 import com.didicms.entry.DriverGrade;
 import com.didicms.entry.Exam;
@@ -24,6 +28,10 @@ import com.didicms.entry.Msg;
 public class OpratorDriver {
 	@Autowired
 	private DriverService driverServive;
+	@Autowired
+	private CarService carService;
+	@Autowired
+	private CompanyDao companyDao;
 
 	@RequestMapping(value="/driver",method = RequestMethod.GET)
 	public String view(HttpSession session) {
@@ -33,20 +41,23 @@ public class OpratorDriver {
 		session.setAttribute(SessionKey.OpratorNotExamAddDriverPageNum, notExamDriverAddPN);
 		session.setAttribute(SessionKey.OpratorNotExamDelDriverPageNum, notExamDriverDelPN);
 		session.setAttribute(SessionKey.OpratorDriverPageNum, driverPN);*/
+		
+		session.setAttribute("companyList", companyDao.getAll());
 		return URL.OpratorDriver;
 	}
 	
 	@RequestMapping(value = "/addDriver", method = RequestMethod.POST)
 	public String addDriver(HttpServletRequest request, Driver driver) {
+		driver.setBindCarId(carService.getCarIdByCarNumber(driver.getCarNumber()));
 		if(driver.getGender().equals("male")){
 			driver.setGender("男");
 		}else{
 			driver.setGender("女");
 		}
 		
-		if(driver.getBindCarId().equals("")){
+		/*if(driver.getBindCarId().equals("")){
 			driver.setBindCarId(null);
-		}
+		}*/
 		if (driverServive.insertReal(driver)) {
 			return "redirect:/oprator/driver";
 		}
@@ -55,15 +66,16 @@ public class OpratorDriver {
 
 	@RequestMapping(value = "/updateDriver", method = RequestMethod.POST)
 	public String updateDriver(Driver driver) {
+		driver.setBindCarId(carService.getCarIdByCarNumber(driver.getCarNumber()));
 		if(driver.getGender().equals("male")){
 			driver.setGender("男");
 		}else{
 			driver.setGender("女");
 		}
 		
-		if(driver.getBindCarId().equals("")){
+		/*if(driver.getBindCarId().equals("")){
 			driver.setBindCarId(null);
-		}
+		}*/
 		
 		if (driverServive.update(driver)) {
 			return "redirect:/oprator/driver";

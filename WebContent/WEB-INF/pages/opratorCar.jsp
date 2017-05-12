@@ -85,8 +85,7 @@
 		<div class="layui-layer-page" id="examDel-page"></div>
 	</div>
 	<div class="add  display-none">
-		<form action="oprator/addCar" method="POST"
-			class="layui-form">
+		<form action="oprator/addCar" method="POST" class="layui-form">
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">车辆ID</label>
 				<div class="layui-input-block">
@@ -111,22 +110,28 @@
 			<div class="layui-form-item">
 				<label for="add-model" class="layui-form-label">车型</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-model" name="model"
-						 placeholder="输入车型" required class="layui-input">
+					<input type="text" id="add-model" name="model" placeholder="输入车型"
+						required class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="add-displacement" class="layui-form-label">排量</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-displacement" name="displacement"
-						 placeholder="输入排量" class="layui-input">
+						placeholder="输入排量" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label for="add-companyId" class="layui-form-label">所属公司ID</label>
+				<label for="add-companyId" class="layui-form-label">所属公司</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-companyId" name="companyId"
-						placeholder="输入所属公司ID" required class="layui-input" value="">
+					<select name="companyId" lay-verify="">
+						<option value="">请选择一个公司</option>
+						<c:forEach var="company" items="${companyList }">
+							<option value="${company.id }">${company.name }</option>
+						</c:forEach>
+					</select>
+					<!-- <input type="text" id="add-companyId" name="companyId"
+						placeholder="输入所属公司ID" required class="layui-input" value=""> -->
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -210,29 +215,35 @@
 			<div class="layui-form-item">
 				<label for="update-color" class="layui-form-label">车辆颜色</label>
 				<div class="layui-input-block">
-					<input type="text" id="update-color" name="color" placeholder="输入车辆颜色"
-						required class="layui-input" value="">
+					<input type="text" id="update-color" name="color"
+						placeholder="输入车辆颜色" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="update-model" class="layui-form-label">车型</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-model" name="model"
-						 placeholder="输入车型" required class="layui-input">
+						placeholder="输入车型" required class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="update-displacement" class="layui-form-label">排量</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-displacement" name="displacement"
-						 placeholder="输入排量" required class="layui-input">
+						placeholder="输入排量" required class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label for="update-companyId" class="layui-form-label">所属公司ID</label>
+				<label for="update-companyId" class="layui-form-label">所属公司</label>
 				<div class="layui-input-block">
-					<input type="text" id="update-companyId" name="companyId"
-						placeholder="输入所属公司ID" required class="layui-input" value="">
+					<select name="companyId" lay-verify="">
+						<option value="">请选择一个公司</option>
+						<c:forEach var="company" items="${companyList }">
+							<option value="${company.id }">${company.name }</option>
+						</c:forEach>
+					</select>
+					<!-- <input type="text" id="update-companyId" name="companyId"
+						placeholder="输入所属公司ID" required class="layui-input" value=""> -->
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -244,8 +255,8 @@
 						<img id="update-image"
 							src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460">
 						<div class="upbar">
-							<input name="file" id="update-image-input" class="layui-upload-file"
-								type="file">
+							<input name="file" id="update-image-input"
+								class="layui-upload-file" type="file">
 						</div>
 					</div>
 				</div>

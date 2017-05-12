@@ -102,7 +102,14 @@ public class FinanceDaoImpl implements FinanceDao {
 
 	@Override
 	public List<Finance> getAllByCompanyId(int companyId, int count) {
-		return getFinanceWithStatusAndCompany(companyId, count, FinanceStatus.WaitConfirm);
+		List<Finance> waitList=getFinanceWithStatusAndCompany(companyId, count, FinanceStatus.WaitConfirm);
+		List<Finance> waitRemitList=getFinanceWithStatusAndCompany(companyId,count, FinanceStatus.WaitRemittance);
+		List<Finance> motifiedList=getFinanceWithStatusAndCompany(companyId, count, FinanceStatus.Motified);
+		List<Finance> rejectList=getFinanceWithStatusAndCompany(companyId, count, FinanceStatus.RejectMotify);
+		waitList.addAll(motifiedList);
+		waitList.addAll(waitRemitList);
+		waitList.addAll(rejectList);
+		return waitList;
 	}
 
 	@Override
@@ -112,7 +119,14 @@ public class FinanceDaoImpl implements FinanceDao {
 
 	@Override
 	public List<Finance> getAll(int count) {
-		return getFinanceWithStatus(count, FinanceStatus.WaitRemittance);
+		List<Finance> waitConfirmList=getFinanceWithStatus(count, FinanceStatus.WaitConfirm);
+		List<Finance> waitRemitList=getFinanceWithStatus(count, FinanceStatus.WaitRemittance);
+		List<Finance> motifiedList=getFinanceWithStatus(count, FinanceStatus.Motified);
+		List<Finance> rejectList=getFinanceWithStatus(count, FinanceStatus.RejectMotify);
+		waitRemitList.addAll(waitConfirmList);
+		waitRemitList.addAll(motifiedList);
+		waitRemitList.addAll(rejectList);
+		return waitRemitList;
 	}
 
 	@Override
@@ -120,21 +134,7 @@ public class FinanceDaoImpl implements FinanceDao {
 		return getFinanceWithStatus(count, FinanceStatus.Remitted);
 	}
 
-	@Override
-	public boolean remit(int financeId) {
-		String sql = "update finance set finance_status=? where finance_id=?";
-		return jdbc.update(sql, new Object[] { FinanceStatus.Remitted.toString(), financeId },
-				new int[] { Types.NVARCHAR, Types.INTEGER }) == 1 ? true : false;
-	}
-
-	@Override
-	public boolean confirm(int financeId) {
-		String sql = "update finance set finance_status=? where finance_id=?";
-		return jdbc.update(sql, new Object[] { FinanceStatus.WaitRemittance.toString(), financeId },
-				new int[] { Types.NVARCHAR, Types.INTEGER }) == 1 ? true : false;
-	}
-
-	@Override
+		@Override
 	public Finance getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
@@ -142,13 +142,14 @@ public class FinanceDaoImpl implements FinanceDao {
 
 	@Override
 	public int getFinancePage() {
-		String sql = "select count(*) from finance";
+		String sql = "select count(*) from finance where finance_status!='"+FinanceStatus.Remitted.toString()+"'";
 		return jdbc.queryForObject(sql, Integer.class);
 	}
 
 	@Override
 	public int getFinancePageByCompanyId(int companyId) {
-		String sql = "select count(*) from finance where finance_company_id=" + companyId;
+		String sql = "select count(*) from finance where finance_company_id=" + companyId+
+				" and finance_status!='"+FinanceStatus.Remitted.toString()+"'";
 		return jdbc.queryForObject(sql, Integer.class);
 	}
 
@@ -164,10 +165,33 @@ public class FinanceDaoImpl implements FinanceDao {
 				+ FinanceStatus.Remitted.toString() + "'";
 		return jdbc.queryForObject(sql, Integer.class);
 	}
+	
 	@Override
 	public boolean motifyAmount(int financeId,BigDecimal amount){
-		String sql="update finance set finance_amount=? where finance_id=?";
-		return jdbc.update(sql,new Object[]{amount,financeId},new int[]{Types.DECIMAL,Types.INTEGER})==1?true:false;
+		String sql="update finance set finance_amount=?,finance_status=? where finance_id=?";
+		return jdbc.update(sql,new Object[]{amount,FinanceStatus.Motified.toString(),financeId},
+				new int[]{Types.DECIMAL,Types.NVARCHAR,Types.INTEGER})==1?true:false;
 	}
+	
+	@Override
+	public boolean confirm(int financeId) {
+		String sql = "update finance set finance_status=? where finance_id=?";
+		return jdbc.update(sql, new Object[] { FinanceStatus.WaitRemittance.toString(), financeId },
+				new int[] { Types.NVARCHAR, Types.INTEGER }) == 1 ? true : false;
+	}
+	@Override
+	public boolean reject(int financeId) {
+		String sql = "update finance set finance_status=? where finance_id=?";
+		return jdbc.update(sql, new Object[] { FinanceStatus.RejectMotify.toString(), financeId },
+				new int[] { Types.NVARCHAR, Types.INTEGER }) == 1 ? true : false;
+	}
+	
+	@Override
+	public boolean remit(int financeId) {
+		String sql = "update finance set finance_status=? where finance_id=?";
+		return jdbc.update(sql, new Object[] { FinanceStatus.Remitted.toString(), financeId },
+				new int[] { Types.NVARCHAR, Types.INTEGER }) == 1 ? true : false;
+	}
+	
 
 }

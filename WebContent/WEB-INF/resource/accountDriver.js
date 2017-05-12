@@ -189,7 +189,10 @@ function updateDriver(e) {
 	update.find("#update-imagePath").val(imagePath);
 	update.find("#update-image").attr("src",imagePath);
 	update.find("#update-age").val(tChild.get(4).innerText);
-	update.find("#update-companyId").val(tChild.find("input[type=hidden][name=companyId]").val());
+	//update.find("#update-companyId").val(tChild.find("input[type=hidden][name=companyId]").val());
+	var select = update.find("#update-companyId").find("option[value="+tChild.find("input[type=hidden][name=companyId]").val()+"]");
+	select.attr("selected",true);
+	
 	$(".look").addClass("display-none");
 	update.removeClass("display-none");		
 }
@@ -211,15 +214,32 @@ function addToTable(driverList, thead, tr) {
 		var tChild = trTemp.children();
 		tChild.get(0).innerText = driver.id;
 		tChild.get(1).innerHTML = '<img src='
-			+ driver.imagePath + '/>';
+			+ driver.imagePath + '>';
 		tChild.get(2).innerText = driver.name;
 		tChild.get(3).innerText = driver.gender;
 		tChild.get(4).innerText = driver.age;
 		tChild.get(5).innerText = driver.number;
-		if(driver.bindCarId){
-			tChild.get(6).innerText = driver.bindCarId;
+		if(driver.carNumber){
+			tChild.get(6).innerText = driver.carNumber;
 		}
+		
+		
+		
 		tChild.get(7).innerText = driver.companyName;
+		if(driver.isExam==1){
+			tChild.get(8).innerText ='正常状态司机'; 
+		}else{
+			if(driver.isExam== 0){
+				tChild.get(8).innerText ='新增状态司机';
+			}else if(driver.isExam== -1){
+				tChild.get(8).innerText ='删除状态司机';
+			}
+			tChild.find('.update-btn').addClass('layui-btn-disabled');
+			tChild.find('.del-btn').addClass('layui-btn-disabled');
+		}
+		
+		
+		
 		tChild.find("input[type=hidden][name=companyId]").val(driver.companyId);
 		thead.append(trTemp);
 	}

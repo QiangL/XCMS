@@ -58,6 +58,25 @@ public class CompanyDaoImpl implements CompanyDao {
 		});
 		return list;
 	}
+	@Override
+	public List<Company> getAll() {
+		String sql="select company_id,company_name,company_owner,company_tel,company_email,company_public_account from company";
+		List<Company> list=jdbc.query(sql,new RowMapper<Company>() {
+
+			@Override
+			public Company mapRow(ResultSet rs, int index) throws SQLException {
+				Company c=new Company();
+				c.setId(rs.getInt("company_id"));
+				c.setName(rs.getString("company_name"));
+				c.setOwner(rs.getString("company_owner"));
+				c.setTel(rs.getString("company_tel"));
+				c.setEmail(rs.getString("company_email"));
+				c.setPublicAccount(rs.getString("company_public_account"));
+				return c;
+			}
+		});
+		return list;
+	}
 
 	@Override
 	public boolean update(Company company) {

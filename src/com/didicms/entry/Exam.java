@@ -1,5 +1,5 @@
 package com.didicms.entry;
 
 public enum Exam {
-	NotExam, Examed;
+	NotAddExam, AddExamed,NotDelExam,DelExamed;
 }

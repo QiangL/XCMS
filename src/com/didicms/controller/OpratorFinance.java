@@ -25,6 +25,18 @@ public class OpratorFinance {
 		return URL.OpratorFinance;
 	}
 
+	@RequestMapping(value = "/rejectFinance", method = RequestMethod.POST)
+	@ResponseBody
+	public String rejectFinance(int financeId) {
+		Msg msg=new Msg();
+		if(financeDao.reject(financeId)){
+			msg.code=1;
+		}else{
+			msg.code=-1;
+		}
+		return JSON.toJSONString(msg);
+	}
+	
 	@RequestMapping(value = "/remitFinance", method = RequestMethod.POST)
 	@ResponseBody
 	public String remitFinance(int financeId) {

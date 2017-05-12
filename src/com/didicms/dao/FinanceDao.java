@@ -8,8 +8,12 @@ import com.didicms.entry.Finance;
 public interface FinanceDao {
 	public boolean insert(Finance finance);
 	public List<Finance> getAllByCompanyId(int companyId,int count);
-	public boolean remit(int financeId);
+	
+	public boolean motifyAmount(int financeId,BigDecimal amount);
 	public boolean confirm(int financeId);
+	public boolean reject(int financeId);
+	public boolean remit(int financeId);
+	
 	public List<Finance> getAll(int count);
 	public Finance getById(int id);
 	public int getFinancePage();
@@ -21,7 +25,7 @@ public interface FinanceDao {
 	public List<Finance> getHistoryAll(int count);
 	public List<Finance> getHistoryAllByCompanyId(int companyId,int count);
 	
-	public boolean motifyAmount(int financeId,BigDecimal amount);
+	
 
 	
 

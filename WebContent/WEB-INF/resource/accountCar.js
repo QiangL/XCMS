@@ -232,12 +232,26 @@ function addToTable(carList, thead, tr) {
 		var trTemp = tr.clone();
 		var tChild = trTemp.children();
 		tChild.get(0).innerText = car.id;
-		tChild.get(1).innerHTML = '<img src=' + car.imagePath + '/>';
+		tChild.get(1).innerHTML = '<img src=' + car.imagePath + '>';
 		tChild.get(2).innerText = car.number;
 		tChild.get(3).innerText = car.model;
 		tChild.get(4).innerText = car.color;
 		tChild.get(5).innerText = car.displacement;
 		tChild.get(6).innerText = car.companyName;
+		if(car.isExam==1){
+			tChild.get(7).innerText='正常状态车辆';
+		}else{
+			if(car.isExam==-1){
+				tChild.get(7).innerText='删除状态车辆';
+			}
+			else if(car.isExam== 0){
+				tChild.get(7).innerText='新增状态车辆';
+			}
+			tChild.find('.update-btn').addClass('layui-btn-disabled');
+			tChild.find('.del-btn').addClass('layui-btn-disabled');
+			
+		}
+		
 		tChild.find("input[type=hidden][name=companyId]").val(car.companyId);
 		thead.append(trTemp);
 	}

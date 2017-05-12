@@ -34,7 +34,7 @@
 				<col width="60" />
 				<col width="60" />
 				<col width="100" />
-				<col width="60" />
+				<col width="100" />
 				<col width="100" />
 				<col />
 			</colgroup>
@@ -46,7 +46,7 @@
 					<th>性别</th>
 					<th>年龄</th>
 					<th>电话</th>
-					<th>绑定汽车ID</th>
+					<th>绑定车辆车牌号</th>
 					<th>所属合作伙伴</th>
 					<th>操作</th>
 				</tr>
@@ -66,7 +66,7 @@
 				<col width="60" />
 				<col width="60" />
 				<col width="100" />
-				<col width="60" />
+				<col width="100" />
 				<col width="100" />
 				<col />
 			</colgroup>
@@ -78,7 +78,7 @@
 					<th>性别</th>
 					<th>年龄</th>
 					<th>电话</th>
-					<th>绑定汽车ID</th>
+					<th>绑定车辆车牌号</th>
 					<th>所属合作伙伴</th>
 					<th>操作</th>
 				</tr>
@@ -90,8 +90,7 @@
 		<div class="layui-layer-page" id="examDel-page"></div>
 	</div>
 	<div class="add  display-none">
-		<form action="oprator/addDriver" method="POST"
-			class="layui-form">
+		<form action="oprator/addDriver" method="POST" class="layui-form">
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">司机ID</label>
 				<div class="layui-input-block">
@@ -109,8 +108,8 @@
 			<div class="layui-form-item">
 				<label for="add-name" class="layui-form-label">司机姓名</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-name" name="name" placeholder="输入司机姓名，2到10个字"
-						required class="layui-input" value="">
+					<input type="text" id="add-name" name="name"
+						placeholder="输入司机姓名，2到10个字" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -128,20 +127,27 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label for="add-bind-carId" class="layui-form-label">绑定车辆ID</label>
+				<label for="add-bind-carId" class="layui-form-label">绑定车辆车牌号</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-bind-carId" name="bindCarId"
-						placeholder="输入绑定车辆ID，12位" class="layui-input" value="">
+					<input type="text" id="add-bind-carId" name="carNumber"
+						placeholder="输入绑定车牌号，7位" class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label for="add-companyId" class="layui-form-label">所属公司ID</label>
+				<label for="add-companyId" class="layui-form-label">所属公司</label>
+
 				<div class="layui-input-block">
-					<input type="text" id="add-companyId" name="companyId"
-						placeholder="输入所属公司ID" required class="layui-input" value="">
+					<select  id="update-companyId" name="companyId" lay-verify="">
+						<option value="">请选择一个公司</option>
+						<c:forEach var="company" items="${companyList }">
+							<option value="${company.id }">${company.name }</option>
+						</c:forEach>
+					</select>
+					<!-- <input type="text" id="add-companyId" name="companyId"
+						placeholder="输入所属公司ID" required class="layui-input" value="">-->
 				</div>
 			</div>
-			
+
 			<div class="layui-form-item">
 				<label for="add-image" class="layui-form-label">司机头像</label>
 				<div class="layui-input-block">
@@ -183,7 +189,7 @@
 				<col width="50" />
 				<col width="50" />
 				<col width="60" />
-				<col width="60" />
+				<col width="100" />
 				<col width="100" />
 				<col />
 			</colgroup>
@@ -195,7 +201,7 @@
 					<th>性别</th>
 					<th>年龄</th>
 					<th>电话</th>
-					<th>绑定汽车ID</th>
+					<th>绑定车辆车牌号</th>
 					<th>所属合作伙伴</th>
 					<th>操作</th>
 				</tr>
@@ -211,8 +217,9 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="update-id">司机ID</label>
 				<div class="layui-input-block">
-					<input type="text" id="update-id" name="id" placeholder="输入司机ID，13位"
-						required="true" class="layui-input" value="12" readonly="readonly">
+					<input type="text" id="update-id" name="id"
+						placeholder="输入司机ID，13位" required="true" class="layui-input"
+						value="12" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -244,17 +251,23 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label for="update-bind-carId" class="layui-form-label">绑定车辆ID</label>
+				<label for="update-bind-carId" class="layui-form-label">绑定车辆车牌号</label>
 				<div class="layui-input-block">
-					<input type="text" id="update-bind-carId" name="bindCarId"
-						placeholder="输入绑定车辆ID，12位"  class="layui-input" value="">
+					<input type="text" id="update-bind-carId" name="carNumber"
+						placeholder="输入绑定车牌号，7位" class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label for="update-companyId" class="layui-form-label">所属公司ID</label>
+				<label for="update-companyId" class="layui-form-label">所属公司</label>
 				<div class="layui-input-block">
-					<input type="text" id="update-companyId" name="companyId"
-						placeholder="输入所属公司ID" required class="layui-input" value="">
+					<select id="update-companyId" name="companyId" lay-verify="">
+						<option value="">请选择一个公司</option>
+						<c:forEach var="company" items="${companyList }">
+							<option value="${company.id }">${company.name }</option>
+						</c:forEach>
+					</select>
+					<!-- <input type="text" id="update-companyId" name="companyId"
+						placeholder="输入所属公司ID" required class="layui-input" value=""> -->
 				</div>
 			</div>
 			<div class="layui-form-item">

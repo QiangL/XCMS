@@ -96,10 +96,11 @@
 				<col width="65" />
 				<col width="100" />
 				<col width="100" />
+				<col width="100" />
+				<col width="60" />
+				<col width="60" />
+				<col width="100" />
 				<col width="150" />
-				<col width="60" />
-				<col width="60" />
-				<col width="200" />
 				<col />
 			</colgroup>
 			<thead>
@@ -111,6 +112,7 @@
 					<th>颜色</th>
 					<th>排量</th>
 					<th>所属合作伙伴</th>
+					<th>状态</th>
 					<th>操作</th>
 				</tr>
 
@@ -186,7 +188,7 @@
 <script type="text/javascript" src="resource/accountCar.js"></script>
 <script type="text/javascript" src="resource/carCheck.js"></script>
 <script type="text/javascript">
-	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
+	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 </script>
 
 <%@include file="TemplateFooter.jsp"%>

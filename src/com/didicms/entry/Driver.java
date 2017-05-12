@@ -113,13 +113,6 @@ public class Driver {
 		this.grade = grade;
 	}
 
-	public Exam getIsExam() {
-		return isExam;
-	}
-
-	public void setIsExam(Exam isExam) {
-		this.isExam = isExam;
-	}
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -135,6 +128,20 @@ public class Driver {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	public int getIsExam() {
+		return isExam;
+	}
+
+	public void setIsExam(int isExam) {
+		this.isExam = isExam;
+	}
+	public String getCarNumber() {
+		return carNumber;
+	}
+
+	public void setCarNumber(String carNumber) {
+		this.carNumber = carNumber;
+	}
 	private String id;
 	private String number;
 	private String name;
@@ -148,9 +155,11 @@ public class Driver {
 	private Double badReview;
 	private Double score;
 	private DriverGrade grade;
-	private Exam isExam;
+	private int isExam;
+	
 	private String companyName;
 	private String imagePath;
+	private String carNumber;
 	
 
 }

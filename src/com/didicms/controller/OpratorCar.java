@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.didicms.dao.CarService;
+import com.didicms.dao.CompanyDao;
 import com.didicms.entry.Car;
 import com.didicms.entry.Msg;
 
@@ -22,6 +23,8 @@ import com.didicms.entry.Msg;
 public class OpratorCar {
 	@Autowired
 	private CarService carServive;
+	@Autowired
+	private CompanyDao companyDao;
 
 	@RequestMapping(value="/car",method = RequestMethod.GET)
 	public String view(HttpSession session) {
@@ -31,6 +34,9 @@ public class OpratorCar {
 		session.setAttribute(SessionKey.OpratorNotExamAddCarPageNum, notExamDriverAddPN);
 		session.setAttribute(SessionKey.OpratorNotExamDelCarPageNum, notExamDriverDelPN);
 		session.setAttribute(SessionKey.OpratorCarPageNum, driverPN);*/
+		
+		session.setAttribute("companyList", companyDao.getAll());
+		
 		return URL.OpratorCar;
 	}
 	

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.didicms.dao.CarDao;
 import com.didicms.dao.DriverDao;
 import com.didicms.entry.Driver;
 import com.didicms.entry.Msg;
@@ -21,6 +22,8 @@ import com.didicms.entry.Msg;
 public class AccountDriver {
 	@Autowired
 	private DriverDao driverDao;
+	@Autowired
+	private CarDao carDao;
 	
 	@RequestMapping(value="/driver",method=RequestMethod.GET)
 	public String viewDriver(HttpSession session){
@@ -28,15 +31,16 @@ public class AccountDriver {
 	}
 	@RequestMapping(value = "/addDriver", method = RequestMethod.POST)
 	public String addDriver(HttpServletRequest request, Driver driver,HttpSession session) {
+		driver.setBindCarId(carDao.getCarIdByCarNumber(driver.getCarNumber()));
 		if(driver.getGender().equals("male")){
 			driver.setGender("男");
 		}else{
 			driver.setGender("女");
 		}
 		driver.setCompanyId((Integer)session.getAttribute("companyId"));
-		if(driver.getBindCarId().equals("")){
+		/*if(driver.getBindCarId().equals("")){
 			driver.setBindCarId(null);
-		}
+		}*/
 		if (driverDao.insert(driver)) {
 			return "redirect:/account/driver";
 		}
@@ -45,15 +49,16 @@ public class AccountDriver {
 
 	@RequestMapping(value = "/updateDriver", method = RequestMethod.POST)
 	public String updateDriver(Driver driver,HttpSession session) {
+		driver.setBindCarId(carDao.getCarIdByCarNumber(driver.getCarNumber()));
 		if(driver.getGender().equals("male")){
 			driver.setGender("男");
 		}else{
 			driver.setGender("女");
 		}
 		driver.setCompanyId((Integer)session.getAttribute("companyId"));
-		if(driver.getBindCarId().equals("")){
+		/*if(driver.getBindCarId().equals("")){
 			driver.setBindCarId(null);
-		}
+		}*/
 		if (driverDao.update(driver)) {
 			return "redirect:/account/driver";
 		}

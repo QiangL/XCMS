@@ -55,13 +55,6 @@ public class Car {
 		this.imagePath = imagePath;
 	}
 
-	public Exam getIsExam() {
-		return isExam;
-	}
-
-	public void setIsExam(Exam isExam) {
-		this.isExam = isExam;
-	}
 	public int getCompanyId() {
 		return companyId;
 	}
@@ -77,14 +70,22 @@ public class Car {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
+	public int getIsExam() {
+		return isExam;
+	}
 
+	public void setIsExam(int isExam) {
+		this.isExam = isExam;
+	}
 	private String id;
 	private String number;
 	private String model;
 	private String displacement;
 	private String color;
 	private String imagePath;
-	private Exam isExam;
+	private int isExam;
+	
+
 	private int companyId;
 	
 

@@ -29,5 +29,6 @@ function checkAccount(data){
         errAlert('两次密码输入不同');
         return false;
     }
+    alert("验证通过，提交后跳转");
     return true;
 }

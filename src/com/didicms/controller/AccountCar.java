@@ -29,7 +29,8 @@ public class AccountCar {
 	
 
 	@RequestMapping(value = "/addCar", method = RequestMethod.POST)
-	public String addCar(HttpServletRequest request, Car car) {
+	public String addCar(HttpServletRequest request, Car car,HttpSession session) {
+		car.setCompanyId((Integer)session.getAttribute("companyId"));
 		if (carDao.insert(car)) {
 			return "redirect:/account/car";
 		}
@@ -37,7 +38,8 @@ public class AccountCar {
 	}
 
 	@RequestMapping(value = "/updateCar", method = RequestMethod.POST)
-	public String updateCar(Car car) {
+	public String updateCar(Car car,HttpSession session) {
+		car.setCompanyId((Integer)session.getAttribute("companyId"));
 		if (carDao.update(car)) {
 			return "redirect:/account/car";
 		}

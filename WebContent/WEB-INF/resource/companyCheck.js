@@ -11,6 +11,10 @@ function errAlert(msg) {
         layer.msg(msg);
     });
 }
+function sleep(milliSeconds){
+    var startTime = new Date().getTime(); // get the current time    
+    while (new Date().getTime() < startTime + milliSeconds);
+}
 function checkCompany(data){
     var field=data.field;
     var telNumberReg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
@@ -23,5 +27,8 @@ function checkCompany(data){
         errAlert('邮箱格式不符');
         return false;
     }
+    
+    alert("验证通过，提交后跳转");
+    
     return true;
 }

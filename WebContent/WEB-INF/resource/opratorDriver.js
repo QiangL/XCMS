@@ -171,7 +171,8 @@ function updateDriver(e) {
 	update.find("#update-id").val(tChild.get(0).innerText);
 	update.find("#update-number").val(tChild.get(5).innerText);
 	update.find("#update-name").val(tChild.get(2).innerText);
-	update.find("#update-bind-carId").val(tChild.get(6).innerText);
+	//update.find("#update-bind-carId").val(tChild.get(6).innerText);
+	
 	var gender = tChild.get(3).innerText;
 	// TODO 这里因为使用了layui美化了单选框，所以不能设置checked，这是问题！
 	/*
@@ -184,7 +185,9 @@ function updateDriver(e) {
 	update.find("#update-imagePath").val(imagePath);
 	update.find("#update-image").attr("src",imagePath);
 	update.find("#update-age").val(tChild.get(4).innerText);
-	update.find("#update-companyId").val(tChild.find("input[type=hidden][name=companyId]").val());
+	//update.find("#update-companyId").val(tChild.find("input[type=hidden][name=companyId]").val());
+	var select = update.find("#update-companyId").find("option[value="+tChild.find("input[type=hidden][name=companyId]").val()+"]");
+	select.attr("selected",true);
 	$(".look").addClass("display-none");
 	update.removeClass("display-none");		
 }
@@ -225,8 +228,8 @@ function addToTable(driverList, thead, tr) {
 		tChild.get(3).innerText = driver.gender;
 		tChild.get(4).innerText = driver.age;
 		tChild.get(5).innerText = driver.number;
-		if(driver.bindCarId){
-			tChild.get(6).innerText = driver.bindCarId;
+		if(driver.carNumber){
+			tChild.get(6).innerText = driver.carNumber;
 		}
 		tChild.get(7).innerText = driver.companyName;
 		tChild.find("input[type=hidden][name=companyId]").val(driver.companyId);
