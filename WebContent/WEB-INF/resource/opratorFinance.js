@@ -36,12 +36,13 @@ function addToTableList(financeList) {
         if(finance.status != 'WaitRemittance'){
         	tChild.find('.reject-btn').addClass('layui-btn-disabled');
         	tChild.find('.remit-btn').addClass('layui-btn-disabled');
+        }else{
+        	tChild.find('.remit-btn').click(remitClick);
+        	tChild.find('.reject-btn').click(rejectClick);
         }
         tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
-    $(".list tbody .remit-btn").click(remitClick);
-    $(".list tbody .reject-btn").click(rejectClick);
     $(".list tbody .detail-btn").click(detailClick);
     
     tbody.css("display", "");
@@ -116,7 +117,7 @@ function postClick(e,url,param){
                     offset: '100px',
                     content: '分账信息已提交'
                 });
-                $tr.hide("slow");
+                listTr.hide("slow");
             } else {
                 layer.open({
                     title: '提交失败',

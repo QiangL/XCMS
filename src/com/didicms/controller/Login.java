@@ -28,7 +28,6 @@ public class Login {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String view() {
-		System.out.println(this.getClass().getResource("/"));
 		return "index";
 	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

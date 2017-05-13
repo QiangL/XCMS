@@ -39,14 +39,15 @@ function addToTableList(financeList) {
         if(finance.status == 'WaitRemittance'){
         	tChild.find(".confirm-btn").addClass('layui-btn-disabled');
         	tChild.find(".motify-btn").addClass('layui-btn-disabled');
+        }else{
+        	tChild.find(".motify-btn").click(motifyClick);
+        	tChild.find(".confirm-btn").click(confirmClick);
         }
         
         tChild.find("input[name=companyId]").val(finance.companyId);
         tbody.append(trTemp);
     }
-    $(".list tbody .confirm-btn").click(confirmClick);
     $(".list tbody .detail-btn").click(detailClick);
-    $(".list tbody .motify-btn").click(motifyClick);
     tbody.css("display", "");
 }
 function addToTableHistory(financeList) {

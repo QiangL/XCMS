@@ -240,19 +240,12 @@ function updateCar(e) {
 	update.find("#update-number").val(tChild.get(2).innerText);
 	update.find("#update-model").val(tChild.get(3).innerText);
 	update.find("#update-color").val(tChild.get(4).innerText)
-	var gender = tChild.get(3).innerText;
-	// TODO 这里因为使用了layui美化了单选框，所以不能设置checked，这是问题！
-	/*
-	 * if(gender=="男"){
-	 * update.find("input[name=gender][value=male]").attr("checked","1"); }else{
-	 * update.find("input[name=gender][value=female]").attr("checked","1"); }
-	 */
 	var imagePath = tChild.get(1).childNodes[0].src;
 	update.find("#update-imagePath").val(imagePath);
 	update.find("#update-image").attr("src", imagePath);
 	update.find("#update-displacement").val(tChild.get(5).innerText);
-	update.find("#update-companyId").val(
-			tChild.find("input[type=hidden][name=companyId]").val());
+	//update.find("#update-companyId").val(tChild.find("input[type=hidden][name=companyId]").val());
+	update.find("dd[lay-value='"+tChild.find("input[type=hidden][name=companyId]").val()+"']").click();
 	$(".look").addClass("display-none");
 	update.removeClass("display-none");
 }

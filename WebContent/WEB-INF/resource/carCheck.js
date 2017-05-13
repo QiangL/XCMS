@@ -20,7 +20,15 @@ function checkCar(data) {
         errAlert('车型没有填写');
         return false;
     }
-
+    if(field.color==''){
+    	errAlert('颜色没有填写');
+        return false;
+    }
+    if(field.displacement==''){
+    	errAlert('排量没有填写');
+        return false;
+    }
+    
     if(field.companyId!=undefined && field.companyId==''){
         errAlert('请选择公司');
         return false;

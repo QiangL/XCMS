@@ -178,21 +178,15 @@ function updateDriver(e) {
 	update.find("#update-name").val(tChild.get(2).innerText);
 	update.find("#update-bind-carId").val(tChild.get(6).innerText);
 	var gender = tChild.get(3).innerText;
-	// TODO 这里因为使用了layui美化了单选框，所以不能设置checked，这是问题！
-	/*
-	 * if(gender=="男"){
-	 * update.find("input[name=gender][value=male]").attr("checked","1"); }else{
-	 * update.find("input[name=gender][value=female]").attr("checked","1"); }
-	 */
+	if(gender=="女"){
+		update.find("input[type=radio][value=female]").next().find("i").click()
+	}
 	console.log(tChild.get(1));
 	var imagePath=tChild.get(1).childNodes[0].src;
 	update.find("#update-imagePath").val(imagePath);
 	update.find("#update-image").attr("src",imagePath);
 	update.find("#update-age").val(tChild.get(4).innerText);
-	//update.find("#update-companyId").val(tChild.find("input[type=hidden][name=companyId]").val());
-	var select = update.find("#update-companyId").find("option[value="+tChild.find("input[type=hidden][name=companyId]").val()+"]");
-	select.attr("selected",true);
-	
+	update.find("#update-companyId").val(tChild.find("input[type=hidden][name=companyId]").val());
 	$(".look").addClass("display-none");
 	update.removeClass("display-none");		
 }
