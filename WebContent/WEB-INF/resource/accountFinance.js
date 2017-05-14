@@ -136,6 +136,7 @@ function detailClick(e) {
                     type: 1,
                     area: ['800px', '500px'],
                     offset: '50px',
+                    shadeClose:true,
                     content: $('.detail')
                 });
             });

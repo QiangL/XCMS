@@ -41,7 +41,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>结算款项id</th>
+					<th>结算id</th>
 					<th>公司名</th>
 					<th>年月</th>
 					<th>本月应付金额</th>
@@ -67,7 +67,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>结算款项id</th>
+					<th>结算id</th>
 					<th>公司名</th>
 					<th>年月</th>
 					<th>应付金额</th>
@@ -80,7 +80,9 @@
 		</table>
 		<div class="layui-layer-page" id="history-page"></div>
 	</div>
-	<div class="detail display-none">
+	
+</div>
+<div class="detail display-none">
 		<table class="layui-table" lay-even lay-skin="line">
 			<colgroup>
 				<col width="100" />
@@ -108,7 +110,6 @@
 		<div class="layui-layer-page" id="detail-page"></div>
 		
 	</div>
-</div>
 
 <%@include file="templateContent.jsp"%>
 <script type="text/javascript" src="resource/opratorFinance.js"></script>

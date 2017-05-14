@@ -201,7 +201,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="update-id">车辆ID</label>
 				<div class="layui-input-block">
-					<input type="text" id="update-id" name="id" placeholder="车辆ID"
+					<input type="text" id="update-id" name="id" placeholder="车辆ID,12位"
 						required="true" class="layui-input" value="" readonly="readonly">
 				</div>
 			</div>
@@ -209,7 +209,7 @@
 				<label for="update-number" class="layui-form-label">车牌号</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-number" name="number"
-						placeholder="输入车牌号" required class="layui-input" value="">
+						placeholder="输入车牌号，7位" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">

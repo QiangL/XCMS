@@ -84,7 +84,6 @@ function addToTableDetail(orderList) {
         tChild.get(6).innerText = order.driverGrade;
         tbody.append(trTemp);
     }
-    $(".history tbody .detail-btn").click(detailClick);
     tbody.css("display", "");
 }
 function detailClick(e) {
@@ -99,6 +98,7 @@ function detailClick(e) {
                     type: 1,
                     area: ['800px', '500px'],
                     offset: '50px',
+                    shadeClose:true,
                     content: $('.detail')
                 });
             });
