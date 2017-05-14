@@ -13,7 +13,12 @@ function addToTable(companyList){
 		var company=companyList[i];
 		var trTemp=tr.clone();
 		var tChild=trTemp.children();
-		tChild.get(0).innerText=company.id;
+		console.log(company.id.toString().length);
+		if(company.id.toString().length==6){
+			tChild.get(0).innerText='0'+company.id;
+		}else{
+			tChild.get(0).innerText=company.id;
+		}
 		tChild.get(1).innerText=company.name;
 		tChild.get(2).innerText=company.owner;
 		tChild.get(3).innerText=company.tel;

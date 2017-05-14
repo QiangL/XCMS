@@ -25,7 +25,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">公司ID</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-id" name="id" placeholder="输入公司ID"
+					<input type="text" id="add-id" name="id" placeholder="输入公司ID，长度7位"
 						required="true" class="layui-input" value="">
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 				<label for="add-tel" class="layui-form-label">联系电话</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-tel" name="tel"
-						placeholder="输入公司联系电话" required class="layui-input" value="">
+						placeholder="输入公司联系电话，11位数字" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">

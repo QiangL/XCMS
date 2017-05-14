@@ -174,10 +174,10 @@ function deleteCar(e) {
 	}, function(date) {
 		if (date.code == 1) {
 			layer.open({
-				title : '删除成功',
+				title : '提交删除请求',
 				shadeClose : true,
 				offset : '100px',
-				content : '该车辆删除成功'
+				content : '删除请求已提交，等待审核'
 			});
 			$tr.hide("slow");
 		} else {

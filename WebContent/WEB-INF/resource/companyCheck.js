@@ -11,14 +11,14 @@ function errAlert(msg) {
         layer.msg(msg);
     });
 }
-function sleep(milliSeconds){
-    var startTime = new Date().getTime(); // get the current time    
-    while (new Date().getTime() < startTime + milliSeconds);
-}
 function checkCompany(data){
     var field=data.field;
     var telNumberReg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
     var emailReg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ ;
+    if(field.id.length!=7){
+    	errAlert('ID长度不符');
+        return false;
+    }
     if(!telNumberReg.test(field.tel)){
         errAlert('电话号长度或格式不符');
         return false;

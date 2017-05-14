@@ -26,7 +26,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label" for="add-id">车辆ID</label>
 				<div class="layui-input-block">
-					<input type="text" id="add-id" name="id" placeholder="车辆ID"
+					<input type="text" id="add-id" name="id" placeholder="车辆ID，12位，只允许数字"
 						required="true" class="layui-input" value="">
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 				<label for="add-number" class="layui-form-label">车牌号</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-number" name="number"
-						placeholder="输入车牌号" required class="layui-input" value="">
+						placeholder="输入车牌号，7位" required class="layui-input" value="">
 				</div>
 			</div>
 			<div class="layui-form-item">

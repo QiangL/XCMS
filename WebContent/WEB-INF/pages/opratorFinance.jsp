@@ -41,7 +41,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>id</th>
+					<th>结算款项id</th>
 					<th>公司名</th>
 					<th>年月</th>
 					<th>本月应付金额</th>
@@ -67,7 +67,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>id</th>
+					<th>结算款项id</th>
 					<th>公司名</th>
 					<th>年月</th>
 					<th>应付金额</th>

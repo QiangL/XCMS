@@ -19,9 +19,8 @@ function addToTableList(financeList) {
         var tChild = trTemp.children();
         tChild.get(0).innerText = finance.id;
         tChild.get(1).innerText = finance.companyName;
-        var date=new Date(finance.date).toLocaleDateString();
-        tChild.get(2).innerText = date.slice(0,date.lastIndexOf('-'));
-        
+        var date=new Date(finance.date);
+        tChild.get(2).innerText = date.getFullYear()+"年"+(date.getMonth()+1)+"月";
         tChild.get(3).innerHTML = finance.amount + motifyInput;
         tChild.get(4).innerText = finance.companyPublicAccount;
         //tChild.get(5).innerText = finance.status;
@@ -60,8 +59,8 @@ function addToTableHistory(financeList) {
         var tChild = trTemp.children();
         tChild.get(0).innerText = finance.id;
         tChild.get(1).innerText = finance.companyName;
-        var date=new Date(finance.date).toLocaleDateString();
-        tChild.get(2).innerText = date.slice(0,date.lastIndexOf('-'));
+        var date=new Date(finance.date);
+        tChild.get(2).innerText = date.getFullYear()+"年"+(date.getMonth()+1)+"月";
         tChild.get(3).innerText = finance.amount;
         tChild.get(4).innerText = finance.companyPublicAccount;
         tChild.find("input[name=companyId]").val(finance.companyId);
