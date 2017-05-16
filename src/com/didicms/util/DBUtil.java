@@ -1,12 +1,17 @@
 package com.didicms.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.Properties;
 
 public class DBUtil {
@@ -18,21 +23,13 @@ public class DBUtil {
 
 	static {
 		Properties properties = new Properties();
-		DBUtil.class.getClassLoader();
+		//DBUtil.class.getClassLoader();
 		// TODO file path should be consider again, classpath will be changed
-		// when deploy.
-		InputStream is = DBUtil.class.getResourceAsStream("/com/didicms/property/db.properties");
-		try {
-			properties.load(is);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("database properties not found");
-			e.printStackTrace();
-		}
-		driver = properties.getProperty("driver");
-		connURL = properties.getProperty("connURL");
-		username = properties.getProperty("username");
-		password = properties.getProperty("password");
+		// when deploy
+		driver = "com.mysql.jdbc.Driver";
+		connURL = "jdbc:mysql://localhost:3306/didicms?useUnicode=true&useSSL=false&characterEncoding=UTF-8";
+		username = "root";
+		password = "root";
 	}
 
 	/**
@@ -43,6 +40,11 @@ public class DBUtil {
 	 */
 	public static void main(String[] args) throws SQLException {
 		Connection conn = getConn();
+		PreparedStatement pstmt=conn.prepareStatement("insert into finance (finance_company_id,finance_amount,finance_status,finance_date,finance_oprator_id)"
+				+ "values(140101,1,'Waitconfirm',?,'dididalian')");
+		pstmt.setTimestamp(1, new java.sql.Timestamp(new Date().getTime()));
+		pstmt.execute();
+		pstmt.close();
 		System.out.println(conn);
 		closeConn(conn);
 	}

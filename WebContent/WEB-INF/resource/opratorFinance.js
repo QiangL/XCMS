@@ -104,7 +104,7 @@ function detailClick(e) {
             });
         });
 }
-function postClick(e,url,param){
+function postClick(e,url,param,tit,msg){
 	$.post(url, {
         financeId: param
     }, function (date) {
@@ -112,10 +112,10 @@ function postClick(e,url,param){
             var layer = layui.layer;
             if (date.code == 1) {
                 layer.open({
-                    title: '提交成功',
+                    title: tit,
                     shadeClose: true,
                     offset: '100px',
-                    content: '分账信息已提交'
+                    content: msg
                 });
                 listTr.hide("slow");
             } else {
@@ -137,14 +137,16 @@ function rejectClick(e){
     $(e.target).addClass('layui-btn-disabled');
     $tr.find('.remit-btn').addClass('layui-btn-disabled');
     $tr.find('.remit-btn').unbind();  
-    postClick(e,"oprator/rejectFinance",financeId);
+    postClick(e,"oprator/rejectFinance",financeId,"驳回修改","已驳回修改");
 }
 function remitClick(e) {
     var $tr = $(e.target.parentElement.parentElement);
     var financeId = $tr.children().get(0).innerText;
     console.log(financeId);
     $(e.target).addClass('layui-btn-disabled');
-    postClick(e,"oprator/remitFinance",financeId);
+    $tr.find('.reject-btn').addClass('layui-btn-disabled');
+    $tr.find('.reject-btn').unbind();  
+    postClick(e,"oprator/remitFinance",financeId,"提交成功","分账信息提交成功");
     /*
     $.post("oprator/remitFinance", {
         financeId: financeId
