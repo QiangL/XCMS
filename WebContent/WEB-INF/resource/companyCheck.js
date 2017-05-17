@@ -19,6 +19,10 @@ function checkCompany(data){
     	errAlert('ID长度不符');
         return false;
     }
+    if(!(/[0-9]{7}/.test(field.id))){
+    	errAlert('公司ID不为纯数字');
+        return false;
+    }
     if(!telNumberReg.test(field.tel)){
         errAlert('电话号长度或格式不符');
         return false;

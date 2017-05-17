@@ -7,9 +7,13 @@ layui.use('form', function () {
 });
 function checkCar(data) {
     var field=data.field;
-
+    
     if(field.id.length!=12){
         errAlert('ID长度不符');
+        return false;
+    }
+    if(!(/[0-9]{12}/).test(field.id)){
+    	errAlert('ID不为纯数字');
         return false;
     }
     if(field.number.length!=7){

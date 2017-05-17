@@ -29,8 +29,14 @@ function updateClick(e){
 	var accountId=$tr.children().get(0).innerText;
 	console.log(accountId);
 	var update=$(".update");
-	update.find("#update-id").val(tChild.get(0).innerText);
-	update.find("#update-company-id").val(tChild.find("input[type=hidden][name=companyId]").val());
+	update.find("#update-id").val(tChild.get(0).innerText);	
+	var companyId=tChild.find("input[type=hidden][name=companyId]").val();
+	if(companyId.length==6){
+		update.find("#update-company-id").val('0'+companyId);
+	}else{
+		update.find("#update-company-id").val(companyId);
+	}
+	
 	$(".look").addClass("display-none");
 	update.removeClass("display-none");
 }

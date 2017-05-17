@@ -12,6 +12,7 @@ function errAlert(msg) {
     });
 }
 function checkAccount(data){
+	var idReg=/[0-9]{7}/;
     var field=data.field;
     if(field.id==''){
         errAlert('请填写ID');
@@ -19,6 +20,14 @@ function checkAccount(data){
     }
     if(field.companyId==''){
         errAlert('请填写公司ID');
+        return false;
+    }
+    if(field.companyId.length!=7){
+    	errAlert('公司ID位数不符');
+        return false;
+    }
+    if(!idReg.test(field.companyId)){
+    	errAlert('公司ID不符,不是数字');
         return false;
     }
     if(field.password.length<6 ||field.password.length>16){

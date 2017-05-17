@@ -61,13 +61,13 @@
 				<label for="add-company-id" class="layui-form-label">公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="add-company-id" name="companyId"
-						placeholder="公司ID" required class="layui-input" value="" >
+						placeholder="公司ID，7位数字" required class="layui-input" value="" >
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="add-password" class="layui-form-label">账户密码</label>
 				<div class="layui-input-block">
-					<input type="password" id="add-password" name="password" placeholder="password"
+					<input type="password" id="add-password" name="password"
 					placeholder="长度6~16"	required class="layui-input" value="">
 				</div>
 			</div>
@@ -101,7 +101,7 @@
 				<label for="update-company-id" class="layui-form-label">公司ID</label>
 				<div class="layui-input-block">
 					<input type="text" id="update-company-id" name="companyId"
-						placeholder="公司ID" required class="layui-input" value="" readonly="readonly">
+						placeholder="公司ID，7位数字" required class="layui-input" value="" readonly="readonly">
 				</div>
 			</div>
 			<div class="layui-form-item">

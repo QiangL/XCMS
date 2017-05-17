@@ -18,6 +18,10 @@ function checkDriver(data) {
         errAlert('ID长度不符 要求13位');
         return false;
     }
+    if(!(/[0-9]{13}/.test(field.id))){
+    	errAlert('ID不为纯数字');
+        return false;
+    }
     if (field.number.length != 11 || !telNumberReg.test(field.number)) {
         errAlert('电话号长度或格式不符');
         return false;
