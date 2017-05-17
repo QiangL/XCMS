@@ -146,7 +146,7 @@ function remitClick(e) {
     $(e.target).addClass('layui-btn-disabled');
     $tr.find('.reject-btn').addClass('layui-btn-disabled');
     $tr.find('.reject-btn').unbind();  
-    postClick(e,"oprator/remitFinance",financeId,"提交成功","分账信息提交成功");
+    postClick(e,"oprator/remitFinance",financeId,"分账成功","打款已成功");
     /*
     $.post("oprator/remitFinance", {
         financeId: financeId
