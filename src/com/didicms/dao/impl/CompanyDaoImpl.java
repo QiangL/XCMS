@@ -6,7 +6,9 @@ import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -23,10 +25,13 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company getById(int id) {
 		String sql="select company_name,company_owner,company_tel,company_email,company_public_account from company "
 				+ "where company_id=?";
-		return jdbc.queryForObject(sql, new Object[]{id},new int[]{Types.INTEGER},new RowMapper<Company>() {
+		return jdbc.query(sql, new Object[]{id},new int[]{Types.INTEGER},new ResultSetExtractor<Company>() {
 
 			@Override
-			public Company mapRow(ResultSet rs, int rowNum) throws SQLException {
+			public Company extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if(!rs.next()){
+					return null;
+				}
 				Company c=new Company();
 				c.setId(id);
 				c.setName(rs.getString("company_name"));

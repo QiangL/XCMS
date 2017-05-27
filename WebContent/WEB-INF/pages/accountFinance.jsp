@@ -144,7 +144,18 @@
 		//监听提交
 		form.on('submit(reward)', clickReward);
 	});
+	function checkRange(val){
+		if(val<=100 && val>=0) return true;
+		return false;
+	}
 	function clickReward(e){
+		if((!checkRange(parseInt($('#driver-reward-a').val()))) || !checkRange(parseInt($('#driver-reward-b').val())) || !checkRange(parseInt($('#driver-reward-c').val()))){
+			layui.use('layer', function () {
+				var layer = layui.layer;
+				layer.msg('请填写0~100 内的数字');
+			});
+			return ;
+		}
 		localStorage.setItem('driver-reward-a',$('#driver-reward-a').val());
 		localStorage.setItem('driver-reward-b',$('#driver-reward-b').val());
 		localStorage.setItem('driver-reward-c',$('#driver-reward-c').val());

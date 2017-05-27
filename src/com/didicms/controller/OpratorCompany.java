@@ -1,5 +1,6 @@
 package com.didicms.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,16 @@ public class OpratorCompany {
 	public String OpratorCompanyPageNum(){
 		return JSON.toJSONString(companyDao.getAllNumber());
 	}
+	@RequestMapping(value = "/getCompanyById", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getCompanyById(int companyId){
+		List<Company> list=new ArrayList<>();
+		Company c=companyDao.getById(companyId);
+		if(c!=null){
+			list.add(c);
+		}
+		return JSON.toJSONString(list);
+	}
+	
 
 }

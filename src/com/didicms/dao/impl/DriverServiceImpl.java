@@ -6,7 +6,9 @@ import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -21,10 +23,31 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public Driver getById(String id) {
-		// TODO not complete!!
-		String sql="select driver_id,driver_name,driver_name,driver_gender,driver_age,"
-				+ "driver_company_id,driver_image,driver_bind_car_id,company_name from driver,company where driver_id=? and driver_company_id=company_id";
-		return null;
+		String sql = "select driver_id,driver_name,driver_age,driver_gender,driver_number,driver_bind_car_id,car_number,company_id,company_name, driver_image,driver_exam "
+				+ "from (driver left join car on driver_bind_car_id=car_id ) inner join company  on driver_company_id=company_id where driver_id=? and driver_exam=1";
+		
+		return jdbc.query(sql, new Object[]{id},new int[]{Types.NVARCHAR},new ResultSetExtractor<Driver>() {
+
+			@Override
+			public Driver extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if(!rs.next()){
+					return null;
+				}
+				Driver driver=new Driver();
+				driver.setId(rs.getString("driver_id"));
+				driver.setName(rs.getString("driver_name"));
+				driver.setAge(rs.getInt("driver_age"));
+				driver.setGender(rs.getString("driver_gender"));
+				driver.setNumber(rs.getString("driver_number"));
+				driver.setBindCarId(rs.getString("driver_bind_car_id"));
+				driver.setCompanyId(rs.getInt("company_id"));
+				driver.setImagePath(rs.getString("driver_image"));
+				driver.setCompanyName(rs.getString("company_name"));
+				driver.setIsExam(rs.getInt("driver_exam"));
+				driver.setCarNumber(rs.getString("car_number"));
+				return driver;
+			}
+		}); 
 	}
 
 	@Override

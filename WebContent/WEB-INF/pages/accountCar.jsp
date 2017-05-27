@@ -83,13 +83,11 @@
 	</div>
 
 	<div class="look">
-		<form action="searchDriver" method="POST" class="layui-form">
 			<div class="layui-form-item search">
-				<input type="text" name="search" class="search-input"
-					placeholder="键入需要查找的公司ID" required value="" />
-				<button class="layui-btn search-btn" lay-submit>查询</button>
+				<input type="text" id="searchInput" name="search" class="search-input"
+					placeholder="键入需要查找的车辆ID" required value="" />
+				<button id="carSearch" class="layui-btn search-btn" lay-submit>查询</button>
 			</div>
-		</form>
 
 		<table class="layui-table" lay-even lay-skin="line">
 			<colgroup>
@@ -189,6 +187,13 @@
 <script type="text/javascript" src="resource/carCheck.js"></script>
 <script type="text/javascript">
 	var tr = $('<tr><td name="id"></td><td><img name="image" class="" src="https://avatars1.githubusercontent.com/u/16045257?v=3&s=460" alt=""></td><td name="number"></td><td name="model"></td><td name="color"></td><td name="displacement"></td><td name="company"></td><td></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
+	$('#carSearch').click(function(){
+		if($('#searchInput').val()!=''){
+			search($('#searchInput').val());
+		}else{
+			showCarPage(1);
+		}
+	});
 </script>
 
 <%@include file="TemplateFooter.jsp"%>

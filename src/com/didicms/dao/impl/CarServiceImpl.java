@@ -6,8 +6,10 @@ import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -23,17 +25,20 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public Car getById(String id) {
 		String sql="select car_number,car_model,car_displacement,car_color,car_company_id,car_image,car_exam,"
-				+ "company_name from car,company where car_company_id=company_id and car_id=?";
+				+ "company_name from car,company where car_company_id=company_id and car_id=? and car_exam=1";
 		
-		return jdbc.queryForObject(sql,new Object[]{id},new int[]{Types.INTEGER},new RowMapper<Car>() {
+		return jdbc.query(sql,new Object[]{id},new int[]{Types.NVARCHAR},new ResultSetExtractor<Car>() {
 
 			@Override
-			public Car mapRow(ResultSet rs, int rowNum) throws SQLException {
+			public Car extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if(!rs.next()){
+					return null;
+				}
 				Car c=new Car();
 				c.setId(id);
 				c.setNumber(rs.getString("car_number"));
 				c.setModel(rs.getString("car_model"));
-				c.setDisplacement(rs.getString("car-displacement"));
+				c.setDisplacement(rs.getString("car_displacement"));
 				c.setColor(rs.getString("car_color"));
 				c.setCompanyId(rs.getInt("car_company_id"));
 				c.setImagePath(rs.getString("car_image"));
@@ -41,7 +46,6 @@ public class CarServiceImpl implements CarService {
 				c.setCompanyName(rs.getString("company_name"));
 				
 				return c;
-				
 			}
 		});
 		

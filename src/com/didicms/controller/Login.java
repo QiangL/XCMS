@@ -1,18 +1,28 @@
 package com.didicms.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.Url;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.didicms.dao.AccountDao;
+import com.didicms.dao.CarDao;
+import com.didicms.dao.CompanyDao;
+import com.didicms.dao.DriverDao;
 import com.didicms.dao.OpratorDao;
 import com.didicms.entry.Account;
+import com.didicms.entry.Car;
+import com.didicms.entry.Company;
+import com.didicms.entry.Driver;
 import com.didicms.entry.Oprator;
 import com.didicms.util.PwdEncoding;
 
@@ -25,6 +35,12 @@ public class Login {
 	private OpratorDao opratorDao;
 	@Autowired
 	private AccountDao accountDao;
+	
+	@Autowired
+	private CarDao carDao;
+	@Autowired
+	private DriverDao driverDao;
+	
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String view() {
@@ -52,6 +68,27 @@ public class Login {
 		}
 		return URL.LogErr;
 	}
+	@RequestMapping(value = "/getDriverById", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getDriverById(String driverId){
+		List<Driver> list=new ArrayList<>();
+		Driver d=driverDao.getById(driverId);
+		if(d!=null){
+			list.add(d);
+		}
+		return JSON.toJSONString(list);
+	}
+	@RequestMapping(value = "/getCarById", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getCarById(String carId){
+		List<Car> list=new ArrayList<>();
+		Car c=carDao.getById(carId);
+		if(c!=null){
+			list.add(c);
+		}
+		return JSON.toJSONString(list);
+	}
+	
 
 	private boolean opratorLogin(HttpServletRequest request, HttpSession session) {
 		Oprator oprator = opratorDao.getById(request.getParameter("id"));

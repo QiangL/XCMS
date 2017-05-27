@@ -87,8 +87,7 @@ function showPage(pageNumberURL,listURL,pageDiv,page,func,callbackFunc) {
 			layui.laypage({
 				cont : pageDiv,
 				curr: page,
-				pages : Math.ceil(pageNumber/8) // 得到总页数
-				,
+				pages : Math.ceil(pageNumber/8),
 				jump : function(obj, first) {
 					if(!first){
 						callbackFunc(obj.curr);
@@ -97,6 +96,17 @@ function showPage(pageNumberURL,listURL,pageDiv,page,func,callbackFunc) {
 			});
 		});
 	}, 'json');
+}
+function search(companyId){
+	$.get("oprator/getCompanyById",{"companyId":companyId},function(data) {
+		addToTable(data);
+		layui.use([ 'layer', 'laypage', ], function() {
+			layui.laypage({
+				cont : 'look-page',
+				pages : 0,
+			});
+		});
+	});
 }
 function switchToAdd(){
 	$(".update").addClass("display-none");

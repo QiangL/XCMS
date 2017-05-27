@@ -249,6 +249,17 @@ function addToTable(carList, thead, tr) {
 	}
 	thead.css("display", "");
 }
+function search(carId){
+	$.get("./getCarById",{"carId":carId},function(data) {
+		addToTableLook(data);
+		layui.use([ 'layer', 'laypage', ], function() {
+			layui.laypage({
+				cont : 'look-page',
+				pages : 0
+			});
+		});
+	});
+}
 // 左侧需要用的切换方法
 function switchToExamAdd() {
 	$(".examAdd").removeClass("display-none");

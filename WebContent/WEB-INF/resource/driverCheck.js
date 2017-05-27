@@ -38,6 +38,11 @@ function checkDriver(data) {
         errAlert('请上传图片');
         return false;
     }
+    if(parseInt(field.age)>70 && parseInt(field.age)<18){
+    	errAlert('司机年龄不符合要求（18~70岁）');
+    	return false;
+    }
+    
     alert("验证通过，提交后跳转");
     return true;
 }

@@ -6,7 +6,9 @@ import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -21,25 +23,23 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Account getById(String id) {
-		String sql = "select account_id,account_password,account_company_id from account where account_id=?";
-		try{
-			Account a = jdbc.queryForObject(sql, new Object[] { id }, new int[] { Types.NVARCHAR },
-					new RowMapper<Account>() {
+		String sql = "select account_id,account_password,account_company_id,"
+				+ "company_name from account,company where account_company_id=company_id and account_id=?";
+		return  jdbc.query(sql, new Object[] { id }, new int[] { Types.NVARCHAR },new ResultSetExtractor<Account>() {
 
-						@Override
-						public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
-							Account a = new Account();
-							a.setId(rs.getString("account_id"));
-							a.setPassword(rs.getString("account_password"));
-							a.setCompanyId(rs.getInt("account_company_id"));
-							return a;
-						}
-					});
-			return a;
-		}catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+			@Override
+			public Account extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if(!rs.next()){
+					return null;
+				}
+				Account a = new Account();
+				a.setId(rs.getString("account_id"));
+				a.setPassword(rs.getString("account_password"));
+				a.setCompanyId(rs.getInt("account_company_id"));
+				a.setCompanyName(rs.getString("company_name"));
+				return a;
+			}
+		});
 	}
 
 	@Override

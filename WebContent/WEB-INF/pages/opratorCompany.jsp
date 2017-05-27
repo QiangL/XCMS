@@ -74,13 +74,11 @@
 	</div>
 
 	<div class="look">
-		<form action="searchCompany" method="POST" class="layui-form">
 			<div class="layui-form-item search">
-				<input type="text" name="search" class="search-input"
+				<input type="text" id="searchInput" name="search" class="search-input"
 					placeholder="键入需要查找的公司ID" required value="" />
-				<button class="layui-btn search-btn" lay-submit>查询</button>
+				<button id="companySearch" class="layui-btn search-btn" lay-submit>查询</button>
 			</div>
-		</form>
 
 		<table class="layui-table" lay-even lay-skin="line">
 			<colgroup>
@@ -170,6 +168,13 @@
 <script type="text/javascript">
 	var tr = $('<tr><td name="id"></td><td name="name"></td><td name="owner"></td><td name="tel"></td><td name="email"></td><td name="publicAccount"></td><td><input type="button" value="修改" class="layui-btn update-btn" /><input type="button" value="删除" class="layui-btn del-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 	flushPage(1);
+	$('#companySearch').click(function(){
+		if($('#searchInput').val()!=''){
+			search($('#searchInput').val());
+		}else{
+			flushPage(1);
+		}
+	});
 </script>
 
 <%@include file="TemplateFooter.jsp"%>

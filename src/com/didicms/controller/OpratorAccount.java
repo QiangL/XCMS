@@ -1,5 +1,6 @@
 package com.didicms.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.didicms.dao.AccountDao;
 import com.didicms.entry.Account;
-import com.didicms.entry.Company;
 import com.didicms.entry.Msg;
 import com.didicms.util.PwdEncoding;
 
@@ -65,6 +65,16 @@ public class OpratorAccount {
 	@ResponseBody
 	public String OpratorCompanyPageNum(){
 		return JSON.toJSONString(accountDao.getNumber());
+	}
+	@RequestMapping(value = "/getAccountById", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getAccountById(String accountId){
+		List<Account> list=new ArrayList<>();
+		Account a=accountDao.getById(accountId);
+		if(a!=null){
+			list.add(a);
+		}
+		return JSON.toJSONString(list);
 	}
 
 

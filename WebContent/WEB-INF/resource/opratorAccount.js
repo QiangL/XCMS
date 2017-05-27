@@ -93,6 +93,17 @@ function showPage(pageNumberURL,listURL,pageDiv,page,func,callbackFunc) {
 		});
 	}, 'json');
 }
+function search(accountId){
+	$.get("oprator/getAccountById",{"accountId":accountId},function(data) {
+		addToTable(data);
+		layui.use([ 'layer', 'laypage', ], function() {
+			layui.laypage({
+				cont : 'list-page',
+				pages : 0,
+			});
+		});
+	});
+}
 function switchToAdd(){
 	$(".update").addClass("display-none");
 	$(".look").addClass("display-none");
