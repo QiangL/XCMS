@@ -92,7 +92,7 @@
 	<div class="look">
 			<div class="layui-form-item search">
 				<input type="text" id="searchInput" name="search" class="search-input"
-					placeholder="键入需要查找的司机ID" required value="" />
+					placeholder="键入需要查找的完整司机ID" required value="" />
 				<button id="driverSearch" class="layui-btn search-btn" lay-submit>查询</button>
 			</div>
 
