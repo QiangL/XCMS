@@ -80,5 +80,12 @@ public class OpratorFinance {
 		return JSON.toJSONString(financeDao.getHistoryFinancePage());
 	}
 	
+	
+	@RequestMapping(value = "/getByCompanyId", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getByCompanyId(int companyId){
+		return JSON.toJSONString(financeDao.getAllByCompanyId(companyId, 1));
+	}
+	
 
 }

@@ -21,13 +21,11 @@
 
 <div class="layui-layer-content content">
 	<div class="list">
-		<form action="searchDriver" method="POST" class="layui-form">
 			<div class="layui-form-item search">
-				<input type="text" name="search" class="search-input"
-					placeholder="键入需要查找的公司ID" required value="" />
-				<button class="layui-btn search-btn" lay-submit>查询</button>
+				<input type="text" id="searchInput" name="search" class="search-input"
+					placeholder="键入需要查找的完整公司ID" required value="" />
+				<button id="financeSearch" class="layui-btn search-btn" lay-submit>查询</button>
 			</div>
-		</form>
 
 		<table class="layui-table" lay-even lay-skin="line">
 			<colgroup>
@@ -118,6 +116,13 @@
 	var historyTr = $('<tr><td name="id"></td><td name="name"></td><td name="date"></td><td name="money"></td><td name="publicAccount"></td><td><input type="button" value="详情" class="layui-btn detail-btn"/><input name="companyId" type="hidden" value=""></td></tr>');
 	var detailTr=$('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
 	flushListPage(1);
+	$('#financeSearch').click(function(){
+		if($('#searchInput').val()!=''){
+			search($('#searchInput').val());
+		}else{
+			flushListPage(1);
+		}
+	});
 </script>
 
 <%@include file="TemplateFooter.jsp"%>

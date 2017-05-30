@@ -198,6 +198,17 @@ function showPage(pageNumberURL, listURL, pageDiv, page, func, callbackFunc) {
         });
     }, 'json')
 }
+function search(companyId){
+	$.get("oprator/getByCompanyId",{"companyId":companyId},function(data) {
+		layui.use([ 'layer', 'laypage', ], function() {
+			layui.laypage({
+				cont : 'list-page',
+				pages : 0
+			});
+		});
+		addToTableList(data);
+	});
+}
 function switchToList() {
 	$(".history").addClass("display-none");
 	$(".detail").addClass("display-none");
