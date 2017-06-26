@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="layui-header header">
             <ul class="layui-nav" lay-filter="">
                 <li class="layui-nav-item">
-                	<a href="">滴滴合作伙伴运营管理信息系统</a>
+                	<a href="">合作伙伴运营管理信息系统</a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="${role }/driver">司机管理</a>

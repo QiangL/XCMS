@@ -23,7 +23,7 @@
 	<div class="layui-layout layui-layout-admin">
 		<div class="layui-header header">
 			<ul class="layui-nav" lay-filter="">
-				<li class="layui-nav-item"><a href="">滴滴合作伙伴管理信息系统</a></li>
+				<li class="layui-nav-item"><a href="">合作伙伴管理信息系统</a></li>
 				<li class="layui-nav-item layui-this"><a href="">修改密码</a></li>
 			</ul>
 		</div>
