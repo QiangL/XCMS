@@ -5,3 +5,5 @@
 .project
 /.externalToolBuilders/
 /target/
+/.idea/
+/WebContent/WEB-INF/lib/
